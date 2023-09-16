@@ -53,9 +53,13 @@
                   <iconify-icon icon="cil:hamburger-menu" rotate="180deg"></iconify-icon>
                 </button>
               </div>
-              <div class=" hidden lg:block">
-                <a href="#" class="btn btn-primary py-[10px] px-8 ">Kirish</a>
-              </div>
+              <div class="hidden lg:block">
+                @auth
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary py-[10px] px-8">Profil</a>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-primary py-[10px] px-8">Kirish</a>
+                @endauth
+            </div>
             </div>
           </div>
         </div>

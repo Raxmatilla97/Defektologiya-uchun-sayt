@@ -4,10 +4,10 @@
     <div class="container">
       <div class="flex items-center flex-wrap flex-y-4">
         <div class="flex-1">
-          <div class="mini-title">Defektalogiya kurslari</div>
+          <div class="mini-title">Defektalogiya Kurslari</div>
           <div class="column-title ">
-            Malaka oshirish 
-            <span class="shape-bg">kurslarimiz</span>
+            Malaka Oshirish 
+            <span class="shape-bg">Kurslarimiz</span>
           </div>
         </div>
         <div class="flex-none">

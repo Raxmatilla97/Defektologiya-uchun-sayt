@@ -1,5 +1,5 @@
   <!-- bradns section start -->
-  <div class="brands-area pt-20 pb-14 bg-black ">
+  <div class="bg-[url('../images/all-img/section-bg-3.png')] bg-cover bg-no-repeat bg-center py-20">
     <div class="container">
 
       <ul class="flex flex-wrap items-center lg:justify-between justify-center  ">

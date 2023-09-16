@@ -4,8 +4,8 @@
       <div class="text-center mb-14">
         <div class="mini-title">Yangilik Va E'lonlar</div>
         <div class="column-title ">
-          Yangiliklar va E'lonlarni 
-          <span class="shape-bg">Kuzatib boring</span>
+          Yangiliklar Va E'lonlarni 
+          <span class="shape-bg">Kuzatib Boring</span>
         </div>
       </div>
       <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">

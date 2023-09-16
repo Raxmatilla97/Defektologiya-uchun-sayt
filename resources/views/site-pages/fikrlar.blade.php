@@ -6,66 +6,50 @@
           <div class="slider-nav">
             <div class="single-item">
               <div class="xl:h-[593px] lg:h-[400px] h-[150px] lg:w-full w-[150px] rounded-md">
-                <img src="{{ asset('assets/images/all-img/t1.png')}}" alt="" class=" object-cover w-full h-full rounded-md" />
+                <img src="{{ asset('assets/images/birinchi-testemon.jpg')}}" alt="" class=" object-cover w-full h-full rounded-md" />
               </div>
             </div>
             <div class="single-item">
               <div class="xl:h-[593px] lg:h-[400px] h-[150px] lg:w-full w-[150px]  rounded-md">
-                <img src="{{ asset('assets/images/all-img/t1.png')}}" alt="" class=" object-cover w-full h-full rounded-md" />
+                <img src="{{ asset('assets/images/uchunchi-testemon.jpg')}}" alt="" class=" object-cover w-full h-full rounded-md" />
               </div>
             </div>
-            <div class="single-item">
-              <div class="xl:h-[593px] lg:h-[400px] h-[150px] lg:w-full w-[150px]  rounded-md">
-                <img src="{{ asset('assets/images/all-img/t1.png')}}" alt="" class=" object-cover w-full h-full rounded-md" />
-              </div>
-            </div>
+           
           </div>
         </div>
         <div>
-          <div class="mini-title">Testimonial</div>
+          <div class="mini-title">Fikrlar Mulohazalar</div>
           <h4 class="column-title ">
-            Our Tallented Students Valuable
+           Foydalanuvchilarimiz Tomonidan Bildirilgan
             <span class="shape-bg text-black">
-                Feedback</span>
+                Fikirlar</span>
           </h4>
           <div class="slider-for mt-10">
             <div class="single-item">
               <div>
-                <h3 class=" text-2xl font-bold text-black mb-8">“It’s Truly The Best Solution For Me”</h3>
+                <h3 class=" text-2xl font-bold text-black mb-8">“Bu men uchun eng yaxshi yechim”</h3>
                 <div class="mb-8">
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered. There are many
-                  variations of passages of Lorem Ipsum available, but the majority have suffered alteration.
+                  Defektologlar Assatsatsiya tomonidan berilgan barcha ma'lumotlar dolzarb va kurslar juda tushunarli tarzda tayyorlangan.
                 </div>
                 <div>
-                  <span class=" block  font-semibold text-black mb-1">Alfred Helmerich</span>
-                  <span class=" block  font-semibold text-primary">Executive Training Manager</span>
+                  <span class=" block  font-semibold text-black mb-1">Alimova Humora</span>
+                  <span class=" block  font-semibold text-primary">Defektolog</span>
                 </div>
               </div>
             </div>
             <div class="single-item">
               <div>
-                <h3 class=" text-2xl font-bold text-black mb-8">“It’s Truly The Best Solution For Me”</h3>
+                <h3 class=" text-2xl font-bold text-black mb-8">“Bu men uchun eng yaxshi yechim”</h3>
                 <div class="mb-8">
-                  There are many variations of passages of Lorem Ipsum available,
+                  Juda foydali sayt bo'libti sizlarga raxmat.
                 </div>
                 <div>
-                  <span class=" block  font-semibold text-black mb-1">Alfred Helmerich</span>
-                  <span class=" block  font-semibold text-primary">Executive Training Manager</span>
+                  <span class=" block  font-semibold text-black mb-1">Dilobar Azimova</span>
+                  <span class=" block  font-semibold text-primary">O'qituvchi</span>
                 </div>
               </div>
             </div>
-            <div class="single-item">
-              <div>
-                <h3 class=" text-2xl font-bold text-black mb-8">“It’s Truly The Best Solution For Me”</h3>
-                <div class="mb-8">
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered.
-                </div>
-                <div>
-                  <span class=" block  font-semibold text-black mb-1">Alfred Helmerich</span>
-                  <span class=" block  font-semibold text-primary">Executive Training Manager</span>
-                </div>
-              </div>
-            </div>
+           
           </div>
           <div class="space-x-5 flex lg:mt-10 mt-8">
             <button class="lg:h-[64px] lg:w-[64px] h-12 w-12 flex flex-col items-center justify-center rounded-md bg-white hover:bg-primary

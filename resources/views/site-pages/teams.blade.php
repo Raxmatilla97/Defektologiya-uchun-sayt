@@ -3,7 +3,7 @@
   <div class=" section-padding">
     <div class="container">
       <div class="text-center">
-        <div class="mini-title">Bizning o'qituvchilar</div>
+        <div class="mini-title">Bizning O'qituvchilar</div>
         <div class="column-title ">
           Defektolog
           <span class="shape-bg">Mutaxasislarimiz</span>

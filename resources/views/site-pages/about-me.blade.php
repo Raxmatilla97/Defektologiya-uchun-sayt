@@ -8,11 +8,11 @@
           <img src="{{ asset('assets/images/all-img/about5.png')}}" alt="" />
         </div>
         <div class="xl:col-span-5 lg:col-span-6 col-span-12 ">
-          <div class="mini-title">O'quv kurslari</div>
+          <div class="mini-title">O'quv Kurslari</div>
           <h4 class="column-title ">
             <span class="shape-bg">
-              Defektologlar</span> uchun
-           online malaka oshirish kurslari
+              Defektologlar</span> Uchun
+           Online Malaka Oshirish Kurslari
            
           </h4>
           <div>

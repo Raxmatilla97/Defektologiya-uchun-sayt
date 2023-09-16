@@ -4,11 +4,10 @@
         <div class="single-footer">
           <div class="lg:max-w-[270px]">
             <a href="#" class="mb-10 block">
-              <img src="{{ asset('assets/images/logo/footer-logo.svg')}}" alt="">
+              <img src="{{ asset('assets/images/logo-oq.png')}}" alt="">
             </a>
             <p>
-              Lorem ipsum amet, consectetur adipiscing elit. Suspendis varius enim eros elementum tristique. Duis
-              cursus.
+              Toshkent Shaxar Defektologlar Assotsiatsiyasi Web Sayti
             </p>
             <ul class="flex space-x-4 pt-8">
               <li>
@@ -41,77 +40,59 @@
         <div class="single-footer">
           <div class="flex space-x-[80px]">
             <div class="flex-1 lg:flex-none">
-              <h4 class="mb-8 text-2xl font-bold text-white">Links</h4>
+              <h4 class="mb-8 text-2xl font-bold text-white">Havolalar</h4>
               <ul class="list-item space-y-5">
                 <li>
-                  <a href="#">Home</a>
+                  <a href="#">Bosh sahifa</a>
                 </li>
                 <li>
-                  <a href="#">About Us</a>
+                  <a href="#">Biz haqimizda</a>
                 </li>
                 <li>
-                  <a href="#">Pricing</a>
+                  <a href="#">Yangiliklar</a>
                 </li>
                 <li>
-                  <a href="#">Courses</a>
+                  <a href="#">E'lonlar</a>
                 </li>
                 <li>
-                  <a href="#">Contact Us</a>
+                  <a href="#">Proyektlar</a>
                 </li>
                 <li>
-                  <a href="#">Blog</a>
+                  <a href="#">Seminarlar</a>
                 </li>
               </ul>
             </div>
             <div class="flex-1 lg:flex-none">
-              <h4 class="mb-8 text-2xl font-bold text-white">Legal</h4>
+              <h4 class="mb-8 text-2xl font-bold text-white"></h4>
               <ul class="list-item space-y-5">
                 <li>
-                  <a href="#">Legal</a>
+                  <a href="#">Mutaxasislar</a>
                 </li>
                 <li>
-                  <a href="#">Tearms of Use</a>
+                  <a href="#">Kurslar</a>
                 </li>
                 <li>
-                  <a href="#">Tearm & Condition</a>
+                  <a href="#">Biz bilan bog'lanish</a>
                 </li>
                 <li>
-                  <a href="#">Payment Method</a>
+                  <a href="#">Kirish</a>
                 </li>
                 <li>
-                  <a href="#">Privacy Policy</a>
+                  <a href="#">Ro'yxatdan o'tish</a>
                 </li>
                 <li>
-                  <a href="#">Privacy Policy</a>
+                  <a href="#">Savol-javoblar</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div class="single-footer">
-          <h4 class="mb-8 text-2xl font-bold text-white">Newsletter</h4>
-          <div class="mb-8">
-            Join over
-            <span class="text-primary underline">68,000</span>
-            people getting our emails Lorem ipsum dolor sit amet consectet
-          </div>
-          <div class="mb-4 flex items-center rounded-md bg-white py-[10px] pr-[10px] pl-6 shadow-e1">
-            <div class="flex-none">
-              <span class=" ">
-              <img src="{{ asset('assets/images/icon/mail.svg')}}" alt="">
-            </span>
-            </div>
-            <div class="flex-1">
-              <input type="text" placeholder="Enter your mail" class="border-none focus:ring-0">
-            </div>
-          </div>
-          <button class="btn btn-primary block w-full text-center">
-            Subscribe Now
-          </button>
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A853b65148411bb715409ca1c365ea670387edf8f4f7461c6f0c2fd3224e669d3&amp;width=500&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
         </div>
       </div>
     </div>
     <div class="container border-t border-white border-opacity-[0.1] py-8 text-center text-base">
-      &copy; Copyright 2022 | Edumim Template | All Rights Reserved
+      &copy; Copyright 2023 | ❤️ RAXI-DEV - Raxmatilla Fayziyev | All Rights Reserved
     </div>
   </footer>

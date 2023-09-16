@@ -2,11 +2,11 @@
 <div class=" section-padding">
     <div class="container">
       <div class="text-center">
-        <div class="mini-title">Seminarlar tredinglar</div>
+        <div class="mini-title">Seminarlar Tredinglar</div>
         <div class="column-title ">
           Rejalashtirilgan      
           <span class="shape-bg">Seminarlar</span>
-          haqida bilib oling
+          Haqida Bilib Oling
         </div>
       </div>
       <div class="grid  xl:grid-cols-2 grid-cols-1 gap-7 pt-10">
