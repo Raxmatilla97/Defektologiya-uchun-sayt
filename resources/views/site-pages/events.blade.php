@@ -2,10 +2,10 @@
 <div class=" section-padding bg-white bg-[url('../images/all-img/section-bg-13.png')]  bg-no-repeat">
     <div class="container">
       <div class="text-center mb-14">
-        <div class="mini-title">Join With Us</div>
+        <div class="mini-title">Yangilik Va E'lonlar</div>
         <div class="column-title ">
-          Upcoming
-          <span class="shape-bg">Events</span>
+          Yangiliklar va E'lonlarni 
+          <span class="shape-bg">Kuzatib boring</span>
         </div>
       </div>
       <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
@@ -18,7 +18,7 @@
           <div class="course-content p-8">
             <h4 class=" text-xl mb-5 font-bold">
               <a href="event-single.html" class=" hover:text-primary transition duration-150">
-                International Art Fair 2022
+                E'lonning nomlanishi - birinchi e'lon
               </a>
             </h4>
             <ul class=" list space-y-3 mb-6">
@@ -26,16 +26,16 @@
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:calendar-days"></iconify-icon>
                         </span>
-                <span>Thu, Oct 5, 2023 03:48 PM</span>
+                <span>Dush, Okt 5, 2023 13:48 </span>
               </li>
               <li class=" flex space-x-2">
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:map-pin"></iconify-icon>
                         </span>
-                <span>Humberg City, Germany</span>
+                <span>E'lon</span>
               </li>
             </ul>
-            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">Book A Seat</a>
+            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">E'lonni ko'rish</a>
           </div>
         </div>
 
@@ -46,7 +46,7 @@
           <div class="course-content p-8">
             <h4 class=" text-xl mb-5 font-bold">
               <a href="event-single.html" class=" hover:text-primary transition duration-150">
-                International Art Fair 2022
+                Yangilikni nomlanishi - ikkinchi yangilik
               </a>
             </h4>
             <ul class=" list space-y-3 mb-6">
@@ -54,16 +54,16 @@
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:calendar-days"></iconify-icon>
                         </span>
-                <span>Thu, Oct 5, 2023 03:48 PM</span>
+                <span>Dush, Okt 5, 2023 13:48</span>
               </li>
               <li class=" flex space-x-2">
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:map-pin"></iconify-icon>
                         </span>
-                <span>Humberg City, Germany</span>
+                <span>Yangilik</span>
               </li>
             </ul>
-            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">Book A Seat</a>
+            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">Yangilikni ko'rish</a>
           </div>
         </div>
 
@@ -74,7 +74,7 @@
           <div class="course-content p-8">
             <h4 class=" text-xl mb-5 font-bold">
               <a href="event-single.html" class=" hover:text-primary transition duration-150">
-                International Art Fair 2022
+                E'lonning nomlanishi - uchunchi e'lon
               </a>
             </h4>
             <ul class=" list space-y-3 mb-6">
@@ -82,23 +82,23 @@
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:calendar-days"></iconify-icon>
                         </span>
-                <span>Thu, Oct 5, 2023 03:48 PM</span>
+                <span>Dush, Okt 5, 2023 13:48</span>
               </li>
               <li class=" flex space-x-2">
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:map-pin"></iconify-icon>
                         </span>
-                <span>Humberg City, Germany</span>
+                <span>E'lon</span>
               </li>
             </ul>
-            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">Book A Seat</a>
+            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">E'lonni ko'rish</a>
           </div>
         </div>
 
       </div>
     </div>
   </div>
-  <!-- course block start -->
+  {{-- <!-- course block start -->
   <div class="lg:pt-10 section-padding-bottom bg-white bg-[url('../images/all-img/section-bg-14.png')] bg-center bg-no-repeat
             bg-cover">
     <div class="container">
@@ -131,4 +131,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
