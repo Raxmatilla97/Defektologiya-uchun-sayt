@@ -2,27 +2,13 @@
     <div class="main-header py-5">
       <div class="container">
         <div class=" flex items-center justify-between flex-wrap">
-          <a href="index.html" class="brand-logo flex-none lg:mr-10 md:w-auto max-w-[120px] ">
+          <a href="{{ route('site.index')}}" class="brand-logo flex-none lg:mr-10 md:w-auto max-w-[120px] ">
             <img src="{{ asset('assets/images/logo/logo-text.png')}}" alt=""></a>
           <div class="flex items-center flex-1">
             <div class="flex-1 main-menu  lg:relative   xl:mr-[7px] mr-6">
               <ul class="menu-active-classes">
-                <li class="menu-item-has-children">
-                  <a href="#">Biz haqimizda</a>
-                  <ul class="sub-menu">
-                    <li>
-                      <a href="#">Yangiliklar</a>
-                    </li>
-                    <li>
-                      <a href="#">Elonlar</a>
-                    </li>
-                    <li>
-                      <a href="#">Konfrensiyalar</a>
-                    </li>
-                    <li>
-                      <a href="#">Fikr mulohazalar</a>
-                    </li>
-                  </ul>
+                <li>
+                  <a href="{{route('site.news-and-events')}}">Xabarlar</a>
                 </li>
                 <li>
                   <a href="#">Proyektlar</a>

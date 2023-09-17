@@ -23,8 +23,10 @@
             <div class="min-w-[272px]">
               <select id="sortingSelect" onchange="handleSortingSelect()">
                 <option value="latest">Saralash: So'ngi qo'shilgan</option>
-                <option value="most_read">Ko'p o'qilgan</option>
-                <option value="oldest">Oldingi qo'shilgan</option>
+                <option value="most_read">Ko'p O'qilgan</option>
+                <option value="oldest">Oldingi Qo'shilgan</option>
+                <option value="only_news">Faqat Yangiliklar</option>
+                <option value="only_event">Faqat E'lonlar</option>
               </select>
             </div>
           </div>
@@ -43,6 +45,12 @@
                   break;
                 case 'oldest':
                   url = '{{ route('site.news-and-events-sort', ['sorting' => 'oldest']) }}';
+                  break;
+                  case 'only_news':
+                  url = '{{ route('site.news-and-events-sort', ['sorting' => 'only_news']) }}';
+                  break;
+                  case 'only_event':
+                  url = '{{ route('site.news-and-events-sort', ['sorting' => 'only_event']) }}';
                   break;
                 default:
                   break;
@@ -67,7 +75,7 @@
             </div>
             <div class="course-content p-8">
               <h4 class=" text-xl mb-5 font-bold">
-                <a href="event-single.html" class=" hover:text-primary transition duration-150">
+                <a href="{{ route('site.news-and-events-single', $item->slug )}}" class=" hover:text-primary transition duration-150">
                     {{ $item->title }}
                 </a>
               </h4>
@@ -91,7 +99,7 @@
                   </span>
                 </li>
               </ul>
-              <a href="{{ $item->slug }}" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">
+              <a href="{{ route('site.news-and-events-single', $item->slug )}}" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">
                 @if ($item->news_or_event == 'news')
                   Yangilikni o'qish
                 @else

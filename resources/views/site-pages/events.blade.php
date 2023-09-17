@@ -17,7 +17,7 @@
           </div>
           <div class="course-content p-8">
             <h4 class=" text-xl mb-5 font-bold">
-              <a href="{{ $item->slug }}" class=" hover:text-primary transition duration-150">
+              <a href="{{ route('site.news-and-events-single', $item->slug )}}" class=" hover:text-primary transition duration-150">
                 {{ $item->title }}
               </a>
             </h4>
@@ -41,7 +41,7 @@
                   </span>
               </li>
             </ul>
-            <a href="{{ $item->slug }}" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">
+            <a href="{{ route('site.news-and-events-single', $item->slug )}}" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">
               @if ($item->news_or_event == 'news')
                 Yangilikni o'qish
               @else
