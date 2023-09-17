@@ -10,15 +10,15 @@
       </div>
       <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
-
+        @foreach ($newsAndEvents as $item)
         <div class=" bg-white shadow-box5 rounded-[8px] transition duration-100 hover:shadow-box3">
           <div class="course-thumb h-[297px] rounded-t-[8px]  relative">
-            <img src="{{ asset('assets/images/all-img/e1.png')}}" alt="" class=" w-full h-full object-cover rounded-t-[8px]">
+            <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
           </div>
           <div class="course-content p-8">
             <h4 class=" text-xl mb-5 font-bold">
-              <a href="event-single.html" class=" hover:text-primary transition duration-150">
-                E'lonning nomlanishi - birinchi e'lon
+              <a href="{{ $item->slug }}" class=" hover:text-primary transition duration-150">
+                {{ $item->title }}
               </a>
             </h4>
             <ul class=" list space-y-3 mb-6">
@@ -26,20 +26,34 @@
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:calendar-days"></iconify-icon>
                         </span>
-                <span>Dush, Okt 5, 2023 13:48 </span>
+                <span>{{ $item->created_at->diffForHumans()  }}</span>
               </li>
               <li class=" flex space-x-2">
                 <span class="text-lg  text-secondary">
                             <iconify-icon icon="heroicons:map-pin"></iconify-icon>
                         </span>
-                <span>E'lon</span>
+                <span>
+                  @if ($item->news_or_event == 'news')
+                    Yangilik
+                  @else
+                    E'lon
+                  @endif
+                  </span>
               </li>
             </ul>
-            <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">E'lonni ko'rish</a>
+            <a href="{{ $item->slug }}" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">
+              @if ($item->news_or_event == 'news')
+                Yangilikni o'qish
+              @else
+                E'lonni o'qish
+              @endif
+              </a>
           </div>
         </div>
+        @endforeach
+       
 
-        <div class=" bg-white shadow-box5 rounded-[8px] transition duration-100 hover:shadow-box3">
+        {{-- <div class=" bg-white shadow-box5 rounded-[8px] transition duration-100 hover:shadow-box3">
           <div class="course-thumb h-[297px] rounded-t-[8px]  relative">
             <img src="{{ asset('assets/images/all-img/e2.png')}}" alt="" class=" w-full h-full object-cover rounded-t-[8px]">
           </div>
@@ -93,7 +107,7 @@
             </ul>
             <a href="event-single.html" class="btn px-8 py-[11px] bg-black text-white hover:bg-primary">E'lonni ko'rish</a>
           </div>
-        </div>
+        </div> --}}
 
       </div>
     </div>

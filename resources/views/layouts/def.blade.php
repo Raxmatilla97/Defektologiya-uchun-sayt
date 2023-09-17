@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="{{ asset('assets/css/app.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css')}}">
     <!-- Scripts -->
-  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body class=" font-gilroy font-medium text-gray text-lg leading-[27px]">
@@ -20,7 +22,15 @@
         your experience and security.
     </p> <![endif] -->
 
-    @include('site-pages.first-page')
+    @if (request()->is('/'))
+      @include('site-pages.first-page')
+    @else
+    
+      @include('site-pages.header')
+      @yield('content') 
+      @include('site-pages.footer')
+    @endif
+    
     
   <div class="rt-mobile-menu-overlay"></div>
   <!-- scripts -->
