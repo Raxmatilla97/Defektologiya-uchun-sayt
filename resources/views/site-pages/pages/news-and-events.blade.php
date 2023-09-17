@@ -76,7 +76,7 @@
             <div class="course-content p-8">
               <h4 class=" text-xl mb-5 font-bold">
                 <a href="{{ route('site.news-and-events-single', $item->slug )}}" class=" hover:text-primary transition duration-150">
-                    {{ $item->title }}
+                  {{ Str::limit($item->title, 50) }}
                 </a>
               </h4>
               <ul class=" list space-y-3 mb-6">

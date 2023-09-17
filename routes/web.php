@@ -24,6 +24,10 @@ Route::get('/', [IndexController::class, 'index'])->name('site.index');
 Route::get('/news-and-events', [IndexController::class, 'newsAndEvents'])->name('site.news-and-events');
 Route::get('/news-and-events-sort/{sorting}', [IndexController::class, 'newsAndEventsSort'])->name('site.news-and-events-sort');
 Route::get('/news-and-event/{slug}', [IndexController::class, 'newsAndEventsSingle'])->name('site.news-and-events-single');
+
+Route::get('/projects', [IndexController::class, 'projectsIndex'])->name('site.projectsIndex');
+Route::get('/project/{slug}', [IndexController::class, 'projectInfoPage'])->name('site.projectInfoPage');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

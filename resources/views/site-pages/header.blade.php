@@ -11,7 +11,7 @@
                   <a href="{{route('site.news-and-events')}}">Xabarlar</a>
                 </li>
                 <li>
-                  <a href="#">Proyektlar</a>
+                  <a href="{{ route('site.projectsIndex')}}">Proyektlar</a>
                 </li>
                 <li>
                   <a href="#">Seminarlar</a>

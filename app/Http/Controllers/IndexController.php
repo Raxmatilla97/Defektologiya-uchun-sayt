@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 
@@ -46,7 +47,7 @@ class IndexController extends Controller
         $slug = $request;
         $newsEvent = News::where('status', '1')->where('slug', $slug)->first();
         
-        if ($newsEvent) {
+        if ($newsEvent !== null) {
             $keywords = explode(' ', $newsEvent->title); // Maqola sarlavhasini so'zlarga bo'lib ajratamiz
 
             $oxshashXabarlar = News::where('status', '1')
@@ -59,10 +60,45 @@ class IndexController extends Controller
                 ->take(6)
                 ->get();
             return view('site-pages.pages.news-and-events-singl-page', compact('newsEvent', 'oxshashXabarlar'));
-        } else {
+        } else {         
             // Bunday slug bilan record topilmaganligi haqida xabar berish
-            $notFound = "Bunday yangilik yoki maqola topilmadi!";
+            $notFound = "Bunday yangilik yoki e'lon topilmadi!";
             return view('site-pages.pages.news-and-events-singl-page', compact('notFound'));
         }
+    }
+
+    public function projectsIndex()
+    {
+        $projectsIndex = Project::where('status', '1')->orderBy('created_at', 'desc')->paginate(9);
+        return view('site-pages.pages.projects-index', compact('projectsIndex'));
+    }
+
+    public function projectInfoPage($request)
+    {
+        $projectsIndex = Project::where('status', '1')->where('slug', $request)->first();
+      
+        if ($projectsIndex !== null) {
+            $previousProject = Project::where('status', '1')->where('id', '<', $projectsIndex->id)->orderBy('id', 'desc')->first();
+            $nextProject = Project::where('status', '1')->where('id', '>', $projectsIndex->id)->orderBy('id', 'asc')->first();
+           
+            $keywords = explode(' ', $projectsIndex->title); // Maqola sarlavhasini so'zlarga bo'lib ajratamiz
+
+            $oxshashProjectlar = Project::where('status', '1')
+                ->where(function ($query) use ($keywords) {
+                    foreach ($keywords as $keyword) {
+                        $query->orWhere('title', 'LIKE', '%' . $keyword . '%');
+                    }
+                })
+                ->orderBy('created_at', 'desc')
+                ->take(6)
+                ->get();
+
+            return view('site-pages.pages.project-page', compact('projectsIndex', 'oxshashProjectlar', 'previousProject', 'nextProject'));
+        }else{
+            // Bunday slug bilan record topilmaganligi haqida xabar berish
+            $notFound = "Bunday nomdagi proyekt topilmadi!";
+            return view('site-pages.pages.project-page', compact('notFound'));
+        }
+      
     }
 }
