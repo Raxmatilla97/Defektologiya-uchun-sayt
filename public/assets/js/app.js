@@ -214,29 +214,7 @@
   });
   $(".amount").val("$" + $(".slider-range").slider("values", 0) + " - $" + $(".slider-range").slider("values", 1)); //1.12 coundown
 
-  if (document.getElementById("timer")) {
-    var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime(); // Update the count down every 1 second
-
-    var x = setInterval(function () {
-      // Get today's date and time
-      var now = new Date().getTime(); // Find the distance between now and the count down date
-
-      var distance = countDownDate - now; // Time calculations for days, hours, minutes and seconds
-
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-      var minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-      var seconds = Math.floor(distance % (1000 * 60) / 1000); // Display the result in the element with id="demo"
-
-      document.getElementById("timer").innerHTML = "<div class='text-[44px] font-bold'>" + days + "<div class=' text-lg font-medium mt-2 capitalize'>days</div></div>" + "<div class='text-[44px] font-bold'>" + hours + "<div class='text-lg font-medium mt-2 capitalize'>hours</div></div>" + "<div class='text-[44px] font-bold'>" + minutes + "<div class='text-lg font-medium mt-2 capitalize'>minutes</div></div>" + "<div class='text-[44px] font-bold'>" + seconds + "<div class='text-lg font-medium mt-2 capitalize'>seconds</div></div>"; // If the count down is finished, write some text
-
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("timer").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-  } // 1.13 modal triger
-
+  
 
   $(".modal-trigger").on("click", function () {
     $("body").toggleClass("modal-open");

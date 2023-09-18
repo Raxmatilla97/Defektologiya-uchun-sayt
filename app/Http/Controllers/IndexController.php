@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Project;
+use App\Models\Seminar;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -13,7 +14,13 @@ class IndexController extends Controller
     {
       
         $newsAndEvents = News::take(3)->get();
-        return view('layouts.def', compact('newsAndEvents'));
+
+        $allSeminars = Seminar::where('status', '1')->orderBy('created_at', 'desc')->take('4')->get();
+        foreach ($allSeminars as $item ) {      
+            $item->boladigan_kun = Carbon::parse($item->boladigan_kun);       
+        }
+
+        return view('layouts.def', compact('newsAndEvents', 'allSeminars'));
     }
 
     public function newsAndEvents()
@@ -100,5 +107,66 @@ class IndexController extends Controller
             return view('site-pages.pages.project-page', compact('notFound'));
         }
       
+    }
+
+    public function seminarIndex()
+    {
+        $allSeminar = Seminar::where('status', '1')->orderBy('created_at', 'desc')->paginate(15);
+        foreach ($allSeminar as $item ) {      
+            $item->boladigan_kun = Carbon::parse($item->boladigan_kun);       
+        }    
+       $tafsiya_etilgan = Seminar::where('status', '1')->where('tafsiya_etilgan', '1')->orderBy('created_at', 'desc')->paginate(10);       
+
+       return view('site-pages.pages.seminars-list', compact('allSeminar', 'tafsiya_etilgan'));  
+    }
+
+    public function seminarSingle($request)
+    {
+        $seminarIndex = Seminar::where('status', '1')->where('slug', $request)->first();
+      
+        if ($seminarIndex !== null) {
+
+            $keywords = explode(' ', $seminarIndex->title); // Maqola sarlavhasini so'zlarga bo'lib ajratamiz
+
+            $oxshashSeminarlar = Seminar::where('status', '1')
+                ->where(function ($query) use ($keywords) {
+                    foreach ($keywords as $keyword) {
+                        $query->orWhere('title', 'LIKE', '%' . $keyword . '%');
+                    }
+                })
+                ->orderBy('created_at', 'desc')
+                ->take(6)
+                ->get();    
+
+            $seminarIndex->boladigan_kun = Carbon::parse($seminarIndex->boladigan_kun);
+            $seminarBoladiganKun = $seminarIndex->boladigan_kun->format('M j, Y H:i:s');
+               
+            return view('site-pages.pages.seminar-single', compact('seminarIndex', 'oxshashSeminarlar', 'seminarBoladiganKun'));
+        }else{
+            // Bunday slug bilan record topilmaganligi haqida xabar berish
+            $notFound = "Bunday nomdagi Seminar topilmadi!";
+            return view('site-pages.pages.seminar-single', compact('notFound'));
+        }
+    }
+
+    public function seminarSearch(Request $request)
+    {
+        $text = $request->input('text');
+        
+        $allSeminar = Seminar::query();
+
+        if ($text) {
+            $allSeminar->where('title', 'like', '%' . $text . '%');
+        }
+
+        $allSeminar = $allSeminar->paginate(9);
+
+        foreach ($allSeminar as $item) {
+            $item->boladigan_kun = Carbon::parse($item->boladigan_kun);
+        }
+
+        $tafsiya_etilgan = Seminar::where('status', '1')->where('tafsiya_etilgan', '1')->orderBy('created_at', 'desc')->paginate(10);       
+
+        return view('site-pages.pages.seminars-list', compact('allSeminar', 'tafsiya_etilgan'));  
     }
 }

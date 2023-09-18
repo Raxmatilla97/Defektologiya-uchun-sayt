@@ -96,7 +96,7 @@
           <div class="sidebarWrapper space-y-[30px]">         
             
             <div class="wdiget widget-recent-post">
-              <h4 class=" widget-title">Related Courses</h4>
+              <h4 class=" widget-title">O'xshash proyektlar</h4>
               <ul class="list">
                 @foreach ($oxshashProjectlar as $item)
                 <li class=" flex space-x-4 border-[#ECECEC] pb-6 mb-6 last:pb-0 last:mb-0 last:border-0 border-b">

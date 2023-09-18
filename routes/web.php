@@ -28,6 +28,11 @@ Route::get('/news-and-event/{slug}', [IndexController::class, 'newsAndEventsSing
 Route::get('/projects', [IndexController::class, 'projectsIndex'])->name('site.projectsIndex');
 Route::get('/project/{slug}', [IndexController::class, 'projectInfoPage'])->name('site.projectInfoPage');
 
+Route::get('/seminars', [IndexController::class, 'seminarIndex'])->name('site.seminarIndex');
+Route::get('/seminar/{slug}', [IndexController::class, 'seminarSingle'])->name('site.seminarSingle');
+Route::get('/seminar-search', [IndexController::class, 'seminarSearch'])->name('site.seminarSearch');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

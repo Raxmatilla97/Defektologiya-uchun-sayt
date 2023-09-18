@@ -14,7 +14,7 @@
                   <a href="{{ route('site.projectsIndex')}}">Proyektlar</a>
                 </li>
                 <li>
-                  <a href="#">Seminarlar</a>
+                  <a href="{{ route('site.seminarIndex')}}">Seminarlar</a>
                 </li>
                 <li>
                   <a href="#">Mutaxassislar</a>
