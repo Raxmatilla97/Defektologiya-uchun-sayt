@@ -17,11 +17,11 @@
                   <a href="{{ route('site.seminarIndex')}}">Seminarlar</a>
                 </li>
                 <li>
-                  <a href="#">Mutaxassislar</a>
+                  <a href="{{ route('site.specialistsIndex')}}">Mutaxassislar</a>
                 </li>
               
                 <li>
-                  <a href="#">Kurslar</a>
+                  <a href="{{route('site.coursesIndex')}}">Kurslar</a>
                 </li>
               </ul>
               <div class="lg:block hidden">

@@ -32,6 +32,13 @@ Route::get('/seminars', [IndexController::class, 'seminarIndex'])->name('site.se
 Route::get('/seminar/{slug}', [IndexController::class, 'seminarSingle'])->name('site.seminarSingle');
 Route::get('/seminar-search', [IndexController::class, 'seminarSearch'])->name('site.seminarSearch');
 
+Route::get('/specialists', [IndexController::class, 'specialistsIndex'])->name('site.specialistsIndex');
+Route::get('/specialist/{slug}', [IndexController::class, 'specialistSingle'])->name('site.specialistSingle');
+
+Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.coursesIndex');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

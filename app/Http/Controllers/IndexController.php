@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Project;
 use App\Models\Seminar;
+use App\Models\Specialist;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -20,7 +21,9 @@ class IndexController extends Controller
             $item->boladigan_kun = Carbon::parse($item->boladigan_kun);       
         }
 
-        return view('layouts.def', compact('newsAndEvents', 'allSeminars'));
+        $specialist = Specialist::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
+
+        return view('layouts.def', compact('newsAndEvents', 'allSeminars', 'specialist'));
     }
 
     public function newsAndEvents()
@@ -168,5 +171,31 @@ class IndexController extends Controller
         $tafsiya_etilgan = Seminar::where('status', '1')->where('tafsiya_etilgan', '1')->orderBy('created_at', 'desc')->paginate(10);       
 
         return view('site-pages.pages.seminars-list', compact('allSeminar', 'tafsiya_etilgan'));  
+    }
+
+    public function specialistsIndex()
+    {
+        $specialist = Specialist::where('status', 1)->orderBy('created_at', 'desc')->paginate(15);
+
+       return view('site-pages.pages.specialists', compact('specialist'));
+    }
+
+    public function specialistSingle($request)
+    {
+        $specialistIndex = Specialist::where('status', '1')->where('slug', $request)->first();
+        $courses = $specialistIndex->courses()->paginate(8);
+        
+        if ($specialistIndex !== null) {
+            return view('site-pages.pages.specialist-single', compact('specialistIndex', 'courses'));
+        }else{
+            // Bunday slug bilan record topilmaganligi haqida xabar berish
+            $notFound = "Bunday nomdagi Mutaxasis topilmadi!";
+            return view('site-pages.pages.specialist-single', compact('notFound'));
+        }
+    }
+
+    public function coursesIndex()
+    {
+        return view('site-pages.pages.courses-index');
     }
 }
