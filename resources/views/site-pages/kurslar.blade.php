@@ -28,6 +28,8 @@
         </div>
       </div>
       <div class="flex flex-wrap pt-10 grids">
+      
+        @if ($coursesIndex->isNotEmpty())
         @foreach($coursesIndex as $item)
         <div class="cat-1 grid-item xl:w-1/3 lg:w-1/2 w-full px-[15px] mb-[15px]">
           <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm block   mb-5 " href="{{ route('site.courseSingle', $item->slug)}}">
@@ -53,9 +55,12 @@
           </a>
         </div>
         @endforeach
+        @else          
+          <h4 class="text-center ">Malaka oshirish kurslari hali joylanmagan!</h4>
+        @endif
       </div>
       <div class="text-center lg:pt-16 pt-10">
-        <a href="#" class=" btn btn-primary">Barcha video kurslarni ko'rish</a>
+        <a href="{{ route('site.coursesIndex')}}" class=" btn btn-primary">Barcha video kurslarni ko'rish</a>
       </div>
     </div>
   </div>

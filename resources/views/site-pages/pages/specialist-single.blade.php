@@ -130,7 +130,7 @@
                 @foreach ($courses as $item)              
                 <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm" href="#">
                 <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
-                    <img src="/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
+                    <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
                     <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">O'quv kursi</span>
                 </div>
                 <div class="course-content p-8">

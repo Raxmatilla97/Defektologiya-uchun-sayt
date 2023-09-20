@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,11 +40,14 @@ Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.cou
 Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
 
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
+    Route::get('/register-users-list', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/news-and-events', [News::class, 'index'])->name('profile.edit');
 

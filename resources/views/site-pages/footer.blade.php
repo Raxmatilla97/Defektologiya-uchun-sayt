@@ -43,22 +43,22 @@
               <h4 class="mb-8 text-2xl font-bold text-white">Havolalar</h4>
               <ul class="list-item space-y-5">
                 <li>
-                  <a href="#">Bosh sahifa</a>
+                  <a href="{{ route('site.index')}}">Bosh sahifa</a>
                 </li>
                 <li>
-                  <a href="#">Biz haqimizda</a>
+                  <a href="">Biz haqimizda</a>
                 </li>
                 <li>
-                  <a href="#">Yangiliklar</a>
+                  <a href="{{ url('/news-and-events-sort/only_news')}}">Yangiliklar</a>
                 </li>
                 <li>
-                  <a href="#">E'lonlar</a>
+                  <a href="{{ url('/news-and-events-sort/only_event')}}">E'lonlar</a>
                 </li>
                 <li>
-                  <a href="#">Proyektlar</a>
+                  <a href="{{ route('site.projectsIndex')}}">Proyektlar</a>
                 </li>
                 <li>
-                  <a href="#">Seminarlar</a>
+                  <a href="{{ route('site.seminarIndex')}}">Seminarlar</a>
                 </li>
               </ul>
             </div>
@@ -66,19 +66,19 @@
               <h4 class="mb-8 text-2xl font-bold text-white"></h4>
               <ul class="list-item space-y-5">
                 <li>
-                  <a href="#">Mutaxasislar</a>
+                  <a href="{{ route('site.specialistsIndex')}}">Mutaxasislar</a>
                 </li>
                 <li>
-                  <a href="#">Kurslar</a>
+                  <a href="{{ route('site.coursesIndex')}}">Kurslar</a>
                 </li>
                 <li>
                   <a href="#">Biz bilan bog'lanish</a>
                 </li>
                 <li>
-                  <a href="#">Kirish</a>
+                  <a href="{{ route('login')}}">Kirish</a>
                 </li>
                 <li>
-                  <a href="#">Ro'yxatdan o'tish</a>
+                  <a href="{{ route('register')}}">Ro'yxatdan o'tish</a>
                 </li>
                 <li>
                   <a href="#">Savol-javoblar</a>
