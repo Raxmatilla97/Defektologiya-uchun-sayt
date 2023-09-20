@@ -32,6 +32,7 @@ class AdminSeeder extends Seeder
           DB::table('users')->insert([
               'name' => 'Raxmatilla Fayziyev',
               'email' => 'wi.fi.xor@gmail.com',
+              'roll' => 'admin',
               'password' => Hash::make('5579187Er'),
               'created_at' => $createdAt,
               'updated_at' => $updatedAt,

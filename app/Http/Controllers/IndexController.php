@@ -187,7 +187,7 @@ class IndexController extends Controller
     public function specialistSingle($request)
     {
         $specialistIndex = Specialist::where('status', '1')->where('slug', $request)->first();
-        $courses = $specialistIndex->courses()->paginate(8);
+        $courses = $specialistIndex->courses()->where('status', '1')->paginate(8);
         
         if ($specialistIndex !== null) {
             return view('site-pages.pages.specialist-single', compact('specialistIndex', 'courses'));

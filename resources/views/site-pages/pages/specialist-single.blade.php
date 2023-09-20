@@ -115,7 +115,7 @@
                     </span>
                     +
                 </h4>
-                <p>Sertifikat olgan o'quvchilar</p>
+                <p>Ko'rilganligi</p>
                 </div>
 
             </div>
@@ -128,7 +128,7 @@
             <div class=" grid xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 grid-cols-1  gap-[30px]">
 
                 @foreach ($courses as $item)              
-                <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm" href="#">
+                <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm" href="{{ route('site.courseSingle', $item->slug)}}">
                 <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
                     <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
                     <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">O'quv kursi</span>
@@ -139,16 +139,13 @@
                     <div class="flex justify-between  space-x-3">
                     <span class=" flex items-center space-x-2">
                             <img src="assets/images/svg/file.svg" alt="">
-                                <span>2 Lessons</span>
+                                <span>{{ $item->videolar->count() }}</span>
                     </span>
                     <span class=" flex items-center space-x-2">
                                 <img src="{{ asset('/assets/images/svg/clock.svg')}}" alt="">
                                     <span>{{ $item->davomiylik_vaqti}}</span>
                     </span>
-                    <span class=" flex items-center space-x-2">
-                                    <img src="{{ asset('/assets/images/svg/star.svg')}}" alt="">
-                                        <span>4.8</span>
-                    </span>
+                 
                     </div>
                 </div>
                 </a>      

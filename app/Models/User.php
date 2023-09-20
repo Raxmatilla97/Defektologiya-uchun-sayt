@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function specialist()
+    {
+        return $this->hasOne(Specialist::class, 'user_id');
+    }
 }

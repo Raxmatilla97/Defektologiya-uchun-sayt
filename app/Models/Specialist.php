@@ -14,4 +14,9 @@ class Specialist extends Model
     {
         return $this->hasMany(Course::class, 'teacher_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

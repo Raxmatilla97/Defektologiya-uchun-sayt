@@ -21,7 +21,7 @@ class VideoDarslarSeeder extends Seeder
         $courseIds = Course::pluck('id')->all();
 
         // Create fake data for Model
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 70; $i++) {
             $createdAt = $faker->dateTimeBetween('-1 year', 'now');
             $updatedAt = $faker->dateTimeBetween($createdAt, 'now');
 
