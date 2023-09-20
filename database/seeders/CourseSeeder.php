@@ -22,10 +22,11 @@ class CourseSeeder extends Seeder
             Course::create([
                 'title' => $faker->sentence,
                 'slug' => $faker->slug,
-                'image' =>  $faker->randomElement(['assets/images/all-img/e1.png', 'assets/images/all-img/e2.png', 'assets/images/all-img/e3.png'
-                , 'assets/images/all-img/e4.png', 'assets/images/all-img/e5.png', 'assets/images/all-img/e6.png']),
-                'youtube' => $faker->url,
-                'narxi' => $faker->randomNumber(4),
+                'image' =>  $faker->randomElement(['/assets/images/all-img/c1.png', '/assets/images/all-img/c2.png', '/assets/images/all-img/c3.png'
+                , '/assets/images/all-img/c4.png', '/assets/images/all-img/c5.png', '/assets/images/all-img/c6.png']),
+                'youtube' => "https://www.youtube.com/watch?v=UVUo3sqTY2k",
+                'narxi' => $faker->randomElement(["200.000 ming so'm", "1.200.000 so'm", "600.000 so'm", "800.000 so'm", "Bepul"]),
+                'kurs_tili' => $faker->randomElement(["O'zbek-tilida", 'Rus-tilida']),
                 'davomiylik_vaqti' => $faker->randomNumber(2) . ' days',
                 'teacher_id' =>  $faker->randomElement($specialists),
                 'desc' => $faker->paragraph,

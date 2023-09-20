@@ -15,4 +15,9 @@ class Course extends Model
     {
         return $this->belongsTo(Specialist::class, 'teacher_id');
     }
+
+    public function videolar()
+    {
+        return $this->hasMany(VideoDarslar::class, 'kurs_id');
+    }
 }

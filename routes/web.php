@@ -36,6 +36,7 @@ Route::get('/specialists', [IndexController::class, 'specialistsIndex'])->name('
 Route::get('/specialist/{slug}', [IndexController::class, 'specialistSingle'])->name('site.specialistSingle');
 
 Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.coursesIndex');
+Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
 
 

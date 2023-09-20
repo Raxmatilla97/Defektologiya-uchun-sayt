@@ -6,6 +6,8 @@ use App\Models\News;
 use App\Models\Project;
 use App\Models\Seminar;
 use App\Models\Specialist;
+use App\Models\Course;
+use App\Models\VideoDarslar;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -22,8 +24,10 @@ class IndexController extends Controller
         }
 
         $specialist = Specialist::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
+        $coursesIndex = Course::where('status', '1')->orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('layouts.def', compact('newsAndEvents', 'allSeminars', 'specialist'));
+       
+        return view('layouts.def', compact('newsAndEvents', 'allSeminars', 'specialist', 'coursesIndex'));
     }
 
     public function newsAndEvents()
@@ -196,6 +200,36 @@ class IndexController extends Controller
 
     public function coursesIndex()
     {
-        return view('site-pages.pages.courses-index');
+        $coursesIndex = Course::where('status', '1')->orderBy('created_at', 'desc')->paginate(9);
+        return view('site-pages.pages.courses-index', compact('coursesIndex'));
     }
+
+    public function courseSingle($request)
+    {
+        $courseIndex = Course::where('status', '1')->where('slug', $request)->first();      
+        
+        if ($courseIndex !== null) {
+
+            $keywords = explode(' ', $courseIndex->title); // Maqola sarlavhasini so'zlarga bo'lib ajratamiz
+
+            $oxshashKurslar = Course::where('status', '1')
+                ->where(function ($query) use ($keywords) {
+                    foreach ($keywords as $keyword) {
+                        $query->orWhere('title', 'LIKE', '%' . $keyword . '%');
+                    }
+                })
+                ->orderBy('created_at', 'desc')
+                ->take(6)
+                ->get(); 
+
+            $videoDarslar = $courseIndex->videolar()->get();
+           
+            return view('site-pages.pages.course-single', compact('courseIndex', 'oxshashKurslar', 'videoDarslar'));
+        }else{
+            // Bunday slug bilan record topilmaganligi haqida xabar berish
+            $notFound = "Bunday nomdagi malaka oshirish kursi topilmadi!";
+            return view('site-pages.pages.course-single', compact('notFound'));
+        }
+    }
+    
 }
