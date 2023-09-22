@@ -33,6 +33,7 @@ class AdminSeeder extends Seeder
               'name' => 'Raxmatilla Fayziyev',
               'email' => 'wi.fi.xor@gmail.com',
               'roll' => 'admin',
+              'status' => '1',
               'password' => Hash::make('5579187Er'),
               'created_at' => $createdAt,
               'updated_at' => $updatedAt,

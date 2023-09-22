@@ -31,6 +31,9 @@ class CourseSeeder extends Seeder
                 'teacher_id' =>  $faker->randomElement($specialists),
                 'desc' => $faker->paragraph,
                 'status' => $faker->boolean,
+                'maqullanganligi' =>  $faker->randomElement(['korilmagan', 'maqullandi', 'rad_etildi']),
+                'sabab_desc' => $faker->paragraph,
+                
             ]);
         }
     }

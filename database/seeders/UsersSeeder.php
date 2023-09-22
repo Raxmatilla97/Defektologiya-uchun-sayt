@@ -22,6 +22,7 @@ class UsersSeeder extends Seeder
             User::create([
                 'name' => $faker->name,
                 'roll' => $faker->randomElement(['student', 'teacher']),
+                'status' => $faker->randomElement(['1', '0']),
                 'email' => $faker->unique()->safeEmail,
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),

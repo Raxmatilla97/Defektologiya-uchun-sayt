@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreignId('teacher_id')->constrained('specialists')->nullable();  
             $table->text('desc');
             $table->boolean('status')->default(0);
+            $table->string('maqullanganligi')->default('korilmagan');
+            $table->text('sabab_desc')->nullable();
             $table->timestamps();
         });
     }

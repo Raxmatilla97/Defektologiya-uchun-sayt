@@ -9,27 +9,16 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class=" p-6 text-gray-900 dark:text-gray-100">
 
-                <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Kichik boshqaruv paneliga hush kelibsiz!</h3>
+                <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Foydalanuvchilarni boshqarish paneliga hush kelibsiz!</h3>
 
-                    <div id="alert-additional-content-1" class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
-                        <div class="flex items-center">
-                            <svg class="flex-shrink-0 w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                            </svg>
-                            <span class="sr-only">Info</span>
-                            <h3 class="text-lg font-medium">Eslatma!</h3>
-                        </div>
-                        <div class="mt-2 mb-4 text-sm">
-                            Saytda ko'p funksiyalar test holatida ishlamoqda, agarda biron hatolik yuzaga kelsa Sayt yaratuvchisiga xabar qilishingiz mumkin! <a href="https://t.me/Raxmatilla_Fayziyev">Telegram profil</a>
-                        </div>
-                    
-                    </div>
+                    @include('site-pages.pages.dashboard.info-component')
+
                     <ul class="grid w-full gap-6 md:grid-cols-2">
                         <li>
-                            <a href="{{ route('dashboard.registerUsersList')}}">                          
+                            <a href="{{ route('dashboard.registerUsersList', 'register-users')}}">                          
                                 <label for="hosting-small" class="inline-flex items-center justify-between w-full p-5 text-blue-500 bg-blue border border-blue-200 rounded-lg cursor-pointer dark:hover:text-blue-300 dark:border-blue-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-blue-600 hover:bg-blue-100 dark:text-blue-400 dark:bg-blue-800 dark:hover:bg-blue-700">                           
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Ro'yxatdan o'tgan foydalanuvchilar soni</div>
+                                        <div class="w-full text-lg font-semibold">Ro'yxatdan o'tgan foydalanuvchilar soni: {{ $all_users->count() }}</div>
                                         <div class="w-full">Umumiy saytdan ro'yxatdan o'tgan foydalanuvchilar ro'yxati</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -39,11 +28,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('dashboard.registerUsersList', 'mutaxasis-users')}}">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-green-500 bg-green border border-green-200 rounded-lg cursor-pointer dark:hover:text-green-300 dark:border-green-700 dark:peer-checked:text-green-500 peer-checked:border-green-600 peer-checked:text-green-600 hover:text-green-600 hover:bg-green-100 dark:text-green-400 dark:bg-green-800 dark:hover:bg-green-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Kurs joylay oladigan mutaxasislar</div>
-                                        <div class="w-full">Malaka oshirish kurslarini yarata oladigan mutaxasislar</div>
+                                        <div class="w-full text-lg font-semibold">Mutaxasis bo'lgan foydalanuvchilar soni: {{$specialistCount}}</div>
+                                        <div class="w-full">Mutaxasislik unvonini olgan foydalanuvchilar ro'yxati</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -53,11 +42,11 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="{{ route('dashboard.registerUsersList', 'ban-spicalist-users')}}">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-red-500 bg-red border border-red-200 rounded-lg cursor-pointer dark:hover:text-red-300 dark:border-red-700 dark:peer-checked:text-red-500 peer-checked:border-red-600 peer-checked:text-red-600 hover:text-red-600 hover:bg-red-100 dark:text-red-400 dark:bg-red-800 dark:hover:bg-red-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Rad etilgan video kurslar ro'yxati</div>
-                                        <div class="w-full">Rad etilgan video kurslar ro'yxatini ko'rish</div>
+                                        <div class="w-full text-lg font-semibold">No aktiv qilingan mutaxasis foydalanuvchilar soni:  {{$noactiveStatus}}</div>
+                                        <div class="w-full">Biron sababga ko'ra status aktiv bo'lmagan mutaxasis foydalanuvchilar</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -70,8 +59,22 @@
                             <a href="#">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-indigo-500 bg-red border border-indigo-200 rounded-lg cursor-pointer dark:hover:text-indigo-300 dark:border-indigo-700 dark:peer-checked:text-indigo-500 peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-800 dark:hover:bg-indigo-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Tasdiqlash lozim bo'lgan video kurslar ro'yxati</div>
-                                        <div class="w-full">Mutaxasislar tomonidan adminga tasdiqlash uchun yuborilgan kurslar ro'yxati</div>
+                                        <div class="w-full text-lg font-semibold">Kurslarni ko'rish uchun ruxsat so'ragan foydalanuvchilar soni:</div>
+                                        <div class="w-full">Yopiq kurslarni ko'rish uchun so'rov jo'natgan foydalanuvchilar ro'yxati</div>
+                                    </div>
+                                    <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </label>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('dashboard.registerUsersList', 'ban-users')}}">
+                                <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-red-500 bg-red border border-red-200 rounded-lg cursor-pointer dark:hover:text-red-300 dark:border-red-700 dark:peer-checked:text-red-500 peer-checked:border-red-600 peer-checked:text-red-600 hover:text-red-600 hover:bg-red-100 dark:text-red-400 dark:bg-red-800 dark:hover:bg-red-700">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-semibold">No aktiv qilingan foydalanuvchilar soni:  {{$noactiveStatusAllUsers}}</div>
+                                        <div class="w-full">Biron sababga ko'ra status aktiv bo'lmagan foydalanuvchilar</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -96,7 +99,7 @@
                             <div class="flex items-center gap-x-3">
                                 <h2 class="text-lg font-medium text-gray-800 dark:text-white">Saytdan ro'yxatdan o'tgan foydalanuvchilar</h2>
 
-                                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$register_users_list->count()}} ta</span>
+                                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$all_users->count()}} ta</span>
                             </div>
 
                             @if(session('name'))
@@ -152,9 +155,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                                @if ($register_users_list)
+                                                @if ($users)
                                                 
-                                                    @foreach ($register_users_list as $item)
+                                                    @foreach ($users as $item)
                                                     <tr>
                                                         {{-- {{dd($arizalar)}} --}}
                                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -257,7 +260,7 @@
                             </div>
                        
                         <div class=" items-center justify-between mt-6">
-                            {{ $register_users_list->links()}}
+                            {{ $users->links()}}
                         </div>
                     </section>
                     <!-- /list -->

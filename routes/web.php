@@ -40,12 +40,13 @@ Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.cou
 Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
 
-Route::prefix('dashboard')->middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::prefix('dashboard')->middleware('auth')->group(function () {  
+    Route::get('/search', [DashboardController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
+    
+    Route::get('/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
+ 
 
-    Route::get('/register-users-list', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
+    Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
 });
 
 
