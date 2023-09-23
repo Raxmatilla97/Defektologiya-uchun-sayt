@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('kurs_tili');
             $table->string('davomiylik_vaqti');
             $table->foreignId('teacher_id')->constrained('specialists')->nullable();  
+            $table->foreignId('maqullagan_id')->constrained('users')->nullable();  
             $table->text('desc');
             $table->boolean('status')->default(0);
             $table->string('maqullanganligi')->default('korilmagan');

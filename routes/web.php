@@ -46,6 +46,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::delete('/delete-kurslar/{id?}', [DashboardController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
     Route::get('/create-courses', [DashboardController::class, 'createCourses'])->name('dashboard.createCourses');
     Route::post('/store-courses', [DashboardController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
+    Route::get('/my-created-courses/{request?}', [DashboardController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses'); 
+    Route::get('/my-courses/{request?}', [DashboardController::class, 'myCourses'])->name('dashboard.myCourses'); 
 
     Route::get('/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
 

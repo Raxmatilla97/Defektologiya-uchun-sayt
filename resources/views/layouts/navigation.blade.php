@@ -27,6 +27,16 @@
                         {{ __('Kurs yaratish') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.myCreatedCourses')" :active="request()->routeIs('dashboard.myCreatedCourses')">
+                        {{ __('Yaratgan kurslarim') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.myCourses')" :active="request()->routeIs('dashboard.myCourses')">
+                        {{ __("O'qiydigan kurslarim") }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

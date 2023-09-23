@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\Course;
+use App\Models\User;
 use App\Models\Specialist;
 
 class CourseSeeder extends Seeder
@@ -17,6 +18,7 @@ class CourseSeeder extends Seeder
     {
         $faker = Faker::create();
         $specialists = Specialist::pluck('id')->toArray();
+        $user = User::pluck('id')->toArray();
 
         for ($i = 0; $i < 60; $i++) {
             Course::create([
@@ -28,6 +30,7 @@ class CourseSeeder extends Seeder
                 'narxi' => $faker->randomElement(["200.000 ming so'm", "1.200.000 so'm", "600.000 so'm", "800.000 so'm", "Bepul"]),
                 'kurs_tili' => $faker->randomElement(["O'zbek-tilida", 'Rus-tilida']),
                 'davomiylik_vaqti' => $faker->randomNumber(2) . ' days',
+                'maqullagan_id' => '1',
                 'teacher_id' =>  $faker->randomElement($specialists),
                 'desc' => $faker->paragraph,
                 'status' => $faker->boolean,
