@@ -112,6 +112,32 @@ class DashboardController extends Controller
         ));
     }
 
+    public function kurslarDeleteDashboard($id)
+    {
+      
+        $application = Course::find($id);
+        
+        if (!$application) {
+            return redirect()->back()->with('error', 'Kurs topilmadi'); // Ariza topilmadi xabarini qaytarish
+        }
+        
+        $application->delete();
+        
+        return redirect()->back()->with('status', "Ro'yxatdan o'tqazilgan kurs o'chirildi!");
+    }
+
+
+    public function createCourses()
+    {
+        return view('site-pages.pages.dashboard.create-courses');
+    }
+
+    public function coursesStore(Request $request)
+    {
+        dd($request);
+    }
+
+
 
     
 }

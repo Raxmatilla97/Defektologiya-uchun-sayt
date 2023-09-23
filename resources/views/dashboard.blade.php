@@ -94,6 +94,8 @@
                                 <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$all_couses_tasdiqlash_kerak }} ta</span> --}}
                                
                             </div>
+                            
+                        
                             <div class="flex justify-center">
                                 <form action="{{ route('dashboard.kurslarSearch')}}" method="GET" class="flex flex-row flex-wrap">
                                   <div class="mb-4 mr-4">
@@ -133,7 +135,7 @@
                                     width: 300px;
                                 }
                             </style>
-                        {{--     
+                            
                             @if(session('name'))
                                 <div class="bg-green-500 mt-4 text-white font-bold px-4 py-2 rounded-md">                               
                                     <p>{{ session('name') }}ning arizasi o'zgartirildi!</p>
@@ -150,7 +152,7 @@
                                     </div>
                                 
                                 </div>
-                            @endif --}}
+                            @endif
                             
     
                             <div class="flex flex-col mt-6">
@@ -240,7 +242,7 @@
                                                         </td>
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">
-                                                                <form action="#" method="POST"                                                                
+                                                                <form action="{{ route('dashboard.kurslarDeleteDashboard', $item->id)}}" method="POST"                                                                
                                                                     style="display: inline-block;">
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

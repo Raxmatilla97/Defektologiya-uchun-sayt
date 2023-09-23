@@ -22,6 +22,11 @@
                         {{ __('Foydalanuvchilar') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.createCourses')" :active="request()->routeIs('dashboard.createCourses')">
+                        {{ __('Kurs yaratish') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

@@ -42,9 +42,12 @@ Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('si
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {  
     Route::get('/search', [DashboardController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
-    
+
+    Route::delete('/delete-kurslar/{id?}', [DashboardController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
+    Route::get('/create-courses', [DashboardController::class, 'createCourses'])->name('dashboard.createCourses');
+    Route::post('/store-courses', [DashboardController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
+
     Route::get('/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
- 
 
     Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
 });
