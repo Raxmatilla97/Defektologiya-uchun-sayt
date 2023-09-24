@@ -187,7 +187,8 @@ class DashboardController extends Controller
             $course->davomiylik_vaqti = $validatedData['davomiylik_vaqti'];
             $course->teacher_id = $specialist_id;
             $course->desc = $validatedData['desc'];
-            $course->status = $validatedData['status'];  
+            $course->status = $validatedData['status']; 
+            
         
             $course->save();
             return redirect()->route('dashboard.createCourses')->with('success', 'Course created successfully.');
@@ -201,6 +202,7 @@ class DashboardController extends Controller
 
     public function myCreatedCourses(Request $request)
     {
+        // dd(Auth::user()->specialist->id);
         if (Auth::user()->specialist) {
             $specialist_id = Auth::user()->specialist->id;
             
@@ -288,9 +290,9 @@ class DashboardController extends Controller
                 });
             }
             
-            // if ($maqullanganlik) {
-            //     $query->where('maqullanganligi', 'like', '%' . $maqullanganlik . '%');
-            // }
+            if ($maqullanganlik) {               
+                $query->where('sorov_holati', $maqullanganlik);
+            }
             
             
             $myCourses = $query->where('student_id', $user_id)->paginate(15);
@@ -305,6 +307,72 @@ class DashboardController extends Controller
 
     }
 
+
+    public function editCourse($slug)
+    {
+        $editCourse = Course::where('slug', $slug)->first();
+        
+        return view('site-pages.pages.dashboard.edit-course', compact('editCourse'));
+    }
+
+
+    public function coursesStoreEdit(Request $request)
+    {
+        
+       
+        if (Auth::user()->specialist->id) {
+
+            $course = Course::find($request->id);
+            $course->title = $request->input('title');
+            $course->narxi = $request->input('narxi');
+            $course->kurs_tili = $request->input('kurs_tili');
+            $course->davomiylik_vaqti = $request->input('davomiylik_vaqti');
+            $course->desc = $request->input('desc');
+            $course->status = $request->input('status', false); 
+            
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('images', $filename, 'public');
+                $course->image = $filePath;
+            } else {
+                $course->image = $request->input('image_old', null);
+            }
+            
+            if ($request->has('youtube')) {
+                $videoId = '';
+                parse_str(parse_url($request->input('youtube'), PHP_URL_QUERY), $params);
+                if (isset($params['v'])) {
+                    $videoId = $params['v'];
+                } elseif (preg_match('/^\/embed\/([a-zA-Z0-9_-]+)/', parse_url($request->input('youtube'), PHP_URL_PATH), $matches)) {
+                    $videoId = $matches[1];
+                }
+            } else {
+                $videoId = 'none';
+            }
+            
+            $course->youtube = $videoId;
+            
+            $course->save();
+            return redirect()->route('dashboard.myCreatedCourses')->with('status', "Sizning ". $course->title ." nomli kursingiz o'zgartirildi!");
+
+        }else {
+
+            return redirect()->route('dashboard.createCourses')->with('warning', "Sizda kurs yaratish uchun ruxsat yo'q, kurs yaratish uchun mutaxasis bo'lishingiz kerak!");
+        }
+       
+       
+    }
+
+    public function addVideoDarslar($slug)
+    {
+        $editCourse = Course::where('slug', $slug)->first();
+
+        $videoDarslar = $editCourse->videolar()->get();
+        
+        return view('site-pages.pages.dashboard.add-video-darslar', compact('videoDarslar', 'editCourse'));
+
+    }
 
 
     

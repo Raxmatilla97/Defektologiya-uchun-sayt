@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('narxi');
             $table->string('kurs_tili');
             $table->string('davomiylik_vaqti');
-            $table->foreignId('teacher_id')->constrained('specialists')->nullable();  
-            $table->foreignId('maqullagan_id')->constrained('users')->nullable();  
+            $table->foreignId('teacher_id')->nullable()->constrained('specialists');  
+            $table->foreignId('maqullagan_id')->nullable()->constrained('users');  
             $table->text('desc');
             $table->boolean('status')->default(0);
             $table->string('maqullanganligi')->default('korilmagan');

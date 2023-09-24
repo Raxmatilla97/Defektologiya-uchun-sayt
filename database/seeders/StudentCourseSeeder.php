@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class StudentCourseSeeder extends Seeder
 {
@@ -14,22 +15,15 @@ class StudentCourseSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        
-        $courseIds = \App\Models\Course::pluck('id')->toArray();
-        $studentIds = \App\Models\User::pluck('id')->toArray();
-        
-        foreach (range(1, 50) as $index) { // 10 obyekt yaratish uchun o'zgartirishingiz mumkin
-            $uniqueCourseId = $faker->unique()->randomElement($courseIds);
-            $uniqueStudentId = $faker->unique()->randomElement($studentIds);
-            
-            \App\Models\StudentCourse::create([
-                'course_id' => $uniqueCourseId,
-                'student_id' => $uniqueStudentId,
+
+        for ($i = 1; $i <= 10; $i++) {
+            DB::table('student_courses')->insert([
+                'sorov_holati' => $faker->randomElement(['maqullandi', 'ruxsat_berilmadi', 'tekshirilmoqda']),
+                'course_id' => $i,
+                'student_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
-            
-            // Unique ID lar orqali ishlatilgan ID lar to'plamidan o'chirish
-            $courseIds = array_diff($courseIds, [$uniqueCourseId]);
-            $studentIds = array_diff($studentIds, [$uniqueStudentId]);
         }
     }
 }

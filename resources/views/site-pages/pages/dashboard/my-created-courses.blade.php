@@ -25,15 +25,15 @@
                                 <form action="{{ route('dashboard.myCreatedCourses')}}" method="GET" class="flex flex-row flex-wrap">                               
                                   <div class="mb-4 mr-4">
                                     <label for="title" class="block mb-2">Kurs nomi:</label>
-                                    <input type="text" id="title" name="title" class="w-full border border-gray-300 p-2" placeholder="Kurs nomi...">
+                                    <input type="text" id="title"  value="{{ old('title', request()->query('title')) }}" name="title" class="w-full border border-gray-300 p-2" placeholder="Kurs nomi...">
                                   </div>
                                   <div class="mb-4">
                                     <label for="maqullanganlik" class="block mb-2">Holati:</label>
                                     <select id="maqullanganlik" name="maqullanganlik" class="w-full border border-gray-300 p-2">
-                                    <option value="" default>Tanlash</option>                                     
-                                      <option value="maqullandi">Kurs maqullangan</option>
-                                      <option value="rad_etildi">Kurs rad etilgan</option>
-                                      <option value="korilmagan">Kurs tasdiqlanmagan</option>
+                                    <option value="" default>Barchasi</option>                                     
+                                      <option value="maqullandi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'maqullandi' ? 'selected' : '' }}>Kurs maqullangan</option>
+                                      <option value="rad_etildi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'rad_etildi' ? 'selected' : '' }}>Kurs rad etilgan</option>
+                                      <option value="korilmagan" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'korilmagan' ? 'selected' : '' }}>Kurs tasdiqlanmagan</option>
                                     </select>
                                   </div>
                                   <div class="ml-4 mt-8">
@@ -127,8 +127,20 @@
                                                                 <div class="flex items-center gap-x-2">
                                                                     <img class="object-cover w-10 h-10 rounded-full" src="{{ asset('/assets/images/avatar.png')}}" alt="">
                                                                     <div>
-                                                                        <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->maqullagan->specialist->fish }}</h2>
-                                                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">{{ $item->maqullagan->specialist->phone }}</p>
+                                                                        <h2 class="font-medium text-gray-800 dark:text-white ">
+                                                                            @if ($item->maqullagan)
+                                                                            {{ $item->maqullagan->specialist->fish }}
+                                                                            @else
+                                                                                Hali aniq emas!
+                                                                            @endif
+                                                                            </h2>
+                                                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                                                            @if ($item->maqullagan)
+                                                                            {{ $item->maqullagan->specialist->phone }}
+                                                                            @else
+                                                                                -
+                                                                            @endif
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -197,7 +209,7 @@
                                                                     </script>
                                                                 </form>
     
-                                                                <a href="#" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                <a href="{{ route('dashboard.editCourse', $item->slug)}}" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                                     </svg>

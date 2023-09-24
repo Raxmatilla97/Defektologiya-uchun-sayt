@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('desc');
             $table->string('youtube');
-            $table->string('status');
+            $table->boolean('status')->default('0');
             $table->foreignId('kurs_id')->constrained('courses')->onDelete('cascade')->nullable();
             $table->timestamps();
         });

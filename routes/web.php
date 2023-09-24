@@ -47,7 +47,13 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/create-courses', [DashboardController::class, 'createCourses'])->name('dashboard.createCourses');
     Route::post('/store-courses', [DashboardController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
     Route::get('/my-created-courses/{request?}', [DashboardController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses'); 
-    Route::get('/my-courses/{request?}', [DashboardController::class, 'myCourses'])->name('dashboard.myCourses'); 
+    Route::get('/my-courses/{request?}', [DashboardController::class, 'myCourses'])->name('dashboard.myCourses');
+    Route::get('/edit-course/{slug}', [DashboardController::class, 'editCourse'])->name('dashboard.editCourse');
+    Route::post('/edit-course-Store', [DashboardController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
+    Route::get('/add-video-darslar/{slug?}', [DashboardController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
+    Route::post('/add-video-darslar-store', [DashboardController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
+
+    
 
     Route::get('/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
 

@@ -28,7 +28,7 @@ class CourseSeeder extends Seeder
                 , '/assets/images/all-img/c4.png', '/assets/images/all-img/c5.png', '/assets/images/all-img/c6.png']),
                 'youtube' => "https://www.youtube.com/watch?v=UVUo3sqTY2k",
                 'narxi' => $faker->randomElement(["200.000 ming so'm", "1.200.000 so'm", "600.000 so'm", "800.000 so'm", "Bepul"]),
-                'kurs_tili' => $faker->randomElement(["O'zbek-tilida", 'Rus-tilida']),
+                'kurs_tili' => $faker->randomElement(["uzbek_tilida", 'rus_tilida']),
                 'davomiylik_vaqti' => $faker->randomNumber(2) . ' days',
                 'maqullagan_id' => '1',
                 'teacher_id' =>  $faker->randomElement($specialists),

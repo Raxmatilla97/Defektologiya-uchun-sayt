@@ -105,22 +105,10 @@
                             {!!  $item->desc !!}
                           </p>
                       
-                          <div class=" mt-8 ">                           
-                            @php
-                              $url = "$item->youtube";
-                              $video_id = '';
-            
-                              // Parse the URL and extract the video ID
-                              $parts = parse_url($url);
-                              if (isset($parts['query'])) {
-                                  parse_str($parts['query'], $query);
-                                  if (isset($query['v'])) {
-                                      $video_id = $query['v'];
-                                  }
-                              }
-                            @endphp
-                            @if (!empty($video_id))
-                            <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ $video_id }}" title="{{ $item->title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                          <div class=" mt-8 ">                          
+                           
+                            @if (!empty($item->youtube))
+                            <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ $item->youtube }}" title="{{ $item->title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             @endif
                           </div>
                         </div>

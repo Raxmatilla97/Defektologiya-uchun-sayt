@@ -29,7 +29,7 @@ class VideoDarslarSeeder extends Seeder
                 'title' => $faker->sentence,
                 'desc' => $faker->paragraph,
                 'youtube' => $faker->randomElement(['https://www.youtube.com/watch?v=-yOq2bD_GpU', 'https://www.youtube.com/watch?v=IdjDjxNn9ws', 'https://www.youtube.com/watch?v=JdqL89ZZwFw']),
-                'status' => $faker->randomElement(['active', 'inactive']),
+                'status' => $faker->randomElement(['1', '0']),
                 'kurs_id' => $faker->randomElement($courseIds),
                 'created_at' => $createdAt,
                 'updated_at' => $updatedAt,

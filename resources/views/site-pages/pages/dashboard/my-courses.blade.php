@@ -26,15 +26,15 @@
                                 <form action="{{ route('dashboard.myCourses')}}" method="GET" class="flex flex-row flex-wrap">                               
                                   <div class="mb-4 mr-4">
                                     <label for="title" class="block mb-2">Kurs nomi:</label>
-                                    <input type="text" id="title" name="title" class="w-full border border-gray-300 p-2" placeholder="Kurs nomi...">
+                                    <input type="text" id="title" value="{{ old('title', request()->query('title')) }}" name="title" class="w-full border border-gray-300 p-2" placeholder="Kurs nomi...">
                                   </div>
                                   <div class="mb-4">
-                                    <label for="maqullanganlik" class="block mb-2">Holati:</label>
+                                    <label for="maqullanganlik" class="block mb-2">Barchasi:</label>
                                     <select id="maqullanganlik" name="maqullanganlik" class="w-full border border-gray-300 p-2">
                                     <option value="" default>Tanlash</option>                                     
-                                      <option value="maqullandi">Kurs maqullangan</option>
-                                      <option value="rad_etildi">Kurs rad etilgan</option>
-                                      <option value="korilmagan">Kurs tasdiqlanmagan</option>
+                                      <option value="maqullandi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'maqullandi' ? 'selected' : '' }}>Ruxsat berilgan kurslarim</option>
+                                      <option value="ruxsat_berilmadi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'ruxsat_berilmadi' ? 'selected' : '' }}>Rad etilgan kurslarim</option>
+                                      <option value="tekshirilmoqda" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'tekshirilmoqda' ? 'selected' : '' }}>Tekshiruvdagi kurslarim</option>
                                     </select>
                                   </div>
                                   <div class="ml-4 mt-8">
@@ -104,10 +104,10 @@
     
                                                         <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                             <button class="flex items-center gap-x-2">
-                                                                <span>Kurs holati</span>
+                                                                <span>Arizangiz holati</span>
                                                             </button>
                                                         </th>
-                                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Kafedra nomi</th>
+                                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Kurs narxi</th>
     
                                                    
     
@@ -139,22 +139,22 @@
 
                                                         <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">          
                                                                                                                                                                   
-                                                            {{-- @if ($item->maqullanganligi == 'korilmagan')
+                                                            @if ($item->sorov_holati == 'tekshirilmoqda')
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-indigo-100/60 dark:bg-indigo-800">
                                                                 <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
-                                                                <h2 class="text-sm font-normal text-indigo-500">Kurs ko'rilmagan!</h2>
+                                                                <h2 class="text-sm font-normal text-indigo-500">Arizangiz tekshirilmoqda!</h2>
                                                             </div>
-                                                            @elseif ($item->maqullanganligi == "rad_etildi")
+                                                            @elseif ($item->sorov_holati == "ruxsat_berilmadi")
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-red-800">
                                                                 <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-                                                                <h2 class="text-sm font-normal text-red-500">Kurs rad etilgan!</h2>
+                                                                <h2 class="text-sm font-normal text-red-500">Kurs siz uchun yopiq!</h2>
                                                             </div>                                                             
-                                                            @elseif ($item->maqullanganligi == "maqullandi")
+                                                            @elseif ($item->sorov_holati == "maqullandi")
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                                                                <h2 class="text-sm font-normal text-emerald-500">Kurs maqullangan!</h2>
+                                                                <h2 class="text-sm font-normal text-emerald-500">Kursni ko'rishingiz mumkin!</h2>
                                                             </div>  
-                                                            @endif                                                            --}}
+                                                            @endif                                            
                                                            
                                                         </td>
 
@@ -162,7 +162,7 @@
                                                        
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-2">
-                                                                <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">3243</p>
+                                                                <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">{{ $item->course->narxi }}</p>
                                                               
                                                             </div>
                                                         </td>

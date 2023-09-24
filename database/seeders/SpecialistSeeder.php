@@ -17,6 +17,9 @@ class SpecialistSeeder extends Seeder
     {
         $faker = Faker::create();
         $user_ids = User::inRandomOrder()->pluck('id')->toArray();
+
+        $userIds = range(1, 10);
+        shuffle($userIds);
     
          for ($i = 0; $i < 10; $i++) {
              $user_id = null;
@@ -24,7 +27,8 @@ class SpecialistSeeder extends Seeder
              if (!empty($user_ids)) {
                  $user_id = array_pop($user_ids);
              }
-    
+             $uniqueUserId = array_shift($userIds);
+
              DB::table('specialists')->insert([
                  'fish' => $faker->name,
                  'slug' => $faker->slug,
@@ -38,7 +42,7 @@ class SpecialistSeeder extends Seeder
                  'insta_follow' => $faker->userName,
                  'facebook_follow' => $faker->userName,
                  'status' => $faker->randomElement(['1', '0']),
-                 'user_id' => $user_id,            
+                 'user_id' => $uniqueUserId,            
              ]);
          }
     }
