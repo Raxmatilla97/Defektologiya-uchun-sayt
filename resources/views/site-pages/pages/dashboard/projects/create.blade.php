@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __("Xabar yaratish sahifasi") }}
+            {{ __("Proyekt yaratish sahifasi") }}
         </h2>
     </x-slot>
 
@@ -17,10 +17,10 @@
       <!-- This is an example component -->
     <div class="max-w-5xl mx-auto bg-white p-16 mt-6">
        
-        <div class="flex  w-full bg-blue-400 justify-center items-center">
+        {{-- <div class="flex  w-full bg-blue-400 justify-center items-center">
             <img class="" src="{{ asset('/assets/images/news2.gif')}}" alt="">
           </div>
-        
+         --}}
         <h2 class="text-4xl text-center mt-8 font-extrabold dark:text-white">Formani to'ldiring!</h2>
 
         @if ($errors->any())
@@ -32,29 +32,18 @@
             </ul>
         </div>
         @endif
-        <form class="mt-5" action="{{ route('dashboard.newsAndEventsStore')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+        <form class="mt-5" action="{{ route('dashboard.projectStore')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
         @csrf 
         @method('post')   
         <div class="mb-6">
-            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Xabar sarlavhasi nomlanishi</label>
-            <input type="text" id="title" name="title" value="{{ old('title')}}" placeholder="Yangilik yoki e'lon nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proyekt sarlavhasi nomlanishi</label>
+            <input type="text" id="title" name="title" value="{{ old('title')}}" placeholder="Proyekt nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         </div> 
-        <div class=" mb-6 lg:grid-cols-2">
-           
-            <div>
-                <label for="news_or_event" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Xabar turini tanlang</label>
-                <select id="news_or_event" name="news_or_event" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <option  selected value="news_or_event" {{ old('news_or_event') === 'news' ? 'selected' : '' }}>Yangilik</option>
-                    <option value="event" {{ old('news_or_event') === 'event' ? 'selected' : '' }}>E'lon</option>
-                </select>
-            </div>
-          
-            
-        </div>
+        
         <div class="mb-6">
             <div>
-            <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yangilik haqida to'liq yozing</label>
-            <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kurs maqsadi va nimalarni o'rgatishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
+            <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt haqida to'liq yozing</label>
+            <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
         </div> 
         <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
         <script>
@@ -74,7 +63,7 @@
         </script>
         
         <div class="mb-6">
-            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kursni sarlavha suratini yuklash</label>
+            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt sarlavha suratini yuklash</label>
             <input type="file" name="image" value="{{ old('image')}}" id="image-upload" accept="image/*">
         </div> 
 
@@ -119,10 +108,10 @@
             <div class="flex items-center h-5">
             <input id="status" type="checkbox" name="status" value="1" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
             </div>
-            <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va kurs ko'rsatishga tayyor</label>
+            <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va proyekt ko'rsatishga tayyor</label>
         </div>
         <div class="flex justify-center">
-            <button type="submit" class="text-white transition  bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Xabarni yaratish</button>
+            <button type="submit" class="text-white transition  bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Proyekt yaratish</button>
         </div>
 
     </div>

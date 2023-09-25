@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\News;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CkeditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,7 @@ Route::get('/specialist/{slug}', [IndexController::class, 'specialistSingle'])->
 Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.coursesIndex');
 Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
+Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {  
@@ -55,9 +59,21 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('/add-video-darslar-store', [DashboardController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
     Route::post('/edit-video-darslar', [DashboardController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
    
-    Route::get('/news-and-events', [DashboardController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
-    Route::delete('/news-and-events/{id?}', [DashboardController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
-    Route::get('/news-and-events-search', [DashboardController::class, 'newsAndEventsSearch'])->name('dashboard.newsAndEventsSearch');
+    Route::get('/news-and-events', [NewsController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
+    Route::delete('/news-and-events/{id?}', [NewsController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
+    Route::get('/news-and-events-search', [NewsController::class, 'newsAndEventsSearch'])->name('dashboard.newsAndEventsSearch');
+    Route::get('/news-and-events-create', [NewsController::class, 'newsAndEventsCreate'])->name('dashboard.newsAndEventsCreate');
+    Route::post('/news-and-events-store', [NewsController::class, 'newsAndEventsStore'])->name('dashboard.newsAndEventsStore'); 
+    Route::get('/news-and-event-edit/{slug?}', [NewsController::class, 'newsAndEventsEdit'])->name('dashboard.newsAndEventsEdit');
+    Route::post('/news-and-events-edit-store', [NewsController::class, 'newsAndEventsEditStore'])->name('dashboard.newsAndEventsEditStore'); 
+  
+    Route::get('/projects', [ProjectController::class, 'projectIndex'])->name('dashboard.projectIndex');
+    Route::delete('/projects-delete/{id?}', [ProjectController::class, 'projectDestroy'])->name('dashboard.projectDestroy'); 
+    Route::get('/projects-search', [ProjectController::class, 'projectSearch'])->name('dashboard.projectSearch');
+    Route::get('/project-create', [ProjectController::class, 'projectCreate'])->name('dashboard.projectCreate');
+    Route::post('/project-store', [ProjectController::class, 'projectStore'])->name('dashboard.projectStore'); 
+    Route::get('/project-edit/{slug?}', [ProjectController::class, 'projectEdit'])->name('dashboard.projectEdit');
+    Route::post('/project-update', [ProjectController::class, 'projectUpdate'])->name('dashboard.projectUpdate'); 
 
 
     

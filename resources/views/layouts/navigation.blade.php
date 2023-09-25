@@ -27,6 +27,12 @@
                         {{ __('Xabarlar') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.projectIndex')" :active="request()->routeIs('dashboard.projectIndex')">
+                        {{ __('Proyektlar') }}
+                    </x-nav-link>
+                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.myCreatedCourses')" :active="request()->routeIs('dashboard.myCreatedCourses')">
                         {{ __('Yaratgan kurslarim') }}

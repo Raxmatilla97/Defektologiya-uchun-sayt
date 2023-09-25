@@ -338,7 +338,7 @@ class DashboardController extends Controller
                 $filePath = $file->storeAs('images', $filename, 'public');
                 $course->image = $filePath;
             } else {
-                $course->image = $request->input('image_old', null);
+                $course->image = $request->input('image_old', $course->image);
             }
             
             if ($request->has('youtube')) {
@@ -464,45 +464,7 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', "Video darsingiz o'zgartirildi!");
     }
 
-    public function newsAndEvents(){
-        $allnewsAndEvents = News::orderBy('created_at', 'desc')->paginate(15);
-
-        return view('site-pages.pages.dashboard.news-and-events', compact('allnewsAndEvents'));
-    }
-
-    public function newsAndEventsDelete($id)
-    {
-        $NewsAndEvents = News::find($id);
-        
-        if (!$NewsAndEvents) {
-            return redirect()->back()->with('error', 'Xabarlar topilmadi'); // Ariza topilmadi xabarini qaytarish
-        }
-        
-        $NewsAndEvents->delete();
-        
-        return redirect()->back()->with('status', "Yangilik yoki E'lon o'chirildi!");
-    }
-
-    public function newsAndEventsSearch(Request $request)
-    {
-      
-        $title = $request->input('title');
-        $status = $request->input('status');
-        
-        $query = News::query();
-             
-        if ($title) {
-            $query->where('title', 'like', '%' . $title . '%');
-        }
-        
-        if ($status) {
-            $query->where('status', '=', $status);
-        }
-     
-        $allnewsAndEvents = $query->paginate(15);
-       
-      return view('site-pages.pages.dashboard.news-and-events', compact('allnewsAndEvents'));
-    }
+  
 
 
 
