@@ -40,6 +40,7 @@ Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.cou
 Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
 
+
 Route::prefix('dashboard')->middleware('auth')->group(function () {  
     Route::get('/search', [DashboardController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
 
@@ -52,6 +53,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('/edit-course-Store', [DashboardController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
     Route::get('/add-video-darslar/{slug?}', [DashboardController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
     Route::post('/add-video-darslar-store', [DashboardController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
+    Route::post('/edit-video-darslar', [DashboardController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
+   
+    Route::get('/news-and-events', [DashboardController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
+    Route::delete('/news-and-events/{id?}', [DashboardController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
+    Route::get('/news-and-events-search', [DashboardController::class, 'newsAndEventsSearch'])->name('dashboard.newsAndEventsSearch');
+
 
     
 

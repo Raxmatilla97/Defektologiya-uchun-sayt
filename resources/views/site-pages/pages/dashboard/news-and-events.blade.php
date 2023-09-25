@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Mening kurslarim sahifasi') }}
+            {{ __("Sayt xabarlari (Yangilik va E'lonlari)ni yaratish uchun") }}
         </h2>
     </x-slot>
-    @if ($myCourses !== "huquq-yoq")    
+    
     <div class="py-12">       
 
         <div class="pt-6 pb-12">
@@ -22,31 +22,28 @@
                             
                         
                             <div class="flex justify-center">
-                                <form action="{{ route('dashboard.myCreatedCourses')}}" method="GET" class="flex flex-row flex-wrap">                               
+                                <form action="{{ route('dashboard.newsAndEventsSearch')}}" method="GET" class="flex flex-row flex-wrap">                               
                                   <div class="mb-4 mr-4">
-                                    <label for="title" class="block mb-2">Kurs nomi:</label>
-                                    <input type="text" id="title"  value="{{ old('title', request()->query('title')) }}" name="title" class="w-full border border-gray-300 p-2" placeholder="Kurs nomi...">
+                                    <label for="title" class="block mb-2">Xabar sarlavhasi nomi:</label>
+                                    <input type="text" id="title" value="{{ old('title', request()->query('title')) }}" name="title" class="w-full border border-gray-300 p-2" placeholder="Xabar sarlavhasi nomi...">
                                   </div>
                                   <div class="mb-4">
-                                    <label for="maqullanganlik" class="block mb-2">Holati:</label>
-                                    <select id="maqullanganlik" name="maqullanganlik" class="w-full border border-gray-300 p-2">
-                                    <option value="" default>Barchasi</option>                                     
-                                      <option value="maqullandi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'maqullandi' ? 'selected' : '' }}>Kurs maqullangan</option>
-                                      <option value="rad_etildi" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'rad_etildi' ? 'selected' : '' }}>Kurs rad etilgan</option>
-                                      <option value="korilmagan" {{ old('maqullanganlik', request()->query('maqullanganlik')) === 'korilmagan' ? 'selected' : '' }}>Kurs tasdiqlanmagan</option>
+                                    <label for="status" class="block mb-2">Barchasi:</label>
+                                    <select id="status" name="status" class="w-full border border-gray-300 p-2">
+                                    <option value="" default>Tanlash</option>                                     
+                                      <option value="1" {{ old('status', request()->query('status')) === '1' ? 'selected' : '' }}>Ko'rinarli xabarlar</option>
+                                      <option value="0" {{ old('status', request()->query('status')) === '0' ? 'selected' : '' }}>Ko'rinmas xabarlar</option>
+                                    
                                     </select>
                                   </div>
                                   <div class="ml-4 mt-8">
                                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Qidirish</button>
                                   </div>
-                                 
                                 </form>
-                              
-                               
                               </div>
                               <div class="flex ml-3 mt-8 justify-end">
                                 <a href="{{route('dashboard.createCourses')}}">
-                                    <button type="submit" class="bg-green-600 hover:bg-green-500 text-white text-xl px-4 py-2 rounded">Yangi kurs qo'shish</button>
+                                    <button type="submit" class="bg-green-600 hover:bg-green-500 text-white text-xl px-4 py-2 rounded">Yangilik yoki e'lon qo'shish</button>
                                 </a>
                               </div>
                               <style>
@@ -91,22 +88,9 @@
                                             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                                 <thead class="bg-gray-50 dark:bg-gray-800">
                                                     <tr>
-                                                        <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                            <div class="flex items-center gap-x-3">
-                                                               
-                                                                <span>Kursni tasdiqlagan Admin</span>
-                                                            </div>
-                                                        </th>
-    
-                                                        <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                            <button class="flex items-center gap-x-2">
-                                                                <span>Kurs holati</span>
-                                                            </button>
-                                                        </th>
-    
                                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                             <button class="flex items-center gap-x-2">
-                                                                <span>Video kurs nomi</span>
+                                                                <span>Xabar sarlavhasi</span>
     
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
@@ -114,7 +98,14 @@
                                                             </button>
                                                         </th>
     
-                                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Kurs yaratilgan vaqt</th>
+                                                        <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                            <button class="flex items-center gap-x-2">
+                                                                <span>Xabar holati</span>
+                                                            </button>
+                                                        </th>
+                                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                            Qachon yaratilgani
+                                                        </th>
     
                                                    
     
@@ -125,55 +116,37 @@
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
 
-                                                                                               
-                                                    @foreach ($myCourses as $item)
+                                                  
                                                     <tr>
+                                                    @foreach ($allnewsAndEvents as $item)
+                                                   
+                                                       
+                                                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                        <p class="w-full text-sm font-semibold peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 " >
+                                                        {{ $item->title}}
+                                                        </p>
+                                                    </td>
                                                     
-                                                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                            <div class="inline-flex items-center gap-x-3">  
-                                                                <div class="flex items-center gap-x-2">
-                                                                    <img class="object-cover w-10 h-10 rounded-full" src="{{ asset('/assets/images/avatar.png')}}" alt="">
-                                                                    <div>
-                                                                        <h2 class="font-medium text-gray-800 dark:text-white ">
-                                                                            @if ($item->maqullagan)
-                                                                            {{ $item->maqullagan->specialist->fish }}
-                                                                            @else
-                                                                                Hali aniq emas!
-                                                                            @endif
-                                                                            </h2>
-                                                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                                                            @if ($item->maqullagan)
-                                                                            {{ $item->maqullagan->specialist->phone }}
-                                                                            @else
-                                                                                -
-                                                                            @endif
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
+
                                                         <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">          
                                                                                                                                                                   
-                                                            @if ($item->maqullanganligi == 'korilmagan')
-                                                            <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-indigo-100/60 dark:bg-indigo-800">
-                                                                <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
-                                                                <h2 class="text-sm font-normal text-indigo-500">Kurs ko'rilmagan!</h2>
-                                                            </div>
-                                                            @elseif ($item->maqullanganligi == "rad_etildi")
+                                                           
+                                                            @if ($item->status == '0')
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-red-800">
                                                                 <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-                                                                <h2 class="text-sm font-normal text-red-500">Kurs rad etilgan!</h2>
+                                                                <h2 class="text-sm font-normal text-red-500">Xabar ko'rinmas!</h2>
                                                             </div>                                                             
-                                                            @elseif ($item->maqullanganligi == "maqullandi")
+                                                            @elseif ($item->status == '1')
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                                                                <h2 class="text-sm font-normal text-emerald-500">Kurs maqullangan!</h2>
+                                                                <h2 class="text-sm font-normal text-emerald-500">Xabar ko'rinarli!</h2>
                                                             </div>  
-                                                            @endif                                                           
+                                                            @endif                                            
                                                            
                                                         </td>
+
                                                       
-                                                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"><p class="w-full text-sm font-semibold peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 " >{{ $item->title }}</p></td>
+                                                       
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-2">
                                                                 <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">{{ $item->created_at->diffForHumans() }}</p>
@@ -182,7 +155,7 @@
                                                         </td>
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">
-                                                                <form action="{{ route('dashboard.kurslarDeleteDashboard', $item->id)}}" method="POST"                                                                
+                                                                <form action="{{ route('dashboard.newsAndEventsDelete', $item->id)}}" method="POST"                                                                
                                                                     style="display: inline-block;">
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -216,7 +189,7 @@
                                                                     </script>
                                                                 </form>
     
-                                                                <a href="{{ route('dashboard.editCourse', $item->slug)}}" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                <a href="#" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                                     </svg>
@@ -225,7 +198,10 @@
                                                         </td>
                                                     </tr>
                                                     @endforeach
-                                                
+                                                  
+                                             {{--    @else
+                                                    <h1 class="text-center text-xl p-6 text-gray-700">Bu yerda hali ma'lumot yo'q yoki sizda kurslarni yaratish xuquqi mavjud emas!</h1>
+                                                @endif --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -234,7 +210,7 @@
                             </div>
     
                             <div class=" items-center justify-between mt-6">
-                                {{ $myCourses->links()}}
+                                {{ $allnewsAndEvents->links()}}
                             </div>
                         </section>
                         <!-- /list -->
@@ -244,7 +220,4 @@
         </div>
 
     </div>
-    @else
-        <h1 class="text-center text-xl p-6 text-gray-700">Sizda kurslarni yaratish xuquqi mavjud emas!</h1>
-    @endif
 </x-app-layout>

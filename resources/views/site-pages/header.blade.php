@@ -14,15 +14,15 @@
                   <a href="{{ route('site.projectsIndex')}}">Proyektlar</a>
                 </li>
                 <li>
+                  <a href="{{route('site.coursesIndex')}}">Kurslar</a>
+                </li>
+                <li>
                   <a href="{{ route('site.seminarIndex')}}">Seminarlar</a>
                 </li>
                 <li>
                   <a href="{{ route('site.specialistsIndex')}}">Mutaxassislar</a>
                 </li>
-              
-                <li>
-                  <a href="{{route('site.coursesIndex')}}">Kurslar</a>
-                </li>
+                
               </ul>
               <div class="lg:block hidden">
                 <div class="border border-gray rounded-md  h-[46px] modal-search">
@@ -31,14 +31,14 @@
               </div>
             </div>
             <div class="flex-none flex space-x-[18px]">
-              <button type="button" class=" md:w-[56px] md:h-[56px] h-10 w-10 rounded bg-[#F8F8F8] flex flex-col items-center justify-center modal-trigger">
+              {{-- <button type="button" class=" md:w-[56px] md:h-[56px] h-10 w-10 rounded bg-[#F8F8F8] flex flex-col items-center justify-center modal-trigger">
                 <img src="{{ asset('assets/images/svg/search.svg')}}" alt=""></button>
               <div class=" block   lg:hidden">
                 <button type="button" class=" text-3xl md:w-[56px] h-10 w-10 md:h-[56px] rounded bg-[#F8F8F8] flex flex-col items-center justify-center
                                                 menu-click">
                   <iconify-icon icon="cil:hamburger-menu" rotate="180deg"></iconify-icon>
                 </button>
-              </div>
+              </div> --}}
               <div class="hidden lg:block">
                 @auth
                     <a href="{{ route('dashboard.kurslarSearch') }}" class="btn btn-primary py-[10px] px-8">Profil</a>

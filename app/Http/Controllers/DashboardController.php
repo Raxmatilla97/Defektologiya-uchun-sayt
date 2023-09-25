@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\specialist;
 use App\Models\StudentCourse;
+use App\Models\VideoDarslar;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -191,11 +193,11 @@ class DashboardController extends Controller
             
         
             $course->save();
-            return redirect()->route('dashboard.createCourses')->with('success', 'Course created successfully.');
+            return redirect()->route('dashboard.myCreatedCourses')->with('status', 'Siz kurs yaratdingiz!');
 
         }else {
 
-            return redirect()->route('dashboard.createCourses')->with('warning', "Sizda kurs yaratish uchun ruxsat yo'q, kurs yaratish uchun mutaxasis bo'lishingiz kerak!");
+            return redirect()->route('dashboard.myCreatedCourses')->with('warning', "Sizda kurs yaratish uchun ruxsat yo'q, kurs yaratish uchun mutaxasis bo'lishingiz kerak!");
         }
        
     }
@@ -210,7 +212,7 @@ class DashboardController extends Controller
             if ($request == null) {
             
                 if ($specialist_id) {
-                    $myCourses = Course::where('teacher_id', $specialist_id)->paginate(15);    
+                    $myCourses = Course::where('teacher_id', $specialist_id)->orderBy('created_at', 'desc')->paginate(15);    
                     return view('site-pages.pages.dashboard.my-created-courses', compact('myCourses'));
                 }
 
@@ -231,7 +233,7 @@ class DashboardController extends Controller
                         $query->where('maqullanganligi', 'like', '%' . $maqullanganlik . '%');
                     }
                 
-                    $myCourses = $query->where('teacher_id', $specialist_id)->paginate(15);
+                    $myCourses = $query->where('teacher_id', $specialist_id)->orderBy('created_at', 'desc')->paginate(15);
 
                     return view('site-pages.pages.dashboard.my-created-courses', compact('myCourses'));
 
@@ -368,12 +370,142 @@ class DashboardController extends Controller
     {
         $editCourse = Course::where('slug', $slug)->first();
 
-        $videoDarslar = $editCourse->videolar()->get();
+        $videoDarslar = $editCourse->videolar()->orderBy('created_at', 'asc')->get();
         
         return view('site-pages.pages.dashboard.add-video-darslar', compact('videoDarslar', 'editCourse'));
 
     }
 
+    public function addVideoDarslarStore(Request $request)
+    {
+        if ($request->input('status') === null) {
+            $request->merge(['status' => false]);
+        }
 
+      
+        $validatedData = $request->validate([
+            'title' => 'required|string',          
+            'youtube' => 'required|string', 
+            'desc' => 'required|string',
+            'status' => 'boolean'          
+        ],
+        [
+            'title.required' => "Kurs nomini yozishingiz kerak!",
+            'image.required' => "Kurs suratini yuklashingiz kerak!",
+        ]);    
+      
+
+        if ($request->youtube) {           
+            $videoId = '';
+            parse_str(parse_url($request->youtube, PHP_URL_QUERY), $params);
+            if (isset($params['v'])) {
+                $videoId = $params['v'];
+            } elseif (preg_match('/^\/embed\/([a-zA-Z0-9_-]+)/', parse_url($request->youtube, PHP_URL_PATH), $matches)) {
+                $videoId = $matches[1];
+            }
+        }else{
+            $videoId = 'none';
+        }                  
+      
+        $videoDars = new VideoDarslar();
+        $videoDars->title = $validatedData['title'];        
+        $videoDars->youtube = $videoId;      
+        $videoDars->kurs_id = $request->kurs_id;
+        $videoDars->desc = $validatedData['desc'];
+        $videoDars->status = $validatedData['status']; 
+        
+    
+        $videoDars->save();
+        
+        return redirect()->back()->with('success', "Video darsingiz qo'shildi!");
+    }
+
+
+    public function editVideoDarslar(Request $request)
+    {
+        if ($request->input('status') === null) {
+            $request->merge(['status' => false]);
+        }
+
+      
+        $validatedData = $request->validate([
+            'title' => 'required|string',          
+            'youtube' => 'required|string', 
+            'desc' => 'required|string',
+            'status' => 'boolean'          
+        ],
+        [
+            'title.required' => "Kurs nomini yozishingiz kerak!",
+            'image.required' => "Kurs suratini yuklashingiz kerak!",
+        ]);    
+      
+
+        if ($request->youtube) {           
+            $videoId = '';
+            parse_str(parse_url($request->youtube, PHP_URL_QUERY), $params);
+            if (isset($params['v'])) {
+                $videoId = $params['v'];
+            } elseif (preg_match('/^\/embed\/([a-zA-Z0-9_-]+)/', parse_url($request->youtube, PHP_URL_PATH), $matches)) {
+                $videoId = $matches[1];
+            }
+        }else{
+            $videoId = 'none';
+        }                  
+      
+        $videoDars = VideoDarslar::find($request->video_id);
+        $videoDars->title = $validatedData['title'];        
+        $videoDars->youtube = $videoId;
+        $videoDars->desc = $validatedData['desc'];
+        $videoDars->status = $validatedData['status']; 
+        
+    
+        $videoDars->save();
+        
+        return redirect()->back()->with('success', "Video darsingiz o'zgartirildi!");
+    }
+
+    public function newsAndEvents(){
+        $allnewsAndEvents = News::orderBy('created_at', 'desc')->paginate(15);
+
+        return view('site-pages.pages.dashboard.news-and-events', compact('allnewsAndEvents'));
+    }
+
+    public function newsAndEventsDelete($id)
+    {
+        $NewsAndEvents = News::find($id);
+        
+        if (!$NewsAndEvents) {
+            return redirect()->back()->with('error', 'Xabarlar topilmadi'); // Ariza topilmadi xabarini qaytarish
+        }
+        
+        $NewsAndEvents->delete();
+        
+        return redirect()->back()->with('status', "Yangilik yoki E'lon o'chirildi!");
+    }
+
+    public function newsAndEventsSearch(Request $request)
+    {
+      
+        $title = $request->input('title');
+        $status = $request->input('status');
+        
+        $query = News::query();
+             
+        if ($title) {
+            $query->where('title', 'like', '%' . $title . '%');
+        }
+        
+        if ($status) {
+            $query->where('status', '=', $status);
+        }
+     
+        $allnewsAndEvents = $query->paginate(15);
+       
+      return view('site-pages.pages.dashboard.news-and-events', compact('allnewsAndEvents'));
+    }
+
+
+
+  
     
 }

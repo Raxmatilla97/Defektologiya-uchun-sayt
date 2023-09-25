@@ -16,7 +16,7 @@ class IndexController extends Controller
     public function index()
     {
       
-        $newsAndEvents = News::take(3)->get();
+        $newsAndEvents = News::where('status', '1')->orderBy('created_at', 'desc')->take(3)->get();
 
         $allSeminars = Seminar::where('status', '1')->orderBy('created_at', 'desc')->take('4')->get();
         foreach ($allSeminars as $item ) {      
@@ -24,7 +24,7 @@ class IndexController extends Controller
         }
 
         $specialist = Specialist::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
-        $coursesIndex = Course::where('status', '1')->orderBy('created_at', 'desc')->take(6)->get();
+        $coursesIndex = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->orderBy('created_at', 'desc')->take(6)->get();
 
        
         return view('layouts.def', compact('newsAndEvents', 'allSeminars', 'specialist', 'coursesIndex'));
@@ -187,7 +187,7 @@ class IndexController extends Controller
     public function specialistSingle($request)
     {
         $specialistIndex = Specialist::where('status', '1')->where('slug', $request)->first();
-        $courses = $specialistIndex->courses()->where('status', '1')->paginate(8);
+        $courses = $specialistIndex->courses()->where('maqullanganligi', 'maqullandi')->where('status', '1')->paginate(8);
         
         if ($specialistIndex !== null) {
             return view('site-pages.pages.specialist-single', compact('specialistIndex', 'courses'));
@@ -200,19 +200,20 @@ class IndexController extends Controller
 
     public function coursesIndex()
     {
-        $coursesIndex = Course::where('status', '1')->orderBy('created_at', 'desc')->paginate(9);
+        $coursesIndex = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->orderBy('created_at', 'desc')->paginate(9);
         return view('site-pages.pages.courses-index', compact('coursesIndex'));
     }
 
     public function courseSingle($request)
     {
-        $courseIndex = Course::where('status', '1')->where('slug', $request)->first();      
+        $courseIndex = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->where('slug', $request)->first();      
         
         if ($courseIndex !== null) {
 
             $keywords = explode(' ', $courseIndex->title); // Maqola sarlavhasini so'zlarga bo'lib ajratamiz
 
             $oxshashKurslar = Course::where('status', '1')
+                ->where('maqullanganligi', 'maqullandi')
                 ->where(function ($query) use ($keywords) {
                     foreach ($keywords as $keyword) {
                         $query->orWhere('title', 'LIKE', '%' . $keyword . '%');
