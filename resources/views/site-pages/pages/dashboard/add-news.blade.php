@@ -17,9 +17,9 @@
       <!-- This is an example component -->
     <div class="max-w-5xl mx-auto bg-white p-16 mt-6">
        
-        <div class="flex  w-full bg-blue-400 justify-center items-center">
+        {{-- <div class="flex  w-full bg-blue-400 justify-center items-center">
             <img class="" src="{{ asset('/assets/images/news2.gif')}}" alt="">
-          </div>
+          </div> --}}
         
         <h2 class="text-4xl text-center mt-8 font-extrabold dark:text-white">Formani to'ldiring!</h2>
 

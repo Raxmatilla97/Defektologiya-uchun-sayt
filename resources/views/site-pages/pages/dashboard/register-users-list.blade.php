@@ -54,20 +54,15 @@
                                 </label>
                             </a>
                         </li>
-
                         <li>
-                            <a href="#">
-                                <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-indigo-500 bg-red border border-indigo-200 rounded-lg cursor-pointer dark:hover:text-indigo-300 dark:border-indigo-700 dark:peer-checked:text-indigo-500 peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-800 dark:hover:bg-indigo-700">
-                                    <div class="block">
-                                        <div class="w-full text-lg font-semibold">Kurslarni ko'rish uchun ruxsat so'ragan foydalanuvchilar soni:</div>
-                                        <div class="w-full">Yopiq kurslarni ko'rish uchun so'rov jo'natgan foydalanuvchilar ro'yxati</div>
-                                    </div>
-                                    <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </label>
+                           <a href="{{ route('dashboard.specialistCreate')}}">
+                                <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                    Yangi mutaxasis yaratish va uni Loginga birlashtirish
+                                </button>
                             </a>
                         </li>
+
+                       
 
                         <li>
                             <a href="{{ route('dashboard.registerUsersList', 'ban-users')}}">
@@ -82,8 +77,21 @@
                                 </label>
                             </a>
                         </li>
+                        <li>
+                            <a href="#">
+                                <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-indigo-500 bg-red border border-indigo-200 rounded-lg cursor-pointer dark:hover:text-indigo-300 dark:border-indigo-700 dark:peer-checked:text-indigo-500 peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-800 dark:hover:bg-indigo-700">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-semibold">Kurslarni ko'rish uchun ruxsat so'ragan foydalanuvchilar soni:</div>
+                                        <div class="w-full">Yopiq kurslarni ko'rish uchun so'rov jo'natgan foydalanuvchilar ro'yxati</div>
+                                    </div>
+                                    <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </label>
+                            </a>
+                        </li>
+                       
                     </ul>
-
 
 
                 </div>
@@ -131,7 +139,7 @@
                                                         <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                             <div class="flex items-center gap-x-3">
                                                             
-                                                                <span>F.I.SH</span>
+                                                                <span>Ro'yxatdan o'tganlar</span>
                                                             </div>
                                                         </th>
 

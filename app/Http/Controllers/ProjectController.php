@@ -57,14 +57,14 @@ class ProjectController extends Controller
 
         $slug = Str::slug($validatedData['title']) . '_' . now();
       
-        $course = new Project();
-        $course->title = $validatedData['title'];
-        $course->slug = $slug;
-        $course->image = $validatedData['image'];            
-        $course->desc = $validatedData['desc'];
-        $course->status = $validatedData['status'];         
+        $project = new Project();
+        $project->title = $validatedData['title'];
+        $project->slug = $slug;
+        $project->image = $validatedData['image'];            
+        $project->desc = $validatedData['desc'];
+        $project->status = $validatedData['status'];         
     
-        $course->save();
+        $project->save();
 
         return redirect()->route('dashboard.projectIndex')->with('status', "Siz proyekt yaratdingiz!");
     }

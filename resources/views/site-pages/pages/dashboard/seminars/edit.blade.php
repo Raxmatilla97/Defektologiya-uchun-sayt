@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __("Proyekt ma'lumotlarini tahrirlash sahifasi") }}
+            {{ __("Seminar ma'lumotlarini tahrirlash sahifasi") }}
         </h2>
     </x-slot>
 
@@ -33,20 +33,20 @@
         </div>
         
         @endif
-        <form class="mt-5" action="{{ route('dashboard.projectUpdate')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+        <form class="mt-5" action="{{ route('dashboard.seminarUpdate')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
         @csrf 
         @method('post')   
 
         <input type="text" name="id" value="{{$edit_info->id}}" style="opacity: 0;">
         <div class="mb-6">
-            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proyekt sarlavhasi nomlanishi</label>
-            <input type="text" id="title" name="title" value="{{ old('title', $edit_info->title )}}" placeholder="Proyekt yoki e'lon nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seminar sarlavhasi nomlanishi</label>
+            <input type="text" id="title" name="title" value="{{ old('title', $edit_info->title )}}" placeholder="Seminar yoki e'lon nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         </div> 
       
         <div class="mb-6">
             <div>
-            <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt haqida to'liq yozing</label>
-            <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc', $edit_info->desc) }}</textarea></div>
+            <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seminar haqida to'liq yozing</label>
+            <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Seminar maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc', $edit_info->desc) }}</textarea></div>
         </div> 
         <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
         <script>
@@ -67,7 +67,7 @@
         
          
         <div class="mb-6">
-            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt sarlavha suratini yuklash</label>
+            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Seminar sarlavha suratini yuklash</label>
             <input type="file" name="image" value="{{ $edit_info->image }}" id="image-upload" accept="image/*">
           </div> 
       
@@ -115,10 +115,10 @@
         <div class="flex items-start mb-6">
               <div class="flex items-center h-5">
                 <input id="status" type="checkbox" name="status" value="1" {{ (old('status') || $edit_info->status) ? 'checked' : '' }} class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">              </div>
-              <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va Proyekt ko'rsatishga tayyor</label>
+              <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va Seminar ko'rsatishga tayyor</label>
           </div>
         <div class="flex justify-center">
-            <button type="submit" class="text-white transition  bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Proyektni O'zgartirish</button>
+            <button type="submit" class="text-white transition  bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Seminarni o'zgartirish</button>
         </div>
 
     </div>

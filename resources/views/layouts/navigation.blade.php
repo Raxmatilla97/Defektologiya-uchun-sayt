@@ -9,7 +9,7 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
+                @if(Auth::user() && Auth::user()->roll === 'admin')
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.kurslarDashboardList')" :active="request()->routeIs('dashboard.kurslarDashboardList')">
@@ -33,16 +33,27 @@
                         {{ __('Proyektlar') }}
                     </x-nav-link>
                 </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.seminarsIndex')" :active="request()->routeIs('dashboard.seminarsIndex')">
+                        {{ __('Seminarlar') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @if(Auth::user() && in_array(Auth::user()->roll, ['admin', 'teacher']))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.myCreatedCourses')" :active="request()->routeIs('dashboard.myCreatedCourses')">
                         {{ __('Yaratgan kurslarim') }}
                     </x-nav-link>
                 </div>
+                @endif
+                @if(Auth::user() && in_array(Auth::user()->roll, ['admin', 'teacher', 'student']))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.myCourses')" :active="request()->routeIs('dashboard.myCourses')">
                         {{ __("O'qiydigan kurslarim") }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

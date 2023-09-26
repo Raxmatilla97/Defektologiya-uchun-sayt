@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('image')->nullable();
             $table->string('desc')->nullable();
-            $table->string('lvl')->nullable();
+            $table->boolean('lvl')->nullable();
             $table->string('lavozim')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

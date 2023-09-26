@@ -47,7 +47,7 @@
           <div class="mb-6">
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kurs nomlanishi</label>
             <input type="text" id="title" name="title" value="{{ old('title', $editCourse->title) }}" placeholder="Kurs nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-        </div> 
+          </div> 
           <div class="grid gap-6 mb-6 lg:grid-cols-2">
               <div>
                 <label for="narxi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kurs narxi</label>
@@ -59,7 +59,7 @@
                     <option  selected value="uzbek_tilida" {{ old('kurs_tili', $editCourse->kurs_tili) === 'uzbek_tilida' ? 'selected' : '' }}>O'zbek tilida</option>
                     <option value="rus_tilida" {{ old('kurs_tili' , $editCourse->kurs_tili) === 'rus_tilida' ? 'selected' : '' }}>Rus tilida</option>
                 </select>
-            </div>
+              </div>
               <div>
                   <label for="davomiylik_vaqti" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Davomiylik vaqti</label>
                   <input type="text" id="davomiylik_vaqti" value="{{ old('davomiylik_vaqti', $editCourse->davomiylik_vaqti) }}" name="davomiylik_vaqti" placeholder="12 soat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
@@ -122,11 +122,26 @@
             }
           </style>    
           <hr class="mt-3 mb-5">
+        
           <div class="flex items-start mb-6">
               <div class="flex items-center h-5">
                 <input id="status" type="checkbox" name="status" value="1" {{ (old('status') || $editCourse->status) ? 'checked' : '' }} class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">              </div>
               <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va kurs ko'rsatishga tayyor</label>
           </div>
+          @if(Auth::user() && Auth::user()->roll === 'admin')
+          <div class=" items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">         
+            <h2 class="text-2xl text-center mb-4">Kursni maqullash</h2>
+            <div>
+              <label for="maqullanganligi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kurs holatini o'zgartirishingiz mumkin!</label>
+              <select id="maqullanganligi" name="maqullanganligi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                  <option selected value="" {{ old('maqullanganligi', $editCourse->kurs_tili) === '' ? 'selected' : '' }}>Kursni holatini tanlang!</option>
+                  <option value="korilmagan" {{ old('maqullanganligi', $editCourse->kurs_tili) === 'korilmagan' ? 'selected' : '' }}>Kurs tekshiruvdan o'tmagan!</option>
+                  <option value="maqullandi" {{ old('maqullanganligi' , $editCourse->kurs_tili) === 'maqullandi' ? 'selected' : '' }}>Kurs maqullandi!</option>
+                  <option value="rad_etildi" {{ old('maqullanganligi' , $editCourse->kurs_tili) === 'rad_etildi' ? 'selected' : '' }}>Kurs Rad etildi!</option>
+              </select>
+            </div>
+        </div>
+        @endif
           <div class="flex justify-center">
             <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Kursni o'zgartirish</button>
           </div>
