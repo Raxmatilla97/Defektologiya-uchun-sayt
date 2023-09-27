@@ -34,7 +34,7 @@
         <div class="cat-1 grid-item xl:w-1/3 lg:w-1/2 w-full px-[15px] mb-[15px]">
           <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm block   mb-5 " href="{{ route('site.courseSingle', $item->slug)}}">
             <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
-              <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
+              <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
               <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">Birinchi bo'lim</span>
             </div>
             <div class="course-content p-8">

@@ -71,7 +71,7 @@
         @foreach ($newsAndEvents as $item)
         <div class=" bg-white shadow-box5 rounded-[8px] transition duration-100 hover:shadow-box3">
             <div class="course-thumb h-[297px] rounded-t-[8px]  relative">
-              <img src="/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
+              <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
             </div>
             <div class="course-content p-8">
               <h4 class=" text-xl mb-5 font-bold">

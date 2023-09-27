@@ -45,6 +45,7 @@ Route::get('/courses', [IndexController::class, 'coursesIndex'])->name('site.cou
 Route::get('/course/{slug}', [IndexController::class, 'courseSingle'])->name('site.courseSingle');
 
 Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
+Route::post('ckeditor/upload2', [CkeditorController::class, 'upload2'])->name('ckeditor.upload2');
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {  
@@ -85,6 +86,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/user-edit/{id}', [SpecialistController::class, 'userEdit'])->name('dashboard.userEdit');    
         Route::post('/specialist-update', [SpecialistController::class, 'specialistUpdate'])->name('dashboard.specialistUpdate');
         Route::get('/specialist-search', [SpecialistController::class, 'specialistSearch'])->name('dashboard.specialistSearch');
+        Route::get('/test', [DashboardController::class, 'testIndex'])->name('dashboard.testIndex');
 
 
     });

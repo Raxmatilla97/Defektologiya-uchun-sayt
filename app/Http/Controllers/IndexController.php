@@ -33,7 +33,7 @@ class IndexController extends Controller
     public function newsAndEvents()
     {
        
-        $newsAndEvents = News::where('status', '1')->paginate(9);
+        $newsAndEvents = News::where('status', '1')->orderBy('created_at', 'desc')->paginate(9);
         return view('site-pages.pages.news-and-events', compact('newsAndEvents'));
     }
 

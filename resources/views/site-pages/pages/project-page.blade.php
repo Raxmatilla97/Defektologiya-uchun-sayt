@@ -21,7 +21,7 @@
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="lg:col-span-8 col-span-12">
           <div class="bg-[#F8F8F8] rounded-md">
-            <img src="/{{ $projectsIndex->image }}" alt="{{ $projectsIndex->title }}" class="w-full rounded-t-md mb-10">
+            <img src="{{'/'}}storage/{{ $projectsIndex->image }}" alt="{{ $projectsIndex->title }}" class="w-full rounded-t-md mb-10">
             <div class="px-10 pb-10">
               <div class="flex  flex-wrap  xl:space-x-10 space-x-5 mt-6 mb-6">
                 <a class=" flex items-center space-x-2" href="#">
@@ -32,18 +32,31 @@
                   <img src="assets/images/svg/calender.svg" alt="">
                   <span>{{ $projectsIndex->created_at->diffForHumans() }}</span>
                 </a>
-                <a class=" flex items-center space-x-2" href="#">
+                {{-- <a class=" flex items-center space-x-2" href="#">
                   <img src="assets/images/icon/clock.svg" alt="">
                   <span>3 marta ko'rilgan</span>
-                </a>
+                </a> --}}
              
               </div>
               <h3>
                 {{ $projectsIndex->title }}
-              </h3>
-              <div class="mt-6">
+              </h3>              
+
+              <div class="img-desc bg-slate-100 lg:my-6 my-4">
                 {!! $projectsIndex->desc !!}
-              </div>
+              </div>         
+              <style>
+                .img-desc img {
+                    display: initial;
+                    max-width: 100%;
+                }  
+    
+                .img-desc table {
+                    max-width: 100%;
+                }  
+            
+            </style>
+             
              
              <hr class="mt-[60px]">
               
@@ -53,7 +66,7 @@
                 <a class="flex space-x-4 shadow-box7 rounded p-5 bg-white" href="{{ route('site.projectInfoPage', $previousProject->slug )}}">
                     <div class="flex-none">
                         <div class="h-20 w-20 rounded">
-                        <img src="/{{ $previousProject->image }}" alt="{{ $previousProject->title }}" class="w-full h-full object-cover rounded">
+                        <img src="{{'/'}}storage/{{ $previousProject->image }}" alt="{{ $previousProject->title }}" class="w-full h-full object-cover rounded">
                         </div>
                     </div>
                     <div class="flex-1">
@@ -70,7 +83,7 @@
                 <a class="flex flex-row-reverse shadow-box7 bg-white rounded p-5" href="{{ route('site.projectInfoPage', $nextProject->slug )}}">
                     <div class="flex-none">
                         <div class="h-20 w-20 rounded ml-4">
-                        <img src="/{{ $nextProject->image }}" alt="{{ $nextProject->title }}" class="w-full h-full object-cover rounded">
+                        <img src="{{'/'}}storage/{{ $nextProject->image }}" alt="{{ $nextProject->title }}" class="w-full h-full object-cover rounded">
                         </div>
                     </div>
                     <div class="flex-1 text-right">
@@ -102,7 +115,7 @@
                 <li class=" flex space-x-4 border-[#ECECEC] pb-6 mb-6 last:pb-0 last:mb-0 last:border-0 border-b">
                     <div class="flex-none ">
                         <div class="h-20 w-20  rounded">
-                            <img src="/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
+                            <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
                         </div>
                     </div>
                     <div class="flex-1 ">

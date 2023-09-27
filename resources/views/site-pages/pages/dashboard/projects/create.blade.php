@@ -42,25 +42,10 @@
         
         <div class="mb-6">
             <div>
-            <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt haqida to'liq yozing</label>
-            <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
+            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt haqida to'liq yozing</label>
+            <textarea id="content" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
         </div> 
-        <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-        <script>
-            ClassicEditor
-                .create( document.querySelector( '#editor' ),{    
-                  
-                    image: {
-                                toolbar: [ 'toggleImageCaption', 'imageTextAlternative' ]
-                            },              
-                    ckfinder: {
-                        uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',
-                    }
-                })
-                .catch( error => {
-                    
-                } );
-        </script>
+        @include('site-pages.pages.dashboard.tinyeditor')
         
         <div class="mb-6">
             <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt sarlavha suratini yuklash</label>

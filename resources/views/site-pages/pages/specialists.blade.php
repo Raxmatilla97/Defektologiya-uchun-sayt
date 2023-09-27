@@ -29,7 +29,7 @@
         <div class=" bg-white shadow-box3 rounded-[8px] transition-all duration-100 pt-10 pb-[28px] px-6 text-center hover:shadow-box4
                             border-t-4 border-transparent hover:border-primary ">
           <div class="w-[170px] h-[170px] rounded-full  relative mx-auto mb-8">
-            <img src="{{ $item->image }}" alt="{{ $item->fish }}" class=" w-full h-full object-cover rounded-full">
+            <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->fish }}" class=" w-full h-full object-cover rounded-full">
           </div>
           <div class="course-content">
             <a href="{{ route('site.specialistSingle', $item->slug )}}">

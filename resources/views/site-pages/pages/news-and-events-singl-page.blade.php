@@ -19,16 +19,29 @@
   @if (!isset($notFound))
   <div class="nav-tab-wrapper tabs  section-padding">
     <div class="container">
-      <img src="/{{ $newsEvent->image }}" alt="" class=" lg:mb-10 mb-6 block w-full">
+      <div style="width: 100%; height: 430px; overflow: hidden;">
+        <img src="{{'/'}}storage/{{ $newsEvent->image }}" style="width: 100%; height: auto;">
+      </div>
+      
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="lg:col-span-8 col-span-12">
           <h3>
             {{ $newsEvent->title  }}
           </h3>
-          <div class="lg:my-6 my-4">
+          <div class="img-desc lg:my-6 my-4">
             {!! $newsEvent->desc !!}
           </div>         
-          
+          <style>
+            .img-desc img {
+                display: initial;
+                max-width: 100%;
+            }  
+
+            .img-desc table {
+                max-width: 100%;
+            }  
+        
+        </style>
          
           <div class="flex justify-between border-y border-[#ECECEC] py-4 md:mt-12 mt-10">
             <div class=" text-black font-semibold">Tarqatish</div>
@@ -81,11 +94,11 @@
                 <li class=" flex space-x-3 ">
                   <div class="flex-1 space-x-3 flex">
                     <img src="{{ asset('/assets/images/svg/circle-clock.svg')}}" alt="" />
-                    <div>Bo'lim:@if ($newsEvent->news_or_event == 'news') Yangilik @else E'lon @endif</div>
+                    <div>Bo'lim:@if ($newsEvent->news_or_event == 'event') E'lon @else Yangilik @endif</div>
                   </div>
                 </li>
 
-                <li class=" flex space-x-3 ">
+                {{-- <li class=" flex space-x-3 ">
                   <div class="flex-1 space-x-3 flex">
                     <img src="{{ asset('/assets/images/svg/circle-clock.svg')}}" alt="" />
                     <div>yourmail@gmail.com</div>
@@ -97,7 +110,7 @@
                     <img src="{{ asset('/assets/images/svg/circle-clock.svg')}}" alt="" />
                     <div>+88018 2829 98267</div>
                   </div>
-                </li>
+                </li> --}}
 
               </ul>
              
@@ -111,7 +124,7 @@
                 <li class=" flex space-x-4 border-[#ECECEC] ">
                   <div class="flex-none ">
                     <div class="h-20 w-20   rounded-full">
-                      <img src="/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-full">
+                      <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-full">
                     </div>
                   </div>
                   <div class="flex-1 ">

@@ -22,7 +22,7 @@
             @foreach ($allSeminar as $item)  
             <div class=" bg-white shadow-box12 rounded-[8px] transition duration-100 hover:shadow-box13">
               <div class="course-thumb h-[260px] rounded-t-[8px]  relative">
-                <img src="/{{ $item->image}}" alt="{{ $item->title}}" class=" w-full h-full object-cover rounded-t-[8px]">
+                <img src="{{'/'}}storage/{{ $item->image}}" alt="{{ $item->title}}" class=" w-full h-full object-cover rounded-t-[8px]">
                 @if ($item->boladigan_kun->isPast())
                 <span  class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6" style="background-color: #ff0000ad; color: #FFF">
                   Tugagan
@@ -83,7 +83,7 @@
                 <li class=" flex space-x-4 border-[#ECECEC] pb-6 mb-6 last:pb-0 last:mb-0 last:border-0 border-b">
                   <div class="flex-none ">
                     <div class="h-20 w-20  rounded">
-                      <img src="/{{ $item->image}}" alt="" class=" w-full h-full object-cover rounded">
+                      <img src="{{'/'}}storage/{{ $item->image}}" alt="" class=" w-full h-full object-cover rounded">
                     </div>
                   </div>
                   <div class="flex-1 ">

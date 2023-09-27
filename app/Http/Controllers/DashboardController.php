@@ -100,7 +100,11 @@ class DashboardController extends Controller
     }
 
    
+    public function testIndex()
+    {
 
+        return view('site-pages.pages.dashboard.specialists.test');
+    }
     
   
 

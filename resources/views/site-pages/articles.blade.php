@@ -16,7 +16,7 @@
             hover:shadow-box8 sm:flex p-4 sm:space-x-6 space-y-6 sm:space-y-0">
           <div class="flex-none">
             <div class="sm:w-[200px] h-[182px]  rounded  relative">
-              <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
+              <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
             </div>
           </div>
           <div class="course-content flex-1">

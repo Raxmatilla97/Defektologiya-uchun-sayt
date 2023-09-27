@@ -21,7 +21,7 @@
             <div class="lg:col-span-4 col-span-12 ">
             <div class="bg-white shadow-box7 rounded-md max-w-[350px] lg:sticky lg:top-10">
                 <div class="h-[400px] mb-8">
-                <img src="{{ $specialistIndex->image }}" alt="{{ $specialistIndex->fish }}" class="w-full h-full block object-cover rounded-t-md">
+                <img src="{{'/'}}storage/{{ $specialistIndex->image }}" alt="{{ $specialistIndex->fish }}" class="w-full h-full block object-cover rounded-t-md">
                 </div>
                 <div class="px-8 pb-8">
                 <h5 class=" text-2xl font-bold text-black mb-4">{{ $specialistIndex->fish }}</h5>
@@ -130,7 +130,7 @@
                 @foreach ($courses as $item)              
                 <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm" href="{{ route('site.courseSingle', $item->slug)}}">
                 <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
-                    <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
+                    <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
                     <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">O'quv kursi</span>
                 </div>
                 <div class="course-content p-8">

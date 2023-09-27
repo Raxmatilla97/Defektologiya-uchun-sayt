@@ -40,7 +40,7 @@
               @foreach ($coursesIndex as $item)            
               <a href="{{ route('site.courseSingle', $item->slug)}}" class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm" href="single-course.html">
                 <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
-                  <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
+                  <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
                   <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">O'quv kursi</span>
                 </div>
                 <div class="course-content p-8">
@@ -79,7 +79,7 @@
               hover:shadow-box6 flex p-8 space-x-6" href="single-course.html">
                 <div class="flex-none">
                   <div class="w-[159px] h-[159px]  rounded  relative">
-                    <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
+                    <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
                   </div>
                 </div>
                 <div class="course-content flex-1">

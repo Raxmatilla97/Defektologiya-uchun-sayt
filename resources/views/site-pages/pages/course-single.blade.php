@@ -22,7 +22,7 @@
         <div class="lg:col-span-8 col-span-12">
           <div class="single-course-details">
             <div class="xl:h-[470px] h-[350px] mb-10 course-main-thumb">
-              <img src="{{ $courseIndex->image }}" alt="{{ $courseIndex->title }}" class=" rounded-md object-fut w-full h-full block">
+              <img src="{{'/'}}storage/{{ $courseIndex->image }}" alt="{{ $courseIndex->title }}" class=" rounded-md object-fut w-full h-full block">
             </div>
             <div class=" mb-6">
               <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white ">O'quv kursi</span>
@@ -32,12 +32,12 @@
               <div class="flex space-x-4 items-center group">
                 <div class="flex-none">
                   <div class="h-12 w-12 rounded">
-                    <img src="{{ $courseIndex->specialist->image }}" alt="{{ $courseIndex->specialist->fish }}" class=" object-cover w-full h-full rounded">
+                    <img src="{{'/'}}storage/{{ $courseIndex->specialist->image }}" alt="{{ $courseIndex->specialist->fish }}" class=" object-cover w-full h-full rounded">
                   </div>
                 </div>
                 <div class="flex-1">
                   <span class=" text-secondary  ">Mutaxasis
-                                        <a href="#" class=" text-black">
+                                        <a href="{{ route('site.specialistSingle', $courseIndex->specialist->slug )}}" class=" text-black">
                                             : {{ $courseIndex->specialist->fish }}</a>
                                     </span>
                 </div>
@@ -130,7 +130,7 @@
                   <div class=" bg-[#F8F8F8] rounded-md p-8">
                     <div class="md:flex space-x-5 mb-8">
                       <div class="h-[310px] w-[270px] flex-none rounded mb-5 md:mb-0">
-                        <img src="{{ $courseIndex->specialist->image}}" alt="" class=" w-full h-full object-cover  rounded">
+                        <img src="{{'/'}}storage/{{ $courseIndex->specialist->image}}" alt="" class=" w-full h-full object-cover  rounded">
                       </div>
                       <div class="flex-1">
                         <div class="max-w-[300px]">
@@ -453,8 +453,15 @@
                     <img src="{{ asset('assets/images/icon/user.svg')}}" alt="" />
                     <div class=" text-black font-semibold">Mutaxasis</div>
                   </div>
-                  <div class="flex-none">
-                    {{ $courseIndex->specialist->fish }}
+                  <div class="flex-none text-sm " style="font-size: 15px">
+                    @php
+                      $fullName = $courseIndex->specialist->fish;
+                      $nameParts = explode(' ', $fullName);
+                      $familya = $nameParts[0];
+                      $ismi = $nameParts[1];
+                      
+                      @endphp
+                    {{ $familya }} {{ $ismi }} 
                   </div>
                 </li>
 
@@ -484,8 +491,12 @@
                     <img src="{{ asset('assets/images/icon/web.svg')}}" alt="" />
                     <div class=" text-black font-semibold">Dars tili</div>
                   </div>
-                  <div class="flex-none">
-                    {{ $courseIndex->kurs_tili }}
+                  <div class="flex-none">                  
+                    @if ($courseIndex->kurs_tili == "uzbek_tilida")
+                        O'zbek tilida
+                    @else
+                        Rus tilida
+                    @endif
                   </div>
                 </li>
 
@@ -495,25 +506,20 @@
                  Tarqatish:
                 </li>
                 <li>
-                  <a href="#" class="flex h-10 w-10">
+                  <a href="https://www.facebook.com/sharer.php?u=[https://def-akademya.uz/course/{{$courseIndex->slug}}]" class="flex h-10 w-10">
                     <img src="{{ asset('assets/images/icon/fb.svg')}}" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="flex h-10 w-10">
+                  <a href="https://twitter.com/share?url=[https://def-akademya.uz/course/{{$courseIndex->slug}}]&text=[https://def-akademya.uz/course/{{$courseIndex->title}}]&via=[via]&hashtags=[hashtags]" class="flex h-10 w-10">
                     <img src="{{ asset('assets/images/icon/tw.svg')}}" alt="">
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="flex h-10 w-10">
+                  <a href="https://pinterest.com/pin/create/bookmarklet/?media=[https://def-akademya.uz/storage/{{$courseIndex->image}}]&url=[https://def-akademya.uz/course/{{$courseIndex->slug}}]&is_video=[https://def-akademya.uz/course/{{$courseIndex->youtube}}]&description=[https://def-akademya.uz/course/{{$courseIndex->title}}]" class="flex h-10 w-10">
                     <img src="{{ asset('assets/images/icon/pn.svg')}}" alt="">
                   </a>
-                </li>
-                <li>
-                  <a href="#" class="flex h-10 w-10">
-                    <img src="{{ asset('assets/images/icon/ins.svg')}}" alt="">
-                  </a>
-                </li>
+                </li>               
               </ul>
             </div>
 
@@ -524,7 +530,7 @@
                 <li class=" flex space-x-4 border-[#ECECEC] pb-6 mb-6 last:pb-0 last:mb-0 last:border-0 border-b">
                   <div class="flex-none ">
                     <div class="h-20 w-20  rounded">
-                      <img src="{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
+                      <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded">
                     </div>
                   </div>
                   <div class="flex-1 ">                    

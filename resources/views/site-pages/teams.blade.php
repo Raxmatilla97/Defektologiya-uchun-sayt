@@ -14,7 +14,7 @@
         @foreach ($specialist as $item)            
         <div class=" bg-white shadow-box3 rounded-md transition-all duration-100 text-center hover:shadow-box4   ">
           <div class=" h-[270px] rounded-t-md  relative mx-auto  overflow-hidden">
-            <img src="{{ $item->image }}" alt="{{ $item->fish }}" class=" w-full h-full object-cover rounded-t-md ">
+            <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->fish }}" class=" w-full h-full object-cover rounded-t-md ">
             <div class=" absolute left-0 top-0 w-full h-full flex flex-col justify-end items-end">
               <button type="button" class="h-12 w-12 bg-secondary text-white rounded-tl-md flex flex-col items-center justify-center explore-button">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
