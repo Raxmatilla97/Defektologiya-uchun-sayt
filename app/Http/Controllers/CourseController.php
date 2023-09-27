@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -12,41 +13,48 @@ class CourseController extends Controller
 {
     public function kurslarSearch(Request $request)
     {
-        $all_couses = Course::where('status', '1')->orderBy('created_at', 'desc')->count();
-        $all_couses_maqullangan = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->orderBy('created_at', 'desc')->count();
-        $all_couses_rad_etilgan = Course::where('status', '1')->where('maqullanganligi', 'rad_etildi')->orderBy('created_at', 'desc')->count();
-        $all_couses_tasdiqlash_kerak = Course::where('status', '1')->where('maqullanganligi', 'korilmagan')->orderBy('created_at', 'desc')->count();
+        if (Auth::user()->specialist && Auth::user()->specialist->status == '1') {
+            $all_couses = Course::where('status', '1')->orderBy('created_at', 'desc')->count();
+            $all_couses_maqullangan = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->orderBy('created_at', 'desc')->count();
+            $all_couses_rad_etilgan = Course::where('status', '1')->where('maqullanganligi', 'rad_etildi')->orderBy('created_at', 'desc')->count();
+            $all_couses_tasdiqlash_kerak = Course::where('status', '1')->where('maqullanganligi', 'korilmagan')->orderBy('created_at', 'desc')->count();
 
-        $fish = $request->input('fish');
-        $title = $request->input('title');
-        $maqullanganlik = $request->input('maqullanganlik');
+            $fish = $request->input('fish');
+            $title = $request->input('title');
+            $maqullanganlik = $request->input('maqullanganlik');
+            
+            $query = Course::query();
+
+            if ($fish) {
+                $query->whereHas('specialist', function ($query) use ($fish) {
+                    $query->where('fish', 'like', '%' . $fish . '%');
+                });
+            }
+                
+            if ($title) {
+                $query->where('title', 'like', '%' . $title . '%');
+            }
+            
+            if ($maqullanganlik) {
+                $query->where('maqullanganligi', 'like', '%' . $maqullanganlik . '%');
+            }
         
-        $query = Course::query();
+            $all_couses_tasdiqlash_kerak_paginate = $query->paginate(10);
 
-        if ($fish) {
-            $query->whereHas('specialist', function ($query) use ($fish) {
-                $query->where('fish', 'like', '%' . $fish . '%');
-            });
-        }
-             
-        if ($title) {
-            $query->where('title', 'like', '%' . $title . '%');
-        }
         
-        if ($maqullanganlik) {
-            $query->where('maqullanganligi', 'like', '%' . $maqullanganlik . '%');
-        }
-      
-        $all_couses_tasdiqlash_kerak_paginate = $query->paginate(10);
+            return view('dashboard', compact(
+                'all_couses', 
+                'all_couses_maqullangan', 
+                'all_couses_rad_etilgan', 
+                'all_couses_tasdiqlash_kerak',
+                'all_couses_tasdiqlash_kerak_paginate'
+            ));
 
-      
-      return view('dashboard', compact(
-            'all_couses', 
-            'all_couses_maqullangan', 
-            'all_couses_rad_etilgan', 
-            'all_couses_tasdiqlash_kerak',
-            'all_couses_tasdiqlash_kerak_paginate'
-        ));
+        }else {
+
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
+        }
     }
 
     public function kurslarDeleteDashboard($id)
@@ -66,12 +74,18 @@ class CourseController extends Controller
 
     public function createCourses()
     {
-        return view('site-pages.pages.dashboard.create-courses');
+        if (Auth::user()->specialist && Auth::user()->specialist->status == '1') {
+            return view('site-pages.pages.dashboard.create-courses');
+        }else {
+
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
+        }
     }
 
     public function coursesStore(Request $request)
     {
-        if (Auth::user()->specialist->id) {
+        if (Auth::user()->specialist && Auth::user()->specialist->status == '1') {
                 
             $validatedData = $request->validate([
                 'title' => 'required|string',          
@@ -129,15 +143,16 @@ class CourseController extends Controller
 
         }else {
 
-            return redirect()->route('dashboard.myCreatedCourses')->with('warning', "Sizda kurs yaratish uchun ruxsat yo'q, kurs yaratish uchun mutaxasis bo'lishingiz kerak!");
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
         }
        
     }
 
     public function myCreatedCourses(Request $request)
     {
-        // dd(Auth::user()->specialist->id);
-        if (Auth::user()->specialist) {
+      
+        if (Auth::user()->specialist && Auth::user()->specialist->status == '1') {
             $specialist_id = Auth::user()->specialist->id;
             
                 
@@ -171,20 +186,20 @@ class CourseController extends Controller
 
                 }else{
 
-                    $myCourses = null;
-                    return view('site-pages.pages.dashboard.my-created-courses', compact('myCourses'));
+                    $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
                 }
 
             }else{
 
-                $myCourses = null;
-                return view('site-pages.pages.dashboard.my-created-courses', compact('myCourses'));
+                $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+                return view('site-pages.pages.dashboard.my-created-courses', $result);
             }
 
         }else{
 
-            $myCourses = 'huquq-yoq';
-            return view('site-pages.pages.dashboard.my-created-courses', compact('myCourses'));
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
            
         }
        
@@ -194,7 +209,7 @@ class CourseController extends Controller
 
 
     public function myCourses(Request $request)
-    {
+    {   
         $user_id = Auth::user()->id;
 
         if ($request == null) {
@@ -235,8 +250,8 @@ class CourseController extends Controller
          
         }else{
 
-            $myCourses = null;
-            return view('site-pages.pages.dashboard.my-courses', compact('myCourses'));
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
         }
 
     }
@@ -252,10 +267,8 @@ class CourseController extends Controller
 
     public function coursesStoreEdit(Request $request)
     {
-        
-       
-        if (Auth::user()->specialist->id) {
-
+        if (Auth::user()->specialist && Auth::user()->specialist->status == '1') {
+            $maqullagan_id = Auth::user()->id;
             $course = Course::find($request->id);
             $course->title = $request->input('title');
             $course->narxi = $request->input('narxi');
@@ -263,6 +276,9 @@ class CourseController extends Controller
             $course->davomiylik_vaqti = $request->input('davomiylik_vaqti');
             $course->desc = $request->input('desc');
             $course->status = $request->input('status', false); 
+            $course->maqullanganligi = $request->input('maqullanganligi');
+            $course->maqullagan_id = $maqullagan_id;
+            
             
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
@@ -288,13 +304,25 @@ class CourseController extends Controller
             $course->youtube = $videoId;
             
             $course->save();
-            return redirect()->route('dashboard.myCreatedCourses')->with('status', "Sizning ". $course->title ." nomli kursingiz o'zgartirildi!");
+            return redirect()->back()->with('status', "Sizning ". $course->title ." nomli kursingiz o'zgartirildi!");
 
         }else {
 
-            return redirect()->route('dashboard.createCourses')->with('warning', "Sizda kurs yaratish uchun ruxsat yo'q, kurs yaratish uchun mutaxasis bo'lishingiz kerak!");
+           
+            $result = $this->huquqYoq(); // huquqYoq() funksiyasini chaqirish
+            return view('site-pages.pages.dashboard.my-created-courses', $result);
         }
        
        
     }
+
+    public function huquqYoq()
+    {
+        $specialists = Auth::user();       
+        $myCourses = 'huquq-yoq';
+    
+        return compact('specialists', 'myCourses');
+    }
+
+
 }

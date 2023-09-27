@@ -47,7 +47,7 @@
                     </x-nav-link>
                 </div>
                 @endif
-                @if(Auth::user() && in_array(Auth::user()->roll, ['admin', 'teacher', 'student']))
+                @if(Auth::user() && in_array(Auth::user()->roll, ['admin', 'student']))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.myCourses')" :active="request()->routeIs('dashboard.myCourses')">
                         {{ __("O'qiydigan kurslarim") }}

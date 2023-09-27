@@ -134,10 +134,10 @@
             <div>
               <label for="maqullanganligi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kurs holatini o'zgartirishingiz mumkin!</label>
               <select id="maqullanganligi" name="maqullanganligi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                  <option selected value="" {{ old('maqullanganligi', $editCourse->kurs_tili) === '' ? 'selected' : '' }}>Kursni holatini tanlang!</option>
-                  <option value="korilmagan" {{ old('maqullanganligi', $editCourse->kurs_tili) === 'korilmagan' ? 'selected' : '' }}>Kurs tekshiruvdan o'tmagan!</option>
-                  <option value="maqullandi" {{ old('maqullanganligi' , $editCourse->kurs_tili) === 'maqullandi' ? 'selected' : '' }}>Kurs maqullandi!</option>
-                  <option value="rad_etildi" {{ old('maqullanganligi' , $editCourse->kurs_tili) === 'rad_etildi' ? 'selected' : '' }}>Kurs Rad etildi!</option>
+                  <option selected value="" {{ old('maqullanganligi', $editCourse->maqullanganligi) === '' ? 'selected' : '' }}>Kursni holatini tanlang!</option>
+                  <option value="korilmagan" {{ old('maqullanganligi', $editCourse->maqullanganligi) === 'korilmagan' ? 'selected' : '' }}>Kurs tekshiruvdan o'tmagan!</option>
+                  <option value="maqullandi" {{ old('maqullanganligi' , $editCourse->maqullanganligi) === 'maqullandi' ? 'selected' : '' }}>Kurs maqullandi!</option>
+                  <option value="rad_etildi" {{ old('maqullanganligi' , $editCourse->maqullanganligi) === 'rad_etildi' ? 'selected' : '' }}>Kurs Rad etildi!</option>
               </select>
             </div>
         </div>

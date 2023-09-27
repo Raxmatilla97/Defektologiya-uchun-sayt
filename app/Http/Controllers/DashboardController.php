@@ -63,20 +63,40 @@ class DashboardController extends Controller
 
            
         if ($request == 'register-users') {
+
             $users = User::orderBy('created_at', 'desc')->paginate(15);
+
         }elseif ($request == 'mutaxasis-users') {
+
             $users = User::whereHas('specialist', function ($query) {
                 $query->where('status', '1');
             })->where('status', '1')->orderBy('created_at', 'asc')->paginate(15);
-        }elseif ($request == 'ban-spicalist-users') {
+
+        }elseif ($request == 'mutaxasis-ariza-users') {
+
             $users = User::whereHas('specialist', function ($query) {
                 $query->where('status', '0');
-            })->where('status', '0')->orderBy('created_at', 'desc')->paginate(15);
-            
+            })->where('status', '1')->orderBy('created_at', 'desc')->paginate(15);      
+
         }elseif ($request == 'ban-users') {
+
             $users = User::where('status', '0')->orderBy('created_at', 'desc')->paginate(15);
         }
         return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers'));
+    }
+
+
+    public function userDestroy($id)
+    {
+        $user = User::find($id);
+        
+        if (!$user) {
+            return redirect()->back()->with('error', 'Foydalanuvchi topilmadi'); // Ariza topilmadi xabarini qaytarish
+        }
+        
+        $user->delete();
+        
+        return redirect()->back()->with('status', "Ro'yxatdan o'tgan foydalanuvchi o'chirildi!");
     }
 
    

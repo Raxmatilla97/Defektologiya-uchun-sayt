@@ -54,6 +54,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/index/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
         Route::get('/search', [CourseController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
         Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
+        Route::delete('/user-delete/{id?}', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy'); 
 
         Route::get('/news-and-events', [NewsController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
         Route::delete('/news-and-events/{id?}', [NewsController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
@@ -79,20 +80,33 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/seminar-edit/{slug?}', [SeminarController::class, 'seminarEdit'])->name('dashboard.seminarEdit');
         Route::post('/seminar-update', [SeminarController::class, 'seminarUpdate'])->name('dashboard.seminarUpdate'); 
 
-        Route::get('/specialist-create', [SpecialistController::class, 'specialistCreate'])->name('dashboard.specialistCreate');
-        Route::post('/specialist-store', [SpecialistController::class, 'specialistStore'])->name('dashboard.specialistStore');     
+        Route::get('/specialist-create/{id?}', [SpecialistController::class, 'specialistCreate'])->name('dashboard.specialistCreate');            
+        Route::get('/specialist-edit/{id?}', [SpecialistController::class, 'specialistEdit'])->name('dashboard.specialistEdit');            
+        Route::get('/user-edit/{id}', [SpecialistController::class, 'userEdit'])->name('dashboard.userEdit');    
+        Route::post('/specialist-update', [SpecialistController::class, 'specialistUpdate'])->name('dashboard.specialistUpdate');
+        Route::get('/specialist-search', [SpecialistController::class, 'specialistSearch'])->name('dashboard.specialistSearch');
+
+
     });
   
-    Route::delete('/delete-kurslar/{id?}', [CourseController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
-    Route::get('/create-courses', [CourseController::class, 'createCourses'])->name('dashboard.createCourses');
-    Route::post('/store-courses', [CourseController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
-    Route::get('/my-created-courses/{request?}', [CourseController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses'); 
-    Route::get('/my-courses/{request?}', [CourseController::class, 'myCourses'])->name('dashboard.myCourses');
-    Route::get('/edit-course/{slug}', [CourseController::class, 'editCourse'])->name('dashboard.editCourse');
-    Route::post('/edit-course-Store', [CourseController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
-    Route::get('/add-video-darslar/{slug?}', [VideoDarslarController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
-    Route::post('/add-video-darslar-store', [VideoDarslarController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
-    Route::post('/edit-video-darslar', [VideoDarslarController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
+    Route::middleware(['universal:admin,teacher'])->group(function () {
+        Route::post('/specialist-store', [SpecialistController::class, 'specialistStore'])->name('dashboard.specialistStore');
+
+        Route::delete('/delete-kurslar/{id?}', [CourseController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
+        Route::get('/create-courses', [CourseController::class, 'createCourses'])->name('dashboard.createCourses');
+        Route::post('/store-courses', [CourseController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
+        Route::get('/my-created-courses/{request?}', [CourseController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses');     
+        Route::get('/edit-course/{slug}', [CourseController::class, 'editCourse'])->name('dashboard.editCourse');
+        Route::post('/edit-course-Store', [CourseController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
+        Route::get('/add-video-darslar/{slug?}', [VideoDarslarController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
+        Route::post('/add-video-darslar-store', [VideoDarslarController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
+        Route::post('/edit-video-darslar', [VideoDarslarController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
+    });
+
+    Route::middleware(['universal:admin,student'])->group(function () {
+        Route::get('/my-courses/{request?}', [CourseController::class, 'myCourses'])->name('dashboard.myCourses');
+    });
+  
    
 });
 

@@ -35,7 +35,7 @@
         <form class="mt-5" action="{{ route('dashboard.specialistStore')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
         @csrf 
         @method('post')   
-
+        <input type="text" name="method_info" value="create" style="opacity: 0;">
         <div class="grid gap-6 mb-6 lg:grid-cols-2">
             <div>
               <label for="fish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mutaxasis Ism Sharifi</label>

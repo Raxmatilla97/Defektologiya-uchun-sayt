@@ -42,11 +42,11 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('dashboard.registerUsersList', 'ban-spicalist-users')}}">
-                                <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-red-500 bg-red border border-red-200 rounded-lg cursor-pointer dark:hover:text-red-300 dark:border-red-700 dark:peer-checked:text-red-500 peer-checked:border-red-600 peer-checked:text-red-600 hover:text-red-600 hover:bg-red-100 dark:text-red-400 dark:bg-red-800 dark:hover:bg-red-700">
+                            <a href="{{ route('dashboard.registerUsersList', 'mutaxasis-ariza-users')}}">
+                                <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-sky-500 bg-red border border-sky-200 rounded-lg cursor-pointer dark:hover:text-sky-300 dark:border-sky-700 dark:peer-checked:text-sky-500 peer-checked:border-sky-600 peer-checked:text-sky-600 hover:text-sky-600 hover:bg-sky-100 dark:text-sky-400 dark:bg-sky-800 dark:hover:bg-sky-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">No aktiv qilingan mutaxasis foydalanuvchilar soni:  {{$noactiveStatus}}</div>
-                                        <div class="w-full">Biron sababga ko'ra status aktiv bo'lmagan mutaxasis foydalanuvchilar</div>
+                                        <div class="w-full text-lg font-semibold">Mutaxasis bo'lish uchun ariza yuborganlar:  {{$noactiveStatus}}</div>
+                                        <div class="w-full">Kurs qo'yishni istagan foydalanuvchilar ariza yuborishadi</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -104,11 +104,39 @@
                     <div class=" p-6 text-gray-900 dark:text-gray-100">
                         <!-- list -->
                         <section class="container px-4 mx-auto">
-                            <div class="flex items-center gap-x-3">
-                                <h2 class="text-lg font-medium text-gray-800 dark:text-white">Saytdan ro'yxatdan o'tgan foydalanuvchilar</h2>
 
-                                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$all_users->count()}} ta</span>
-                            </div>
+                            <div class="flex justify-center">
+                                <form action="{{ route('dashboard.specialistSearch')}}" method="GET" class="flex flex-row flex-wrap">
+                                  <div class="mb-4 mr-4">
+                                    <label for="user_name" class="block mb-2">Ro'yxatdan o'tgan foydalanuvchi F.I.SH:</label>
+                                    <input type="text" id="user_name" name="user_name" class="w-full border border-gray-300 p-2" placeholder="F.I.SH...">
+                                  </div>
+                                  <div class="mb-4 mr-4">
+                                    <label for="specialist_name" class="block mb-2">Mutaxasis F.I.SH:</label>
+                                    <input type="text" id="specialist_name" name="specialist_name" class="w-full border border-gray-300 p-2" placeholder="F.I.SH...">
+                                  </div>
+                                
+                                  <div class="ml-4 mt-8">
+                                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Qidirish</button>
+                                  </div>
+                                </form>
+                              </div>
+                              
+                              <style>
+                              @media (max-width: 640px) {
+                                .flex-wrap {
+                                  flex-direction: column;
+                                }
+                              }
+                              </style>
+
+                            <style>
+                                .p-2 {
+                                    padding: 0.5rem;
+                                    width: 300px;
+                                }
+                            </style>
+                          
 
                             @if(session('name'))
                                 <div class="bg-green-500 mt-4 text-white font-bold px-4 py-2 rounded-md">                               
@@ -191,12 +219,29 @@
                                                         </td>
                                                     
                                                     
-                                                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $item->roll }}</td>
+                                                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">                                                            
+                                                            @if($item->roll == "admin")                                                      
+                                                            <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                                                <h2 class="text-sm font-normal text-emerald-500">Admin</b></h2>
+                                                            </div>                                                        
+                                                            @elseif($item->roll == "teacher")                                                      
+                                                                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-sky-100/60 dark:bg-red-800">
+                                                                    <span class="h-1.5 w-1.5 rounded-full bg-sky-500"></span>
+                                                                    <h2 class="text-sm font-normal text-sky-500">O'qituvchi</h2>
+                                                                </div>
+                                                            @else
+                                                                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-indigo-100/60 dark:bg-gray-800">
+                                                                    <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                                                                    <h2 class="text-sm font-normal text-indigo-500">Student</b></h2>
+                                                                </div>    
+                                                            @endif
+                                                        </td>
                                                         <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                             @if($item->specialist)                                                      
                                                                 <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                                     <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                                                                    <h2 class="text-sm font-normal text-emerald-500">Foydalanuvchi mutaxasis! <br> <b>{{ $item->specialist->fish }}</b></h2>
+                                                                    <h2 class="text-sm font-normal text-emerald-500">Mutahasis nomi:<br> <b>{{ $item->specialist->fish }}</b></h2>
                                                                 </div>
                                                             
                                                             @else                                                       
@@ -214,7 +259,7 @@
                                                         </td>
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">                                                                                                                     
-                                                                <form action="#" method="POST"                                                                
+                                                                <form action="{{ route('dashboard.userDestroy', $item->id)}}" method="POST"                                                                
                                                                     style="display: inline-block;">
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -229,7 +274,7 @@
                                                                         <div class="absolute inset-0 bg-gray-900 opacity-75"></div>                                                                    
                                                                         <!-- Modal content -->
                                                                         <div class="bg-white p-6 rounded shadow-lg z-0">
-                                                                            <p class=" text-xl text-center">Arizani o'chirishni <br> istaysizmi?</p>
+                                                                            <p class=" text-xl text-center">Foydalanuvchini o'chirishni <br> istaysizmi?</p>
                                                                             <div class="flex justify-end mt-4">
                                                                                 <button type="submit" class="px-4 py-2 text-white bg-red-700 rounded" >O'chirish</button>
                                                                                 <button type="button" class="px-4 py-2 text-gray-500 rounded ml-4" onclick="closeModal()">Yopish</button>
@@ -247,12 +292,19 @@
                                                                         }  
                                                                     </script>
                                                                 </form>
-                                                            
-                                                                <a href="#" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                @if($item->specialist)                                                              
+                                                                <a href="{{ route('dashboard.specialistEdit', $item->specialist->id)}}" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                                     </svg>
                                                                 </a>
+                                                                @else
+                                                                <a href="{{ route('dashboard.specialistCreate', $item->id)}}" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                                                    </svg>
+                                                                </a>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>

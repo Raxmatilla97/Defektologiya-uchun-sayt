@@ -4,16 +4,26 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Ism')" />
+            <x-input-label for="name" :value="__('Familya ismingiz')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email manzilingiz')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
+            <label for="select" class="block font-medium text-sm text-gray-700">Saytdan qay maqsadda foydalanmoqchisiz?</label>
+            <select id="select" class="block mt-1 rounded-md w-full" name="roll">
+                <option value="teacher">Malaka oshirish kurslarini yaratmoqchiman</option>
+                <option value="student">Malaka oshirish kurslarida o'qimoqchiman</option>
+               
+            </select>
+            <x-input-error :messages="$errors->get('select')" class="mt-2" />
         </div>
 
         <!-- Password -->
@@ -30,7 +40,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Parolni qaytarish')" />
+            <x-input-label for="password_confirmation" :value="__('Parolni qaytaring')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"

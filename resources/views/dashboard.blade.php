@@ -1,13 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Kurslar') }}
+            {{ __('Malaka oshirish kurslari') }}
         </h2>
     </x-slot>
-{{-- 
+    {{-- 
     <div id="toast-top-right" class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow top-5 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800" role="alert">
         <div class="text-sm font-normal">Top right positioning.</div>
-    </div> --}}
+    </div> 
+    --}}
 
    
 
