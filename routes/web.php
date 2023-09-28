@@ -56,6 +56,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/search', [CourseController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
         Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
         Route::delete('/user-delete/{id?}', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy'); 
+       
 
         Route::get('/news-and-events', [NewsController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
         Route::delete('/news-and-events/{id?}', [NewsController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
@@ -99,7 +100,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::post('/store-courses', [CourseController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
         Route::get('/my-created-courses/{request?}', [CourseController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses');     
         Route::get('/edit-course/{slug}', [CourseController::class, 'editCourse'])->name('dashboard.editCourse');
-        Route::post('/edit-course-Store', [CourseController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
+        Route::post('/edit-course-store', [CourseController::class, 'coursesStoreEdit'])->name('dashboard.coursesStoreEdit'); 
         Route::get('/add-video-darslar/{slug?}', [VideoDarslarController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
         Route::post('/add-video-darslar-store', [VideoDarslarController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
         Route::post('/edit-video-darslar', [VideoDarslarController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
@@ -108,6 +109,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::middleware(['universal:admin,student,teacher'])->group(function () {
         Route::get('/my-courses/{request?}', [CourseController::class, 'myCourses'])->name('dashboard.myCourses');
         Route::post('/request-course', [CourseController::class, 'requestCourse'])->name('dashboard.requestCourse');
+        Route::get('/request-course-edit/{request?}', [CourseController::class, 'requestCourseEdit'])->name('dashboard.requestCourseEdit');
+        Route::post('/request-course-store', [CourseController::class, 'requestCourseStore'])->name('dashboard.requestCourseStore'); 
 
     });
   

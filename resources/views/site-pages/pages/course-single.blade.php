@@ -89,34 +89,50 @@
                       <hr>
                     </div>
                     <ul class="list  course-accrodain space-y-6">
+                    
                       @if ($videoDarslar->isNotEmpty())
-                      @foreach($videoDarslar as $item)
-                      <li>
-                        <button type="button" class="accrodain-button">
-                          <span class="icon-pm fle x-none"></span>
-                          <span class=" flex-1">{{  $item->title }}</span>
-                          <div class=" flex-none extra-text hidden sm:block ">
-                            {{  $item->created_at->format('y-M-d H:i') }}
-                          </div>
-                        </button>
-                        <div class="content hidden">
-                          <div class=" text-xl font-semibold text-black mb-2">{{  $item->title }}</div>
-                          <p>
-                            {!!  $item->desc !!}
-                          </p>
-                      
-                          <div class=" mt-8 ">                          
-                           
-                            @if (!empty($item->youtube))
-                            <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ $item->youtube }}" title="{{ $item->title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            @endif
-                          </div>
-                        </div>
-                      </li>
-                      @endforeach
+                        @if(Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "maqullandi")
+                          @foreach($videoDarslar as $item)
+                          <li>
+                            <button type="button" class="accrodain-button">
+                              <span class="icon-pm fle x-none"></span>
+                              <span class=" flex-1">{{  $item->title }}</span>
+                              <div class=" flex-none extra-text hidden sm:block ">
+                                {{  $item->created_at->format('y-M-d H:i') }}
+                              </div>
+                            </button>
+                            <div class="content hidden">
+                              <div class=" text-xl font-semibold text-black mb-2">{{  $item->title }}</div>
+                              <p>
+                                {!!  $item->desc !!}
+                              </p>
+                          
+                              <div class=" mt-8 ">  
+                                @if (!empty($item->youtube))
+                                <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ $item->youtube }}" title="{{ $item->title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                @endif
+                              </div>
+                            </div>
+                          </li>
+                          @endforeach
+                        @elseif(Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "tekshirilmoqda")
+                          <img src="{{asset('assets/images/1c-uslugi.gif')}}" alt="Image" class="mx-auto block">
+                          <h3 class="text-center">Kursni ko‘rish uchun yuborgan so‘rovingizga javob kutilmoqda!</h3>
+                        @else                 
+                          <img src="{{asset('assets/images/request-new.gif')}}" alt="Image" class="mx-auto block">        
+                          <h3 class="text-center">Kursni ko‘rish uchun so'rov yuboring!</h3>
+                          <form action="{{route('dashboard.requestCourse')}}" method="POST">
+                            @csrf               
+                            <input type="text" name="kurs_id" value="{{$courseIndex->id}}" style="opacity: 0;">
+                              <button type="submit" class="btn btn-primary w-full text-center ">                
+                                Kursga yozilish
+                              </button>
+                          </form>
+                        @endif
+
                       @else
-                      <img src="https://cdn.dribbble.com/users/550484/screenshots/2128340/404-gif.gif" alt="Image" class="mx-auto block">
-                      <h3 class="text-center">Video darslar hali joylanmagan!</h3>
+                        <img src="https://cdn.dribbble.com/users/550484/screenshots/2128340/404-gif.gif" alt="Image" class="mx-auto block">
+                        <h3 class="text-center">Video darslar hali joylanmagan!</h3>
                       @endif
                    
 

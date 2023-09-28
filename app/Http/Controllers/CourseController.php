@@ -325,26 +325,58 @@ class CourseController extends Controller
     }
 
     public function requestCourse(Request $request)
-{
-    $kurs_id = $request->input('kurs_id');
-    $student_id = Auth::user()->id;
-    $sorov_holati = 'tekshirilmoqda';
+    {
+        $kurs_id = $request->input('kurs_id');
+        $student_id = Auth::user()->id;
+        $sorov_holati = 'tekshirilmoqda';
 
-    $tekshirish = StudentCourse::where('course_id', $kurs_id)->where('student_id', $student_id)->first();
+        $tekshirish = StudentCourse::where('course_id', $kurs_id)->where('student_id', $student_id)->first();
 
-    if ($tekshirish) {
-        return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga allaqachon yozilgansiz!");
-    } else {
-        $sorov = new StudentCourse();
-        $sorov->course_id = $kurs_id;
-        $sorov->student_id = $student_id;
-        $sorov->sorov_holati = $sorov_holati;
-        
-        $sorov->save();
+        if ($tekshirish) {
+            return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga allaqachon yozilgansiz!");
+        } else {
+            $sorov = new StudentCourse();
+            $sorov->course_id = $kurs_id;
+            $sorov->student_id = $student_id;
+            $sorov->sorov_holati = $sorov_holati;
+            
+            $sorov->save();
+        }
+
+        return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga yozildingiz!");
     }
 
-    return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga yozildingiz!");
-}
+    public function requestCourseEdit($request)
+    {
+        $sorov = StudentCourse::find($request);
+
+        if ($sorov) {
+            return view('site-pages.pages.dashboard.request-course-edit', compact('sorov'));
+        }
+        return view('site-pages.pages.dashboard.request-course-edit')->with('status', "Bunday so'rov topilmadi!");
+    }
+
+
+    public function requestCourseStore(Request $request)
+    {
+        
+        $sorov = StudentCourse::find($request->request_id);
+    
+        if ($sorov) {
+            $sorov->course_id = $request->input('course_id');        
+            $sorov->student_id = $request->input('student_id');
+            $sorov->sorov_holati = $request->input('sorov_holati');
+        
+            $sorov->save();
+        
+            return redirect()->route('dashboard.registerUsersList', 'ruxsat-soraganlar')->with('status', 'Siz arizani tahrirladingiz!');
+        } else {
+            // Handle the case when the $sorov object is not found
+            // You can redirect or show an error message
+        }
+    }
+
+    
 
 
 }

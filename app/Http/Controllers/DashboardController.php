@@ -81,6 +81,12 @@ class DashboardController extends Controller
         }elseif ($request == 'ban-users') {
 
             $users = User::where('status', '0')->orderBy('created_at', 'desc')->paginate(15);
+
+        }elseif ($request == 'ruxsat-soraganlar') {
+                      
+            $users = User::whereHas('studentCourse', function ($query) {
+                $query->where('sorov_holati', 'tekshirilmoqda');
+            })->where('status', '1')->orderBy('created_at', 'desc')->paginate(15); 
         }
         return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers'));
     }

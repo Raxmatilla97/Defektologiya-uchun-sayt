@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('dashboard.registerUsersList', 'ruxsat-soraganlar')}}">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-indigo-500 bg-red border border-indigo-200 rounded-lg cursor-pointer dark:hover:text-indigo-300 dark:border-indigo-700 dark:peer-checked:text-indigo-500 peer-checked:border-indigo-600 peer-checked:text-indigo-600 hover:text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-800 dark:hover:bg-indigo-700">
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">Kurslarni ko'rish uchun ruxsat so'ragan foydalanuvchilar soni:</div>
