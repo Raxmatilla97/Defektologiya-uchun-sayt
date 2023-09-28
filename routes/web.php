@@ -105,8 +105,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::post('/edit-video-darslar', [VideoDarslarController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
     });
 
-    Route::middleware(['universal:admin,student'])->group(function () {
+    Route::middleware(['universal:admin,student,teacher'])->group(function () {
         Route::get('/my-courses/{request?}', [CourseController::class, 'myCourses'])->name('dashboard.myCourses');
+        Route::post('/request-course', [CourseController::class, 'requestCourse'])->name('dashboard.requestCourse');
+
     });
   
    

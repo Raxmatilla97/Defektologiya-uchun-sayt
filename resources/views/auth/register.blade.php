@@ -19,11 +19,17 @@
         <div class="mt-4">
             <label for="select" class="block font-medium text-sm text-gray-700">Saytdan qay maqsadda foydalanmoqchisiz?</label>
             <select id="select" class="block mt-1 rounded-md w-full" name="roll">
-                <option value="teacher">Malaka oshirish kurslarini yaratmoqchiman</option>
-                <option value="student">Malaka oshirish kurslarida o'qimoqchiman</option>
+                <option value="teacher" {{ old('roll', 'teacher') === 'teacher' ? 'selected' : '' }}>Malaka oshirish kurslarini yaratmoqchiman</option>
+                <option value="student" {{ old('roll', 'student') === 'student' ? 'selected' : '' }}>Malaka oshirish kurslarida o'qimoqchiman</option>
                
             </select>
             <x-input-error :messages="$errors->get('select')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="phone" :value="__('Bog\'lanish uchun telefon raqamingiz')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
         <!-- Password -->

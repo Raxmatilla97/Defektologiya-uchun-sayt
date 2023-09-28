@@ -357,7 +357,7 @@
             </script>
             
             <div class="mb-6">
-                <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt sarlavha suratini yuklash</label>
+                <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis suratini yuklash</label>
                 <input type="file" name="image" value="{{ old('image')}}" id="image-upload" accept="image/*">
             </div> 
     

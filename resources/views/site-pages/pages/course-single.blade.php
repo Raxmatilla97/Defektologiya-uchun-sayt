@@ -443,9 +443,13 @@
               <iframe width="100%" height="300px" src="https://www.youtube.com/embed/{{ $video_id }}" title="{{ $courseIndex->title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               @endif
               <h3>{{ $courseIndex->narxi}}</h3>
-              <button class="btn btn-primary w-full text-center ">
+              <form action="{{route('dashboard.requestCourse')}}" method="POST">
+                @csrf               
+                <input type="text" name="kurs_id" value="{{$courseIndex->id}}" style="opacity: 0;">
+                <button type="submit" class="btn btn-primary w-full text-center ">                
                 Kursga yozilish
-              </button>
+                </button>
+              </form>
               <ul class="list  ">
 
                 <li class=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">

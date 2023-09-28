@@ -324,5 +324,27 @@ class CourseController extends Controller
         return compact('specialists', 'myCourses');
     }
 
+    public function requestCourse(Request $request)
+{
+    $kurs_id = $request->input('kurs_id');
+    $student_id = Auth::user()->id;
+    $sorov_holati = 'tekshirilmoqda';
+
+    $tekshirish = StudentCourse::where('course_id', $kurs_id)->where('student_id', $student_id)->first();
+
+    if ($tekshirish) {
+        return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga allaqachon yozilgansiz!");
+    } else {
+        $sorov = new StudentCourse();
+        $sorov->course_id = $kurs_id;
+        $sorov->student_id = $student_id;
+        $sorov->sorov_holati = $sorov_holati;
+        
+        $sorov->save();
+    }
+
+    return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga yozildingiz!");
+}
+
 
 }

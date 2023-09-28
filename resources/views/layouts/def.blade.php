@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Toshkent Shaxar Defektologlar Assotsiatsiyasi') }}</title>
   <link rel="icon" type="image/png" href="assets/images/logo/favicon.svg">
   <link rel="stylesheet" href="{{ asset('assets/css/app.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css')}}">

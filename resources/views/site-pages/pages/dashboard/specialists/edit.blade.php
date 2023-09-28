@@ -44,35 +44,35 @@
         <input type="text" name="method_info" value="edit" style="opacity: 0;">
         <div class="grid gap-6 mb-6 lg:grid-cols-2">
             <div>
-              <label for="fish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mutaxasis Ism Sharifi</label>
+              <label for="fish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mutaxassis Ism Sharifi</label>
               <input type="text" id="fish" name="fish" value="{{ old('fish', ($old_data ? $old_data->fish : null)) }}" placeholder="F.I.SH" class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
            
             <div>
-                <label for="lavozim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis lavozimi</label>
+                <label for="lavozim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis lavozimi</label>
                 <input type="text" id="lavozim" value="{{ old('lavozim', ($old_data ? $old_data->lavozim : null))}}" name="lavozim" placeholder="O'qituvchi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>  
             <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis Email pochtasi</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis Email pochtasi</label>
                 <input type="email" id="email" name="email" value="{{ old('email', ($old_data ? $old_data->email : null))}}" placeholder="test@gmail.com" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>
             <div>
-                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis telefon manzili</label>
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis telefon manzili</label>
                 <input type="text" id="phone" value="{{ old('phone', ($old_data ? $old_data->phone : null))}}" name="phone" placeholder="+9989*000-00-00" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>
                      
             <div>
-                <label for="tg_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis Telegram akkounti</label>
+                <label for="tg_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis Telegram akkounti</label>
                 <input type="text" id="tg_follow" value="{{ old('tg_follow', ($old_data ? $old_data->tg_follow : null))}}" name="tg_follow" placeholder="Instagram akkount bo'lsa agr" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>
 
             <div>
-                <label for="insta_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis Instagram akkounti</label>
+                <label for="insta_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis Instagram akkounti</label>
                 <input type="text" id="insta_follow" value="{{ old('insta_follow', ($old_data ? $old_data->insta_follow : null))}}" name="insta_follow" placeholder="Instagram akkount bo'lsa agr" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>
 
             <div>
-                <label for="facebook_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxasis Facebook akkounti</label>
+                <label for="facebook_follow" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis Facebook akkounti</label>
                 <input type="text" id="facebook_follow" value="{{ old('facebook_follow', ($old_data ? $old_data->facebook_follow : null))}}" name="facebook_follow" placeholder="Facebook akkount bo'lsa agr" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
             </div>
 
@@ -121,7 +121,7 @@
         </script>
         
         <div class="mb-6">
-            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Proyekt sarlavha suratini yuklash</label>
+            <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis suratini yuklash</label>
             <input type="file" name="image" id="image-upload" accept="image/*">
             @if(!$errors->has('image') && $old_data->image)
                 <input type="hidden" name="image" value="{{ $old_data->image }}">
@@ -173,7 +173,7 @@
             <div class="flex items-center h-5">
             <input id="lvl" type="checkbox"  value="1" {{ (old('lvl') || $old_data ? $old_data->lvl : null) ? 'checked' : '' }} name="lvl" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" >
             </div>
-            <label for="lvl" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Ushbu mutaxasisni bosh sahifada birinchilardan ko'rsatish (Ixtiyoriy)</label>
+            <label for="lvl" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Ushbu mutaxassisni bosh sahifada birinchilardan ko'rsatish (Ixtiyoriy)</label>
         </div>
         <div class="flex items-start mb-6">
             <div class="flex items-center h-5">
