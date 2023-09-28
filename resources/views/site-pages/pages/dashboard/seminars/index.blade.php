@@ -162,7 +162,7 @@
                                                         </td>
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">
-                                                                <form action="{{ route('dashboard.seminarEdit', $item->id)}}" method="POST"                                                                
+                                                                <form action="{{ route('dashboard.seminarDestroy', $item->id)}}" method="POST"                                                                
                                                                     style="display: inline-block;">
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

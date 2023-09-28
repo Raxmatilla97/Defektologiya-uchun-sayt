@@ -1,5 +1,5 @@
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{asset('assets/js/tinymce.min.js')}}" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector:'#content',
@@ -10,7 +10,7 @@
         'table emoticons template paste help codesample'
         ],
 
-        image_title : true,
+        image_title : true,        
         automatic_uploads: true,
         images_upload_url : '/ckeditor/upload',
         file_picker_types: 'image',
@@ -44,3 +44,8 @@
     tinymce.activeEditor.execCommand('mceCodeEditor');
 </script>
 
+{{-- <style>
+    .tox-dialog .tox-dialog__content-js .tox-dialog__body .tox-dialog__body-nav {
+  display: none;
+}
+</style> --}}

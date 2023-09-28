@@ -20,10 +20,11 @@ class DashboardController extends Controller
     public function kurslarDashboardList($request = null)
     {
       
-        $all_couses = Course::where('status', '1')->orderBy('created_at', 'desc')->count();
-        $all_couses_maqullangan = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->orderBy('created_at', 'desc')->count();
-        $all_couses_rad_etilgan = Course::where('status', '1')->where('maqullanganligi', 'rad_etildi')->orderBy('created_at', 'desc')->count();
-        $all_couses_tasdiqlash_kerak = Course::where('status', '1')->where('maqullanganligi', 'korilmagan')->orderBy('created_at', 'desc')->count();
+        $all_couses = Course::where('status', '1')->count();
+        $all_couses_maqullangan = Course::where('status', '1')->where('maqullanganligi', 'maqullandi')->count();
+        $all_couses_rad_etilgan = Course::where('status', '1')->where('maqullanganligi', 'rad_etildi')->count();
+        $all_couses_tasdiqlash_kerak = Course::where('status', '1')->where('maqullanganligi', 'korilmagan')->count();
+
 
         if (isset($request)) {
 
@@ -49,6 +50,7 @@ class DashboardController extends Controller
             'all_couses_rad_etilgan', 
             'all_couses_tasdiqlash_kerak',
             'all_couses_tasdiqlash_kerak_paginate',
+            
         ));
     }
 
@@ -57,7 +59,8 @@ class DashboardController extends Controller
     {          
         $all_users = User::where('status', '1')->orderBy('created_at', 'desc')->get();
         $specialistCount = $all_users->pluck('specialist')->where('status', '1')->count();
-        
+        $all_couses_requests_views = StudentCourse::where('sorov_holati', 'tekshirilmoqda')->count();
+
         $noactiveStatus = $all_users->pluck('specialist')->where('status', '0')->count();
         $noactiveStatusAllUsers = User::where('status', '0')->count();
 
@@ -88,7 +91,7 @@ class DashboardController extends Controller
                 $query->where('sorov_holati', 'tekshirilmoqda');
             })->where('status', '1')->orderBy('created_at', 'desc')->paginate(15); 
         }
-        return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers'));
+        return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers', 'all_couses_requests_views'));
     }
 
 
@@ -104,6 +107,7 @@ class DashboardController extends Controller
         
         return redirect()->back()->with('status', "Ro'yxatdan o'tgan foydalanuvchi o'chirildi!");
     }
+
 
    
     public function testIndex()

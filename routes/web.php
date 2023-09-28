@@ -55,7 +55,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/index/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
         Route::get('/search', [CourseController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
         Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
-        Route::delete('/user-delete/{id?}', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy'); 
+        Route::delete('/user-delete/{id?}', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy');
+        Route::get('/course-request-views', [CourseController::class, 'courseRequestViews'])->name('dashboard.courseRequestViews');
+        Route::get('/my-courses-request-search', [CourseController::class, 'myCoursesRequestSearch'])->name('dashboard.myCoursesRequestSearch');
+        Route::get('/all-courses-request-search', [CourseController::class, 'allCoursesRequestSearch'])->name('dashboard.allCoursesRequestSearch');
+        Route::delete('/all-courses-request-delete/{id?}', [CourseController::class, 'allCoursesRequestDelete'])->name('dashboard.allCoursesRequestDelete');
+
        
 
         Route::get('/news-and-events', [NewsController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
@@ -104,6 +109,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/add-video-darslar/{slug?}', [VideoDarslarController::class, 'addVideoDarslar'])->name('dashboard.addVideoDarslar'); 
         Route::post('/add-video-darslar-store', [VideoDarslarController::class, 'addVideoDarslarStore'])->name('dashboard.addVideoDarslarStore'); 
         Route::post('/edit-video-darslar', [VideoDarslarController::class, 'editVideoDarslar'])->name('dashboard.editVideoDarslar'); 
+        Route::delete('/delete-video/{id?}', [VideoDarslarController::class, 'deleteVideoDarslar'])->name('dashboard.deleteVideoDarslar');
+
     });
 
     Route::middleware(['universal:admin,student,teacher'])->group(function () {

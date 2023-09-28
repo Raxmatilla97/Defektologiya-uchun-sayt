@@ -343,7 +343,7 @@ class CourseController extends Controller
             $sorov->save();
         }
 
-        return redirect()->route('dashboard.myCourses')->with('status', "Siz kursga yozildingiz!");
+        return redirect()->route('dashboard.myCourses')->with('status', "Siz malaka oshirish kursidagi video darslarni ko'rish uchun ariza yubordingiz! Iltimos javobini kuting, biz siz bilan bog'lanishimiz mumkin.");
     }
 
     public function requestCourseEdit($request)
@@ -358,23 +358,113 @@ class CourseController extends Controller
 
 
     public function requestCourseStore(Request $request)
-    {
-        
+    {       
+  
         $sorov = StudentCourse::find($request->request_id);
     
         if ($sorov) {
             $sorov->course_id = $request->input('course_id');        
             $sorov->student_id = $request->input('student_id');
             $sorov->sorov_holati = $request->input('sorov_holati');
-        
+            $sorov->tolov_qilgani = $request->input('tolov_qilgani');           
+            $sorov->bu_xaqda_xabar = $request->input('bu_xaqda_xabar');
+            
             $sorov->save();
         
-            return redirect()->route('dashboard.registerUsersList', 'ruxsat-soraganlar')->with('status', 'Siz arizani tahrirladingiz!');
+            return redirect()->route('dashboard.courseRequestViews')->with('status', 'Siz arizani tahrirladingiz!');
         } else {
             // Handle the case when the $sorov object is not found
             // You can redirect or show an error message
         }
     }
+
+    
+    public function courseRequestViews()
+    {
+        $CourseRequest = StudentCourse::paginate(15);
+
+        return view('site-pages.pages.dashboard.courses-request-views', compact('CourseRequest'));
+    }
+
+
+    public function myCoursesRequestSearch(Request $request)
+    {
+        
+        $title = $request->input('title');
+        $maqullanganlik = $request->input('maqullanganlik');  
+       
+        $query = StudentCourse::query();
+            
+        if ($title) {
+            $query->whereHas('course', function ($query) use ($title) {
+                $query->where('title', 'like', '%' . $title . '%');
+            });
+        }
+
+        if (in_array($request->input('maqullanganlik'), ['maqullandi', 'ruxsat_berilmadi', 'tekshirilmoqda'])) {
+            if ($maqullanganlik) {               
+                $query->where('sorov_holati', $maqullanganlik);
+            }
+        } else {
+            if ($maqullanganlik) {               
+                $query->where('tolov_qilgani', $maqullanganlik);
+            }
+        }   
+
+        $user_id = Auth::user()->id;
+        $myCourses = $query->where('student_id', $user_id)->paginate(15);
+
+        return view('site-pages.pages.dashboard.my-courses', compact('myCourses'));
+     
+    }
+
+
+    public function allCoursesRequestSearch(Request $request)
+    {
+        
+        $title = $request->input('title');
+        $maqullanganlik = $request->input('maqullanganlik');  
+       
+        $query = StudentCourse::query();
+            
+        if ($title) {
+            $query->whereHas('course', function ($query) use ($title) {
+                $query->where('title', 'like', '%' . $title . '%');
+            });
+        }
+
+        if (in_array($request->input('maqullanganlik'), ['maqullandi', 'ruxsat_berilmadi', 'tekshirilmoqda'])) {
+            if ($maqullanganlik) {               
+                $query->where('sorov_holati', $maqullanganlik);
+            }
+        } else {
+            if ($maqullanganlik) {               
+                $query->where('tolov_qilgani', $maqullanganlik);
+            }
+        }           
+      
+        $CourseRequest = $query->paginate(15);
+
+        return view('site-pages.pages.dashboard.courses-request-views', compact('CourseRequest'));
+     
+    }
+
+
+    
+    public function allCoursesRequestDelete($id)
+    {
+      
+        $request = StudentCourse::find($id);
+        
+        if (!$request) {
+            return redirect()->back()->with('error', 'Ariza topilmadi'); // Ariza topilmadi xabarini qaytarish
+        }
+        
+        $request->delete();
+        
+        return redirect()->back()->with('status', "Foydalanuvchi yuborgan ariza o'chirildi!");
+    }
+
 
     
 

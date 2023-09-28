@@ -80,15 +80,33 @@
                 </div>
               </div>
           </div> 
+          <div class="mb-8" >
+            <div>
+             
+                <label for="tolov_qilgani" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Foydalanuvchi kurs uchun to'lov qilganligini belgilash</label>
+                <select id="tolov_qilgani" name="tolov_qilgani" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option value="qilinmagan" {{ old('tolov_qilgani', $sorov->tolov_qilgani) === 'qilinmagan' ? 'selected' : '' }}>To'lov qilinmagan!</option>
+                    <option value="qilingan" {{ old('tolov_qilgani' , $sorov->tolov_qilgani) === 'qilingan' ? 'selected' : '' }}>To'lov qilingan!</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="mb-6">
+            <div>
+              <label for="bu_xaqda_xabar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">To'lov qilgan yoki qilmaganligi bo'yicha ma'lumot bo'lsa yozing</label>
+              <textarea id="bu_xaqda_xabar" name="bu_xaqda_xabar" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" style="height: 300px;">{{ old('bu_xaqda_xabar', $sorov->bu_xaqda_xabar) }}</textarea></div>
+          </div> 
+
           <div class="mb-8" style="margin-bottom: 100px">
             <div>
                 <label for="sorov_holati" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Arizani holati</label>
                 <select id="sorov_holati" name="sorov_holati" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <option  selected value="tekshirilmoqda" {{ old('sorov_holati', $sorov->sorov_holati) === 'tekshirilmoqda' ? 'selected' : '' }}>Ariza tekshiruv holatida</option>
                     <option value="maqullandi" {{ old('sorov_holati' , $sorov->sorov_holati) === 'maqullandi' ? 'selected' : '' }}>Arizani maqullash</option>
+                    <option value="ruxsat_berilmadi" {{ old('sorov_holati' , $sorov->sorov_holati) === 'ruxsat_berilmadi' ? 'selected' : '' }}>Arizani rad etish</option>
                 </select>
-              </div>
             </div>
+          </div>
 
           <div class="flex justify-center mt-6">
             <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mx-auto mr-2 mb-8">Arizani o'zgartirish</button>

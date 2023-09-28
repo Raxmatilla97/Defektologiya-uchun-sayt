@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('sorov_holati')->default('tekshirilmoqda');
             $table->foreignId('course_id')->constrained('courses')->nullable();  
-            $table->foreignId('student_id')->constrained('users')->nullable();  
+            $table->foreignId('student_id')->constrained('users')->nullable(); 
+            $table->string('tolov_qilgani')->default('qilinmagan');
+            $table->text('bu_xaqda_xabar')->nullable();
             $table->timestamps();
         });
     }

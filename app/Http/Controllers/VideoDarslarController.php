@@ -106,4 +106,17 @@ class VideoDarslarController extends Controller
         return redirect()->back()->with('success', "Video darsingiz o'zgartirildi!");
     }
 
+    public function deleteVideoDarslar($id)
+    {
+        $video_dars = VideoDarslar::find($id);
+        
+        if (!$video_dars) {
+            return redirect()->back()->with('error', 'Video dars topilmadi'); // Ariza topilmadi xabarini qaytarish
+        }
+        
+        $video_dars->delete();
+        
+        return redirect()->back()->with('status', "Video dars o'chirildi!");
+    }
+
 }

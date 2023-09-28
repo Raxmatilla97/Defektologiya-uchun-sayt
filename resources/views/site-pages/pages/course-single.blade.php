@@ -91,7 +91,7 @@
                     <ul class="list  course-accrodain space-y-6">
                     
                       @if ($videoDarslar->isNotEmpty())
-                        @if(Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "maqullandi")
+                        @if(Auth::check() && Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "maqullandi")
                           @foreach($videoDarslar as $item)
                           <li>
                             <button type="button" class="accrodain-button">
@@ -115,7 +115,7 @@
                             </div>
                           </li>
                           @endforeach
-                        @elseif(Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "tekshirilmoqda")
+                        @elseif(Auth::check() && Auth::user()->studentCourse && Auth::user()->studentCourse->sorov_holati == "tekshirilmoqda")
                           <img src="{{asset('assets/images/1c-uslugi.gif')}}" alt="Image" class="mx-auto block">
                           <h3 class="text-center">Kursni ko‘rish uchun yuborgan so‘rovingizga javob kutilmoqda!</h3>
                         @else                 

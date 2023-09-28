@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Kurs yaratish sahifasi') }}
+            {{ __("Yaratilgan kurslarga video darslarni qo'shish sahifasi") }}
         </h2>
     </x-slot>
     @if(session('name'))
@@ -10,20 +10,20 @@
     </div>
     @endif  
 
-    @if (session()->has('status'))
-    <div id="alert-border-3" class="flex items-center p-4 mt-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
-        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-        </svg>
-        <div class="ml-3 text-sm font-medium">
-            {{ session()->get('status') }}
-        </div>
-    
-    </div>
-@endif
-
 	
     <div class="max-w-4xl mx-auto bg-white p-16 pt-5 mt-3">
+	
+		@if (session()->has('status'))
+		<div id="alert-border-3" class="flex items-center p-4 mt-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+			<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+			<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+			</svg>
+			<div class="ml-3 text-sm font-medium">
+				{{ session()->get('status') }}
+			</div>
+		
+		</div>
+	@endif
 	
 		<h3 class="text-2xl mb-8 text-center mt-8 font-extrabold dark:text-white">Kursga qaytish: <a class="text-blue-600" href="{{ route('dashboard.editCourse', $editCourse->slug)}}">{{$editCourse->title}}</a></h3>
         <div id="alert-additional-content-1" class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
@@ -51,14 +51,7 @@
               </ul>
           </div>
       @endif
-      
-        <!-- 
-    FAQ - Frequently Asked Questions TailwindCSS Component
-    with <details> and <summary> tag with custom [open] animation.
-    Created by Surjith S M (@surjithctly)
-    See more components: https://web3components.dev 
--->
-
+ 
 
 <div class="max-w-screen-xl mx-auto px-5 bg-white min-h-sceen">
 	<div class="flex flex-col items-center">
@@ -291,10 +284,41 @@
 						</div>
 					</div>
 				</div>
+
+				<form action="{{ route('dashboard.deleteVideoDarslar', $item->id)}}" method="POST"                                                                
+					style="display: inline-block;">
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">					
+
+					<button onclick="event.preventDefault(); openModal()"  type="button" class="text-red-800 bg-transparent border border-red-900 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" data-dismiss-target="#alert-additional-content-1" aria-label="Close">
+						O'chirish			
+					  </button>
+
+					<div id="modal" class="fixed z-50 inset-0 flex items-center justify-center  hidden">
+						<!-- Modal backdrop -->
+						<div class="absolute inset-0 bg-gray-900 opacity-75"></div>                                                                    
+						<!-- Modal content -->
+						<div class="bg-white p-6 rounded shadow-lg z-0">
+							<p class=" text-xl text-center">Video darsni o'chirishni <br> istaysizmi?</p>
+							<div class="flex justify-end mt-4">
+								<button type="submit" class="px-4 py-2 text-white bg-red-700 rounded" >O'chirish</button>
+								<button type="button" class="px-4 py-2 text-gray-500 rounded ml-4" onclick="closeModal()">Yopish</button>
+							</div>
+						</div>
+					</div>
+					
+					<script>
+						function openModal() {
+							document.getElementById('modal').classList.remove('hidden');
+						}
+					
+						function closeModal() {
+							document.getElementById('modal').classList.add('hidden');
+						}  
+					</script>
+				</form>
 		
-				<button type="button" class="text-red-800 bg-transparent border border-red-900 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-blue-600 dark:border-blue-600 dark:text-blue-400 dark:hover:text-white dark:focus:ring-blue-800" data-dismiss-target="#alert-additional-content-1" aria-label="Close">
-				  O'chirish
-				</button>
+			
 			  </div>
 		</details>
 		
