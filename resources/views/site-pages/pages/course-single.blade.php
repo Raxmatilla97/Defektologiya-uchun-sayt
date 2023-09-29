@@ -475,12 +475,12 @@
                   </div>
                   <div class="flex-none text-sm " style="font-size: 15px">
                     @php
-                      $fullName = $courseIndex->specialist->fish;
-                      $nameParts = explode(' ', $fullName);
-                      $familya = $nameParts[0];
-                      $ismi = $nameParts[1];
-                      
-                      @endphp
+                      $fullName = $courseIndex->specialist->fish;                  
+                      $nameParts = explode(' ', $fullName);                  
+                      $familya = isset($nameParts[0]) ? $nameParts[0] : null;                  
+                      $ismi = isset($nameParts[1]) ? $nameParts[1] : null;
+                     @endphp
+                     
                     {{ $familya }} {{ $ismi }} 
                   </div>
                 </li>

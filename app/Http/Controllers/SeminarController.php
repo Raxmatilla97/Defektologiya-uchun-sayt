@@ -129,17 +129,21 @@ class SeminarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function seminarDestroy($id)
+    public function seminarDestroy(Request $request)
     {
-        $seminarDelete = Seminar::find($id);
-        
-        if (!$seminarDelete) {
-            return redirect()->back()->with('error', 'Seminar topilmadi'); // Ariza topilmadi xabarini qaytarish
+         
+        if ($request->seminar_id) {    
+            $id = $request->seminar_id;
+            $seminarDelete = Seminar::find($id);
+            
+            if (!$seminarDelete) {
+                return redirect()->back()->with('error', 'Seminar topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+            
+            $seminarDelete->delete();
+            
+            return redirect()->back()->with('status', "Seminar o'chirildi!");
         }
-        
-        $seminarDelete->delete();
-        
-        return redirect()->back()->with('status', "Seminar o'chirildi!");
     }
 
     public function seminarSearch(Request $request)

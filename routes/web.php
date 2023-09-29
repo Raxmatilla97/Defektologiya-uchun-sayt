@@ -84,7 +84,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::post('/project-update', [ProjectController::class, 'projectUpdate'])->name('dashboard.projectUpdate'); 
 
         Route::get('/seminars', [SeminarController::class, 'seminarsIndex'])->name('dashboard.seminarsIndex');
-        Route::delete('/seminar-delete/{id?}', [SeminarController::class, 'seminarDestroy'])->name('dashboard.seminarDestroy'); 
+        Route::delete('/seminar-delete', [SeminarController::class, 'seminarDestroy'])->name('dashboard.seminarDestroy'); 
         Route::get('/seminar-search', [SeminarController::class, 'seminarSearch'])->name('dashboard.seminarSearch');
         Route::get('/seminar-create', [SeminarController::class, 'seminarCreate'])->name('dashboard.seminarCreate');
         Route::post('/seminar-store', [SeminarController::class, 'seminarStore'])->name('dashboard.seminarStore'); 

@@ -182,39 +182,44 @@
                                                         </td>
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">
-                                                                <form action="{{ route('dashboard.kurslarDeleteDashboard', $item->id)}}" method="POST"                                                                
-                                                                    style="display: inline-block;">
-                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                    <button  onclick="event.preventDefault(); openModal()" type="button" class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                                                        </svg>
-                                                                    </button>
-    
-                                                                    <div id="modal" class="fixed inset-0 flex items-center justify-center  hidden">
-                                                                        <!-- Modal backdrop -->
-                                                                        <div class="absolute inset-0 bg-gray-900 opacity-75"></div>                                                                    
-                                                                        <!-- Modal content -->
-                                                                        <div class="bg-white p-6 rounded shadow-lg z-0">
-                                                                            <p class=" text-xl text-center">Arizani o'chirishni <br> istaysizmi?</p>
-                                                                            <div class="flex justify-end mt-4">
-                                                                                <button type="submit" class="px-4 py-2 text-white bg-red-700 rounded" >O'chirish</button>
-                                                                                <button type="button" class="px-4 py-2 text-gray-500 rounded ml-4" onclick="closeModal()">Yopish</button>
-                                                                            </div>
+                                                                <form action="{{ route('dashboard.kurslarDeleteDashboard')}}" method="POST"                                                                
+                                                                style="display: inline-block;">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                                <input type="text" style="opacity: 0;" name="course_id" value="{{$item->id}}">
+                                                               
+                                                                <button  onclick="event.preventDefault(); openModal('{{$item->id}}')" type="button" class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                                    </svg>
+                                                                </button>
+
+                                                                <div id="modal" class="fixed inset-0 flex items-center justify-center  hidden">
+                                                                    <!-- Modal backdrop -->
+                                                                    <div class="absolute inset-0 bg-gray-900 opacity-75"></div>                                                                    
+                                                                    <!-- Modal content -->
+                                                                    <div class="bg-white p-6 rounded shadow-lg z-0">
+                                                                        <p class=" text-xl text-center">Kursni o'chirishni <br> istaysizmi?</p>
+                                                                        <div class="flex justify-end mt-4">
+                                                                            <button type="submit" class="px-4 py-2 text-white bg-red-700 rounded" >O'chirish</button>
+                                                                            <button type="button" class="px-4 py-2 text-gray-500 rounded ml-4" onclick="closeModal()">Yopish</button>
                                                                         </div>
                                                                     </div>
-                                                                    
-                                                                    <script>
-                                                                        function openModal() {
-                                                                            document.getElementById('modal').classList.remove('hidden');
-                                                                        }
-                                                                    
-                                                                        function closeModal() {
-                                                                            document.getElementById('modal').classList.add('hidden');
-                                                                        }  
-                                                                    </script>
-                                                                </form>
+                                                                </div>
+                                                                
+                                                                <script>
+                                                                    function openModal(userId) {
+                                                                        document.getElementById('modal').classList.remove('hidden');
+                                                                        document.querySelector('input[name="course_id"]').value = userId;
+                                                                    }
+
+                                                                
+                                                                    function closeModal() {
+                                                                        document.getElementById('modal').classList.add('hidden');
+                                                                    }  
+                                                                </script>
+                                                            </form>
+
     
                                                                 <a href="{{ route('dashboard.editCourse', $item->slug)}}" class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -336,25 +341,10 @@
     
             <div class="mb-6">
                 <div>
-                <label for="editor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">O'zingiz haqizda to'liq yozing</label>
-                <textarea id="editor" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
+                <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">O'zingiz haqizda to'liq yozing</label>
+                <textarea id="content" name="desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Proyekt maqsadi va nimalar haqida bo'lishi mumkinligi haqida...." style="height: 350px;" >{{ old('desc') }}</textarea></div>
             </div> 
-            <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-            <script>
-                ClassicEditor
-                    .create( document.querySelector( '#editor' ),{    
-                      
-                        image: {
-                                    toolbar: [ 'toggleImageCaption', 'imageTextAlternative' ]
-                                },              
-                        ckfinder: {
-                            uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',
-                        }
-                    })
-                    .catch( error => {
-                        
-                    } );
-            </script>
+          
             
             <div class="mb-6">
                 <label for="image-upload" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mutaxassis suratini yuklash</label>
