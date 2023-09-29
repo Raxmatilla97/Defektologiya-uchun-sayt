@@ -27,6 +27,10 @@ use App\Http\Controllers\CkeditorController;
 
 
 Route::get('/', [IndexController::class, 'index'])->name('site.index');
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
 Route::get('/news-and-events', [IndexController::class, 'newsAndEvents'])->name('site.news-and-events');
 Route::get('/news-and-events-sort/{sorting}', [IndexController::class, 'newsAndEventsSort'])->name('site.news-and-events-sort');
 Route::get('/news-and-event/{slug}', [IndexController::class, 'newsAndEventsSingle'])->name('site.news-and-events-single');
