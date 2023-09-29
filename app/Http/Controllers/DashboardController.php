@@ -94,19 +94,28 @@ class DashboardController extends Controller
         return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers', 'all_couses_requests_views'));
     }
 
-
-    public function userDestroy($id)
+    public function userDestroy(Request $request)
     {
-        $user = User::find($id);
-        
-        if (!$user) {
-            return redirect()->back()->with('error', 'Foydalanuvchi topilmadi'); // Ariza topilmadi xabarini qaytarish
+        if ($request->input('user_id')) {
+    
+            $id = $request->user_id;
+            $user = User::find($id);
+    
+            if (!$user) {   
+                return redirect()->back()->with('error', 'Foydalanuvchi topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+          
+            if ($user->specialist && $user->specialist->courses != null && $user->specialist->courses->count() > 0) {
+                return redirect()->back()->with('error', "Ushbu foydalanuvchi bilan bog'liq kurs(lar) mavjud. Avval ularni o'chiring yoki boshqa muallimlarga transfer qiling. (Transfer qilish funksiyasi hali mavjud emas Sayt yaratuvchisi bilan bog'laning!)");
+            }
+            
+            
+            $user->delete();
+    
+            return redirect()->back()->with('status', "Ro'yxatdan o'tgan foydalanuvchi o'chirildi!");
         }
-        
-        $user->delete();
-        
-        return redirect()->back()->with('status', "Ro'yxatdan o'tgan foydalanuvchi o'chirildi!");
     }
+    
 
 
    

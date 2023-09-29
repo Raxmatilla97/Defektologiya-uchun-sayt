@@ -59,7 +59,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/index/{kurslar?}', [DashboardController::class, 'kurslarDashboardList'])->name('dashboard.kurslarDashboardList');
         Route::get('/search', [CourseController::class, 'kurslarSearch'])->name('dashboard.kurslarSearch');
         Route::get('/users/{registratedUsers}', [DashboardController::class, 'registerUsersList'])->name('dashboard.registerUsersList');
-        Route::delete('/user-delete/{id?}', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy');
+        Route::delete('/user-delete', [DashboardController::class, 'userDestroy'])->name('dashboard.userDestroy');
         Route::get('/course-request-views', [CourseController::class, 'courseRequestViews'])->name('dashboard.courseRequestViews');
         Route::get('/my-courses-request-search', [CourseController::class, 'myCoursesRequestSearch'])->name('dashboard.myCoursesRequestSearch');
         Route::get('/all-courses-request-search', [CourseController::class, 'allCoursesRequestSearch'])->name('dashboard.allCoursesRequestSearch');
@@ -68,7 +68,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
        
 
         Route::get('/news-and-events', [NewsController::class, 'newsAndEvents'])->name('dashboard.newsAndEvents');
-        Route::delete('/news-and-events/{id?}', [NewsController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
+        Route::delete('/news-and-events', [NewsController::class, 'newsAndEventsDelete'])->name('dashboard.newsAndEventsDelete'); 
         Route::get('/news-and-events-search', [NewsController::class, 'newsAndEventsSearch'])->name('dashboard.newsAndEventsSearch');
         Route::get('/news-and-events-create', [NewsController::class, 'newsAndEventsCreate'])->name('dashboard.newsAndEventsCreate');
         Route::post('/news-and-events-store', [NewsController::class, 'newsAndEventsStore'])->name('dashboard.newsAndEventsStore'); 
@@ -104,7 +104,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::middleware(['universal:admin,teacher'])->group(function () {
         Route::post('/specialist-store', [SpecialistController::class, 'specialistStore'])->name('dashboard.specialistStore');
 
-        Route::delete('/delete-kurslar/{id?}', [CourseController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
+        Route::delete('/delete-kurslar', [CourseController::class, 'kurslarDeleteDashboard'])->name('dashboard.kurslarDeleteDashboard');
         Route::get('/create-courses', [CourseController::class, 'createCourses'])->name('dashboard.createCourses');
         Route::post('/store-courses', [CourseController::class, 'coursesStore'])->name('dashboard.coursesStore'); 
         Route::get('/my-created-courses/{request?}', [CourseController::class, 'myCreatedCourses'])->name('dashboard.myCreatedCourses');     

@@ -116,17 +116,22 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function projectDestroy($id)
+    public function projectDestroy(Request $request)
     {
-        $projectDelete = Project::find($id);
+        if($request->project_id){
+            $id = $request->project_id;
+            $projectDelete = Project::find($id);
         
-        if (!$projectDelete) {
-            return redirect()->back()->with('error', 'Proyekt topilmadi'); // Ariza topilmadi xabarini qaytarish
+            if (!$projectDelete) {
+                return redirect()->back()->with('error', 'Proyekt topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+            
+            $projectDelete->delete();
+            
+            return redirect()->back()->with('status', "Proyekt o'chirildi!");
+
         }
-        
-        $projectDelete->delete();
-        
-        return redirect()->back()->with('status', "Proyekt o'chirildi!");
+       
     }
 
     public function projectSearch(Request $request)

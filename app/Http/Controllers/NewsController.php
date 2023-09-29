@@ -14,17 +14,20 @@ class NewsController extends Controller
         return view('site-pages.pages.dashboard.news-and-events', compact('allnewsAndEvents'));
     }
 
-    public function newsAndEventsDelete($id)
+    public function newsAndEventsDelete(Request $request)
     {
-        $NewsAndEvents = News::find($id);
-        
-        if (!$NewsAndEvents) {
-            return redirect()->back()->with('error', 'Xabarlar topilmadi'); // Ariza topilmadi xabarini qaytarish
+        if ($request->input('news_id')) {    
+            $id = $request->news_id;
+            $NewsAndEvents = News::find($id);
+            
+            if (!$NewsAndEvents) {
+                return redirect()->back()->with('error', 'Xabarlar topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+            
+            $NewsAndEvents->delete();
+            
+            return redirect()->back()->with('status', "Yangilik yoki E'lon o'chirildi!");
         }
-        
-        $NewsAndEvents->delete();
-        
-        return redirect()->back()->with('status', "Yangilik yoki E'lon o'chirildi!");
     }
 
     public function newsAndEventsSearch(Request $request)

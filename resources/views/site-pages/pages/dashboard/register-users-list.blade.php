@@ -144,6 +144,15 @@
                                 </div>
                             @endif
 
+                            <!-- if session contains 'error' -->
+                            @if(Session::has('error'))
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Xatolik!</strong>
+                            <span class="block sm:inline">{{ Session::get('error') }}</span>
+                            </div>
+                            @endif
+
+
                             @if (session()->has('status'))
                                 <div id="alert-border-3" class="flex items-center p-4 mt-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
                                     <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -193,7 +202,7 @@
                                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                 @if ($users)
                                                 
-                                                    @foreach ($users as $item)
+                                                    @foreach ($users as $item)                                                      
                                                     <tr>
                                                         {{-- {{dd($arizalar)}} --}}
                                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -218,7 +227,7 @@
                                                             </div>
                                                         </td>
                                                     
-                                                    
+                                                      
                                                         <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">                                                            
                                                             @if($item->roll == "admin")                                                      
                                                             <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
@@ -257,13 +266,16 @@
                                                                 
                                                             </div>
                                                         </td>
+                                                      
                                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                             <div class="flex items-center gap-x-6">                                                                                                                     
-                                                                <form action="{{ route('dashboard.userDestroy', $item->id)}}" method="POST"                                                                
+                                                                <form action="{{ route('dashboard.userDestroy')}}" method="POST"                                                                
                                                                     style="display: inline-block;">
                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                    <button  onclick="event.preventDefault(); openModal()" type="button" class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                                    <input type="text" style="opacity: 0;" name="user_id" value="{{$item->id}}">
+                                                                   
+                                                                    <button  onclick="event.preventDefault(); openModal('{{$item->id}}')" type="button" class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                                                         </svg>
@@ -283,9 +295,11 @@
                                                                     </div>
                                                                     
                                                                     <script>
-                                                                        function openModal() {
+                                                                        function openModal(userId) {
                                                                             document.getElementById('modal').classList.remove('hidden');
+                                                                            document.querySelector('input[name="user_id"]').value = userId;
                                                                         }
+
                                                                     
                                                                         function closeModal() {
                                                                             document.getElementById('modal').classList.add('hidden');

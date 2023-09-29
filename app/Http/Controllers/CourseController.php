@@ -57,18 +57,21 @@ class CourseController extends Controller
         }
     }
 
-    public function kurslarDeleteDashboard($id)
+    public function kurslarDeleteDashboard(Request $request)
     {
-      
-        $application = Course::find($id);
         
-        if (!$application) {
-            return redirect()->back()->with('error', 'Kurs topilmadi'); // Ariza topilmadi xabarini qaytarish
+        if ($request->input('course_id')) {    
+            $id = $request->course_id;
+            $application = Course::find($id);
+            
+            if (!$application) {
+                return redirect()->back()->with('error', 'Kurs topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+            
+            $application->delete();
+            
+            return redirect()->back()->with('status', "Ro'yxatdan o'tqazilgan kurs o'chirildi!");
         }
-        
-        $application->delete();
-        
-        return redirect()->back()->with('status', "Ro'yxatdan o'tqazilgan kurs o'chirildi!");
     }
 
 
