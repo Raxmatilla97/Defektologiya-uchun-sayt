@@ -21,9 +21,11 @@
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="lg:col-span-8 col-span-12">
           <div class="single-course-details">
-            <div class="xl:h-[470px] h-[350px] mb-10 course-main-thumb">
+            {{-- <div class="xl:h-[470px] h-[350px] mb-10 course-main-thumb">
               <img src="{{'/'}}storage/{{ $courseIndex->image }}" alt="{{ $courseIndex->title }}" class=" rounded-md object-fut w-full h-full block">
-            </div>
+            </div> --}}
+            <div class="mb-10" style="background-image: url('{{'/'}}storage/{{ $courseIndex->image }}'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 430px; overflow: hidden;"></div>
+
             <div class=" mb-6">
               <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white ">O'quv kursi</span>
             </div>
@@ -150,7 +152,7 @@
                       </div>
                       <div class="flex-1">
                         <div class="max-w-[300px]">
-                          <h4 class=" text-[34px] font-bold leading-[51px]">{{ $courseIndex->specialist->fish}}</h4>
+                          <h4 class=" text-[34px] font-bold leading-[51px]"><a href="{{ route('site.specialistSingle', $courseIndex->specialist->slug )}}">{{ $courseIndex->specialist->fish}}</a></h4>
                           <div class=" text-primary mb-6">
                             {{ $courseIndex->specialist->lavozim}}
                           </div>
@@ -481,7 +483,7 @@
                       $ismi = isset($nameParts[1]) ? $nameParts[1] : null;
                      @endphp
                      
-                    {{ $familya }} {{ $ismi }} 
+                  <a href="{{ route('site.specialistSingle', $courseIndex->specialist->slug )}}"> {{ $familya }} {{ $ismi }} </a> 
                   </div>
                 </li>
 
@@ -503,8 +505,23 @@
                   <div class="flex-none">
                     {{ $courseIndex->davomiylik_vaqti }}
                   </div>
-                </li>               
+                </li>
 
+                <li class=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
+                  <div class="flex-1 space-x-3 flex">
+                    <img src="{{ asset('assets/images/icon/star.svg')}}" alt="" />
+                    <div class=" text-black font-semibold">Bo'limi nomi</div>
+                  </div>
+                  <div class="flex-none">
+                    @if($courseIndex->category == "logo")
+                    Logopediya
+                    @elseif($courseIndex->category == "oligo")
+                      Oligofrenopedagogika
+                    @elseif($courseIndex->category == "surdo")
+                      Surdopedagogika
+                    @endif
+                  </div>
+                </li>
 
                 <li class=" flex space-x-3 border-b border-[#ECECEC] mb-4 pb-4 last:pb-0 past:mb-0 last:border-0">
                   <div class="flex-1 space-x-3 flex">

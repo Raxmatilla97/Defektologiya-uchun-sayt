@@ -3,7 +3,7 @@
       <div class="container">
         <div class=" flex items-center justify-between flex-wrap">
           <a href="{{ route('site.index')}}" class="brand-logo flex-none lg:mr-10 md:w-auto max-w-[120px] ">
-            <img src="{{ asset('assets/images/logo/logo-text.png')}}" alt=""></a>
+            <img src="{{ asset('assets/images/logo-text2.png')}}" alt=""></a>
           <div class="flex items-center flex-1">
             <div class="flex-1 main-menu  lg:relative   xl:mr-[7px] mr-6">
               <ul class="menu-active-classes">

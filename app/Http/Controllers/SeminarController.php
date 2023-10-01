@@ -38,8 +38,7 @@ class SeminarController extends Controller
             'title' => 'required|string',          
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',          
             'desc' => 'required|string',
-            'boladigan_kun' => 'required|date',
-            'status' => 'boolean'          
+            'boladigan_kun' => 'required|date'            
            
         ],
         [
@@ -48,8 +47,7 @@ class SeminarController extends Controller
             'image.image' => "Seminar uchun rasm formatida fayl yuklashingiz kerak!",
             'image.mimes' => "Seminar rasmi faqat jpeg, png, jpg, gif formatlari qabul qilinadi!",
             'image.max' => "Seminar rasmi hajmi 2048KB dan oshmasligi kerak!",
-            'desc.required' => "Seminar haqida yozishingiz kerak!",
-            'status.boolean' => "Seminar barchaga ko'rinarli yoki yo'qligini belgilang!",
+            'desc.required' => "Seminar haqida yozishingiz kerak!",      
             'boladigan_kun.required' => "Seminar bo'ladigan vaqtni belgilang!",
             'boladigan_kun.date' => "Seminar bo'ladigan vaqtni belgilang!",
            
@@ -75,7 +73,7 @@ class SeminarController extends Controller
         $seminar->boladigan_kun = $request->input('boladigan_kun');
         $seminar->image = $validatedData['image'];            
         $seminar->desc = $validatedData['desc'];
-        $seminar->status = $validatedData['status'];         
+        $seminar->status = $request->input('status', false);                   
         $seminar->tafsiya_etilgan = $request->input('tafsiya_etilgan', false);         
     
         $seminar->save();
@@ -109,6 +107,7 @@ class SeminarController extends Controller
         $seminarUpdate = Seminar::find($request->id);
         $seminarUpdate->title = $request->input('title'); 
         $seminarUpdate->desc = $request->input('desc');
+        $seminarUpdate->tafsiya_etilgan = $request->input('tafsiya_etilgan', false);   
         $seminarUpdate->status = $request->input('status', false); 
     
         if ($request->hasFile('image')) {

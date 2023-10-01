@@ -92,16 +92,26 @@ class CourseController extends Controller
                 
             $validatedData = $request->validate([
                 'title' => 'required|string',          
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',            
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'category' => 'required|string',                
                 'narxi' => 'required|string',
                 'kurs_tili' => 'required|string',
                 'davomiylik_vaqti' => 'required|string',          
-                'desc' => 'required|string',
-                'status' => 'boolean'          
+                'desc' => 'required|string',             
             ],
             [
                 'title.required' => "Kurs nomini yozishingiz kerak!",
                 'image.required' => "Kurs suratini yuklashingiz kerak!",
+                'image.image' => "Kurs uchun rasm formatida fayl yuklashingiz kerak!",
+                'image.mimes' => "Kurs rasmi faqat jpeg, png, jpg, gif formatlari qabul qilinadi!",
+                'image.max' => "Kurs rasmi hajmi 2048KB dan oshmasligi kerak!",
+                'category.required' => "Kurs bo'limini tanlashingiz kerak!",
+                'desc.required' => "Kurs haqida yozishingiz kerak!", 
+                
+                'narxi.required' => "Kurs narxini yozishingiz kerak!",
+                'kurs_tili.required' => "Kurs tilini tanlashingiz kerak!",
+                'davomiylik_vaqti.required' => "Kurs davomiylik vaqtini yozishingiz kerak!",
+                
             ]);
 
         
@@ -132,13 +142,19 @@ class CourseController extends Controller
             $course->title = $validatedData['title'];
             $course->slug = $slug;
             $course->image = $validatedData['image'];
+            $course->category = $validatedData['category'];
             $course->youtube = $videoId;
             $course->narxi = $validatedData['narxi'];
             $course->kurs_tili = $validatedData['kurs_tili'];
             $course->davomiylik_vaqti = $validatedData['davomiylik_vaqti'];
             $course->teacher_id = $specialist_id;
             $course->desc = $validatedData['desc'];
-            $course->status = $validatedData['status']; 
+
+            if(!isset($request->status)){
+                $course->status = '0'; 
+            }else{
+                $course->status = $request->status; 
+            }
             
         
             $course->save();
@@ -274,6 +290,7 @@ class CourseController extends Controller
             $maqullagan_id = Auth::user()->id;
             $course = Course::find($request->id);
             $course->title = $request->input('title');
+            $course->category = $request->input('category');
             $course->narxi = $request->input('narxi');
             $course->kurs_tili = $request->input('kurs_tili');
             $course->davomiylik_vaqti = $request->input('davomiylik_vaqti');
@@ -454,18 +471,20 @@ class CourseController extends Controller
 
 
     
-    public function allCoursesRequestDelete($id)
+    public function allCoursesRequestDelete(Request $request)
     {
-      
-        $request = StudentCourse::find($id);
-        
-        if (!$request) {
-            return redirect()->back()->with('error', 'Ariza topilmadi'); // Ariza topilmadi xabarini qaytarish
+        if ($request->input('course_request_id')) {  
+            $id = $request->course_request_id;
+            $request = StudentCourse::find($id);
+            
+            if (!$request) {
+                return redirect()->back()->with('error', 'Ariza topilmadi'); // Ariza topilmadi xabarini qaytarish
+            }
+            
+            $request->delete();
+            
+            return redirect()->back()->with('status', "Foydalanuvchi yuborgan ariza o'chirildi!");
         }
-        
-        $request->delete();
-        
-        return redirect()->back()->with('status', "Foydalanuvchi yuborgan ariza o'chirildi!");
     }
 
 

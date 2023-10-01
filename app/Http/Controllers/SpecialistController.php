@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Specialist;
 use App\Models\User;
+use App\Models\StudentCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -152,7 +153,7 @@ class SpecialistController extends Controller
         
         $noactiveStatus = $all_users->pluck('specialist')->where('status', '0')->count();
         $noactiveStatusAllUsers = User::where('status', '0')->count();
-
+        $all_couses_requests_views = StudentCourse::where('sorov_holati', 'tekshirilmoqda')->count();
         
         $user_name = $request->input('user_name');
         $specialist_name = $request->input('specialist_name');
@@ -174,7 +175,7 @@ class SpecialistController extends Controller
         $users = $query->paginate(15);
 
     
-        return view('site-pages.pages.dashboard.register-users-list', compact('users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers'));
+        return view('site-pages.pages.dashboard.register-users-list', compact('all_couses_requests_views', 'users', 'all_users', 'specialistCount', 'noactiveStatus', 'noactiveStatusAllUsers'));
 
     }
 

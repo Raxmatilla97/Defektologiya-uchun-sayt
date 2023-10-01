@@ -31,8 +31,8 @@
                             <a href="{{ route('dashboard.registerUsersList', 'mutaxasis-users')}}">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-green-500 bg-green border border-green-200 rounded-lg cursor-pointer dark:hover:text-green-300 dark:border-green-700 dark:peer-checked:text-green-500 peer-checked:border-green-600 peer-checked:text-green-600 hover:text-green-600 hover:bg-green-100 dark:text-green-400 dark:bg-green-800 dark:hover:bg-green-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Mutaxasis bo'lgan foydalanuvchilar soni: {{$specialistCount}}</div>
-                                        <div class="w-full">Mutaxasislik unvonini olgan foydalanuvchilar ro'yxati</div>
+                                        <div class="w-full text-lg font-semibold">Mutaxassis bo'lgan foydalanuvchilar soni: {{$specialistCount}}</div>
+                                        <div class="w-full">Mutaxassislik unvonini olgan foydalanuvchilar ro'yxati</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -45,7 +45,7 @@
                             <a href="{{ route('dashboard.registerUsersList', 'mutaxasis-ariza-users')}}">
                                 <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-sky-500 bg-red border border-sky-200 rounded-lg cursor-pointer dark:hover:text-sky-300 dark:border-sky-700 dark:peer-checked:text-sky-500 peer-checked:border-sky-600 peer-checked:text-sky-600 hover:text-sky-600 hover:bg-sky-100 dark:text-sky-400 dark:bg-sky-800 dark:hover:bg-sky-700">
                                     <div class="block">
-                                        <div class="w-full text-lg font-semibold">Mutaxasis bo'lish uchun ariza yuborganlar:  {{$noactiveStatus}}</div>
+                                        <div class="w-full text-lg font-semibold">Mutaxassis bo'lish uchun ariza yuborganlar:  {{$noactiveStatus}}</div>
                                         <div class="w-full">Kurs qo'yishni istagan foydalanuvchilar ariza yuborishadi</div>
                                     </div>
                                     <svg class="w-5 h-5 ml-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -57,7 +57,7 @@
                         <li>
                            <a href="{{ route('dashboard.specialistCreate')}}">
                                 <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                    Yangi mutaxasis yaratish va uni Loginga birlashtirish
+                                    Yangi Mutaxassis yaratish va uni Loginga birlashtirish
                                 </button>
                             </a>
                         </li>
@@ -112,7 +112,7 @@
                                     <input type="text" id="user_name" name="user_name" class="w-full border border-gray-300 p-2" placeholder="F.I.SH...">
                                   </div>
                                   <div class="mb-4 mr-4">
-                                    <label for="specialist_name" class="block mb-2">Mutaxasis F.I.SH:</label>
+                                    <label for="specialist_name" class="block mb-2">Mutaxassis F.I.SH:</label>
                                     <input type="text" id="specialist_name" name="specialist_name" class="w-full border border-gray-300 p-2" placeholder="F.I.SH...">
                                   </div>
                                 
@@ -188,7 +188,7 @@
 
                                                         <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                             <button class="flex items-center gap-x-2">
-                                                                <span>Mutaxasisga bog'langanligi</span>
+                                                                <span>Mutaxassisga bog'langanligi</span>
                                                             </button>
                                                         </th>   
 
@@ -250,13 +250,13 @@
                                                             @if($item->specialist)                                                      
                                                                 <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                                     <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                                                                    <h2 class="text-sm font-normal text-emerald-500">Mutahasis nomi:<br> <b>{{ $item->specialist->fish }}</b></h2>
+                                                                    <h2 class="text-sm font-normal text-emerald-500">Mutaxassis nomi:<br> <b>{{ $item->specialist->fish }}</b></h2>
                                                                 </div>
                                                             
                                                             @else                                                       
                                                                 <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 dark:bg-red-800">
                                                                     <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-                                                                    <h2 class="text-sm font-normal text-red-500">Foydalanuvchi mutaxasis emas!</h2>
+                                                                    <h2 class="text-sm font-normal text-red-500">Foydalanuvchi mutaxassis emas!</h2>
                                                                 </div>
                                                             @endif
                                                         </td>

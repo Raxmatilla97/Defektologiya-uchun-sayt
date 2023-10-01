@@ -57,12 +57,12 @@ class NewsController extends Controller
 
     public function newsAndEventsStore(Request $request)
     {
+       
         $validatedData = $request->validate([
-            'title' => 'required|string',          
+            'title' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'news_or_event' => 'required|string',
-            'desc' => 'required|string',
-            'status' => 'boolean'          
+            'desc' => 'required|string',                 
         ],
         [
             'title.required' => "Xabar nomini yozishingiz kerak!",
@@ -71,8 +71,7 @@ class NewsController extends Controller
             'image.mimes' => "Xabar rasmi faqat jpeg, png, jpg, gif formatlari qabul qilinadi!",
             'image.max' => "Xabar rasmi hajmi 2048KB dan oshmasligi kerak!",
             'news_or_event.required' => "Yangilik yoki E'lon bo'limini tanlashingiz kerak!",
-            'desc.required' => "Xabar haqida yozishingiz kerak!",
-            'status.boolean' => "Xabarni barchaga ko'rinarli yoki yo'qligini belgilang!",
+            'desc.required' => "Xabar haqida yozishingiz kerak!",          
         ]);
 
     
@@ -82,18 +81,24 @@ class NewsController extends Controller
             $filePath = $file->storeAs('images', $filename, 'public');
             $validatedData['image'] = $filePath;
         }
+       
 
         $slug = Str::slug($validatedData['title']) . '_' . now();
       
-        $course = new News();
-        $course->title = $validatedData['title'];
-        $course->slug = $slug;
-        $course->image = $validatedData['image']; 
-        $course->news_or_event = $validatedData['news_or_event'];       
-        $course->desc = $validatedData['desc'];
-        $course->status = $validatedData['status'];         
+        $newsAndEvent = new News();
+        $newsAndEvent->title = $validatedData['title'];      
+        $newsAndEvent->slug = $slug;
+        $newsAndEvent->image = $validatedData['image']; 
+        $newsAndEvent->news_or_event = $validatedData['news_or_event'];       
+        $newsAndEvent->desc = $validatedData['desc'];
+
+        if(!isset($request->status)){
+            $newsAndEvent->status = '0'; 
+        }else{
+            $newsAndEvent->status = $request->status; 
+        }
     
-        $course->save();
+        $newsAndEvent->save();
 
         return redirect()->route('dashboard.newsAndEvents')->with('status', "Siz Yangilik yoki E'lon yaratdingiz!");
 
@@ -113,7 +118,7 @@ class NewsController extends Controller
     {
         
         $newsAndEvent = News::find($request->id);
-        $newsAndEvent->title = $request->input('title');      
+        $newsAndEvent->title = $request->input('title');
         $newsAndEvent->news_or_event = $request->input('news_or_event');  
         $newsAndEvent->desc = $request->input('desc');
         $newsAndEvent->status = $request->input('status', false); 

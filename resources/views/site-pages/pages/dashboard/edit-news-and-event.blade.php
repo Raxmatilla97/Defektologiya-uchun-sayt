@@ -42,8 +42,7 @@
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Xabar sarlavhasi nomlanishi</label>
             <input type="text" id="title" name="title" value="{{ old('title', $edit_info->title )}}" placeholder="Yangilik yoki e'lon nomini yozing.." class="block w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
         </div> 
-        <div class=" mb-6 lg:grid-cols-2">
-           
+        <div class=" mb-6 lg:grid-cols-2">           
             <div>
                 <label for="news_or_event" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Xabar turini tanlang</label>
                 <select id="news_or_event" name="news_or_event" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
@@ -51,8 +50,6 @@
                     <option value="event" {{ old('news_or_event',  $edit_info->news_or_event) === 'event' ? 'selected' : '' }}>E'lon</option>
                 </select>
             </div>
-          
-            
         </div>
         <div class="mb-6">
             <div>

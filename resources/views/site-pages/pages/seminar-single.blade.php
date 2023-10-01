@@ -19,7 +19,10 @@
   @if (!isset($notFound))
   <div class="nav-tab-wrapper tabs  section-padding">
     <div class="container">
+      {{-- <div style="width: 100%; height: 430px; overflow: hidden;">
       <img src="{{'/'}}storage/{{ $seminarIndex->image }}" alt="" class=" lg:mb-10 mb-6 block w-full">
+      </div> --}}
+      <div style="background-image: url('{{'/'}}storage/{{ $seminarIndex->image }}'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 430px; overflow: hidden;"></div>
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="lg:col-span-8 col-span-12">
           <h3>

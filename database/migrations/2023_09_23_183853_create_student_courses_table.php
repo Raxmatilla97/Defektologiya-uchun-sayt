@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('student_courses', function (Blueprint $table) {
             $table->id();
             $table->string('sorov_holati')->default('tekshirilmoqda');
-            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade')->nullable();;  
-            $table->foreignId('student_id')->constrained('users')->onDelete('cascade')->nullable();; 
+            $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade');
+            $table->foreignId('student_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('tolov_qilgani')->default('qilinmagan');
             $table->text('bu_xaqda_xabar')->nullable();
             $table->timestamps();

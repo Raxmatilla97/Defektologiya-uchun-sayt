@@ -4,7 +4,7 @@
         <div class="single-footer">
           <div class="lg:max-w-[270px]">
             <a href="#" class="mb-10 block">
-              <img src="{{ asset('assets/images/logo-oq.png')}}" alt="">
+              <img src="{{ asset('assets/images/logo-text-oq.png')}}" alt="">
             </a>
             <p>
               Toshkent Shaxar Defektologlar Assotsiatsiyasi Web Sayti

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('insta_follow')->nullable();
             $table->string('facebook_follow')->nullable();
             $table->boolean('status')->nullable();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

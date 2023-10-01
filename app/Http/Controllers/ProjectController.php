@@ -34,8 +34,7 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',          
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',          
-            'desc' => 'required|string',
-            'status' => 'boolean'          
+            'desc' => 'required|string',            
         ],
         [
             'title.required' => "Proyekt nomini yozishingiz kerak!",
@@ -43,8 +42,7 @@ class ProjectController extends Controller
             'image.image' => "Proyekt uchun rasm formatida fayl yuklashingiz kerak!",
             'image.mimes' => "Proyekt rasmi faqat jpeg, png, jpg, gif formatlari qabul qilinadi!",
             'image.max' => "Proyekt rasmi hajmi 2048KB dan oshmasligi kerak!",
-            'desc.required' => "Proyekt haqida yozishingiz kerak!",
-            'status.boolean' => "Proyekt barchaga ko'rinarli yoki yo'qligini belgilang!",
+            'desc.required' => "Proyekt haqida yozishingiz kerak!",           
         ]);
 
     
@@ -62,7 +60,12 @@ class ProjectController extends Controller
         $project->slug = $slug;
         $project->image = $validatedData['image'];            
         $project->desc = $validatedData['desc'];
-        $project->status = $validatedData['status'];         
+        
+        if(!isset($request->status)){
+            $project->status = '0'; 
+        }else{
+            $project->status = $request->status; 
+        }        
     
         $project->save();
 

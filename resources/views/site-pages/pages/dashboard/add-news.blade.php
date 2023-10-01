@@ -103,7 +103,7 @@
         <hr class="mt-3 mb-5">
         <div class="flex items-start mb-6">
             <div class="flex items-center h-5">
-            <input id="status" type="checkbox" name="status" value="1" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
+            <input id="status" type="checkbox" name="status" value="1" {{ old('status') ? 'checked' : '' }}  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" >
             </div>
             <label for="status" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-400">Formada barcha ma'lumotlar tog'ri va kurs ko'rsatishga tayyor</label>
         </div>

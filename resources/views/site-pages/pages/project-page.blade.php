@@ -21,7 +21,10 @@
       <div class="grid grid-cols-12 gap-[30px]">
         <div class="lg:col-span-8 col-span-12">
           <div class="bg-[#F8F8F8] rounded-md">
+            {{-- <div style="width: 100%; height: 430px; overflow: hidden;">
             <img src="{{'/'}}storage/{{ $projectsIndex->image }}" alt="{{ $projectsIndex->title }}" class="w-full rounded-t-md mb-10">
+            </div> --}}
+            <div style="background-image: url('{{'/'}}storage/{{ $projectsIndex->image }}'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 430px; overflow: hidden;"></div>
             <div class="px-10 pb-10">
               <div class="flex  flex-wrap  xl:space-x-10 space-x-5 mt-6 mb-6">
                 <a class=" flex items-center space-x-2" href="#">

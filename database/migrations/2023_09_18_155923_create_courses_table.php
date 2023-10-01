@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('image');
+            $table->string('category');
             $table->string('youtube');
             $table->string('narxi');
             $table->string('kurs_tili');
             $table->string('davomiylik_vaqti');
-            $table->foreignId('teacher_id')->constrained('specialists')->onDelete('cascade')->nullable();
-            $table->foreignId('maqullagan_id')->constrained('users')->onDelete('cascade')->nullable();  
+            $table->foreignId('teacher_id')->nullable()->constrained('specialists')->onDelete('cascade');
+            $table->foreignId('maqullagan_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->text('desc');
             $table->boolean('status')->default(0);
             $table->string('maqullanganligi')->default('korilmagan');

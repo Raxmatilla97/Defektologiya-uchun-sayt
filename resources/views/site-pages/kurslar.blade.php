@@ -15,14 +15,14 @@
             <li data-filter="*" class="active tipy-info" data-tippy-content="New">
               Barchasi
             </li>
-            <li data-filter=".cat-1">
-              Bolim bir
+            <li data-filter=".logo">
+              Logopediya
             </li>
-            <li data-filter=".cat-2">
-              Bolim ikki
+            <li data-filter=".oligo">
+              Oligofrenopedagogika
             </li>
-            <li data-filter=".cat-3">
-              bo'lim uch
+            <li data-filter=".surdo">
+              Surdopedagogika
             </li>
           </ul>
         </div>
@@ -31,11 +31,19 @@
       
         @if ($coursesIndex->isNotEmpty())
         @foreach($coursesIndex as $item)
-        <div class="cat-1 grid-item xl:w-1/3 lg:w-1/2 w-full px-[15px] mb-[15px]">
+        <div class="{{ $item->category }} grid-item xl:w-1/3 lg:w-1/2 w-full px-[15px] mb-[15px]">
           <a class=" bg-white shadow-box2 rounded-[8px] transition duration-100 hover:shadow-sm block   mb-5 " href="{{ route('site.courseSingle', $item->slug)}}">
             <div class="course-thumb h-[248px] rounded-t-[8px]  relative">
               <img src="{{'/'}}storage/{{ $item->image }}" alt="{{ $item->title }}" class=" w-full h-full object-cover rounded-t-[8px]">
-              <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">Birinchi bo'lim</span>
+              <span class="bg-secondary py-1 px-3 text-lg font-semibold rounded text-white absolute left-6 top-6">
+                @if($item->category == "logo")
+                  Logopediya
+                @elseif($item->category == "oligo")
+                  Oligofrenopedagogika
+                @elseif($item->category == "surdo")
+                  Surdopedagogika
+                @endif
+              </span>
             </div>
             <div class="course-content p-8">
               <div class="text-secondary font-bold text-1xl mb-3">{{ $item->narxi }}</div>
