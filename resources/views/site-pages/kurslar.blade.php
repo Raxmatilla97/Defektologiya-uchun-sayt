@@ -10,22 +10,23 @@
             <span class="shape-bg">Kurslarimiz</span>
           </div>
         </div>
-        <div class="flex-none">
-          <ul class="filter-list flex xl:space-x-[39px] space-x-4 ">
-            <li data-filter="*" class="active tipy-info" data-tippy-content="New">
-              Barchasi
-            </li>
-            <li data-filter=".logo">
-              Logopediya
-            </li>
-            <li data-filter=".oligo">
-              Oligofrenopedagogika
-            </li>
-            <li data-filter=".surdo">
-              Surdopedagogika
-            </li>
+        <div class="flex flex-col sm:flex-row">
+          <ul class="filter-list flex flex-col sm:flex-row xl:space-x-[39px] space-x-4 ">
+              <li data-filter="*" class="active tipy-info" data-tippy-content="New">
+                  Barchasi
+              </li>
+              <li data-filter=".logo">
+                  Logopediya
+              </li>
+              <li data-filter=".oligo">
+                  Oligofrenopedagogika
+              </li>
+              <li data-filter=".surdo">
+                  Surdopedagogika
+              </li>
           </ul>
-        </div>
+      </div>
+      
       </div>
       <div class="flex flex-wrap pt-10 grids">
       

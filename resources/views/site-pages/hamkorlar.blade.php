@@ -1,6 +1,7 @@
   <!-- bradns section start -->
-  <div class="bg-[url('../images/all-img/section-bg-3.png')] bg-cover bg-no-repeat bg-center py-20">
-    <div class="container">
+  <div class="bg-[url('../images/all-img/section-bg-3.png')] bg-cover bg-no-repeat bg-center py-20" 
+       style="padding-top: 30px; padding-bottom: 30px; ">
+    {{-- <div class="container">
 
       <ul class="flex flex-wrap items-center lg:justify-between justify-center  ">
 
@@ -30,5 +31,5 @@
         </li>
 
       </ul>
-    </div>
+    </div> --}}
   </div>

@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="single-footer">
-          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A853b65148411bb715409ca1c365ea670387edf8f4f7461c6f0c2fd3224e669d3&amp;width=500&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A853b65148411bb715409ca1c365ea670387edf8f4f7461c6f0c2fd3224e669d3&amp;width=100%&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></script>
         </div>
       </div>
     </div>
